@@ -4,9 +4,6 @@ from util import io_helpers
 from edfi_airflow import EdFiResourceDAG
 
 
-# TODO: Understand Python globals() when appended within a module for `EdfiAirflowDAG.globalize()`.
-
-
 # Mapping resources to domains made sense before we upgraded Airflow to 2.0+ (i.e., Grid view).
 # By default, toggle off this mapping. (Maybe we'll find use for it again in the future.)
 GROUP_TASKS_BY_DOMAIN = False
