@@ -14,7 +14,7 @@ CONSTRAINT_URL="https://raw.githubusercontent.com/apache/airflow/constraints-${A
 pip install "apache-airflow[amazon, snowflake, slack, postgres]==${AIRFLOW_VERSION}" --constraint "${CONSTRAINT_URL}"  --quiet
 pip install airflow-dbt
 
-# Install EA-internal packages
-pip install -e git+https://github.com/edanalytics/ea_airflow_util.git#egg=ea_airflow_util
-pip install -e git+https://github.com/edanalytics/edfi_airflow.git#egg=edfi_airflow
-pip install -e git+https://github.com/edanalytics/edfi_api.git#egg=edfi_api
+# Install EDU packages
+pip install -e git+https://github.com/edanalytics/ea_airflow_util.git@v0.1.0#egg=ea_airflow_util
+pip install -e git+https://github.com/edanalytics/edfi_api_client.git@v0.1.0#egg=edfi_api_client
+pip install -e git+https://github.com/edanalytics/edu_edfi_airflow.git@v0.1.0#egg=edu_edfi_airflow

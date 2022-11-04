@@ -1,2 +1,2 @@
-# Install the EdFiApi repository to the local environment (for generating config files from Swagger).
-pip install -e git+https://github.com/edanalytics/edfi_api.git#egg=edfi_api
+# Install the EdFiApiClient repository to the local environment (for generating config files from Swagger).
+pip install -e git+https://github.com/edanalytics/edfi_api_client.git@v0.1.0#egg=edfi_api_client
