@@ -1,0 +1,5 @@
+{name}:
+  enabled: True
+  namespace: {namespace}
+  page_size: 500
+  fetch_deletes: {has_deletes}

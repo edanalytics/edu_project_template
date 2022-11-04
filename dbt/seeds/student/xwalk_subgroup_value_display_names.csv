@@ -1,0 +1,30 @@
+subgroup_category,subgroup_value,subgroup_value_display_name
+all_students,all_students,All Students
+gender,Female,Female
+gender,Male,Male
+gender,Not Selected,Not Selected
+gender,Non-binary,Non-binary
+grade_level,Early Education,Early Education
+grade_level,Kindergarten,K
+grade_level,First grade,1
+grade_level,Second grade,2
+grade_level,Third grade,3
+grade_level,Fourth grade,4
+grade_level,Fifth grade,5
+grade_level,Sixth grade,6
+grade_level,Seventh grade,7
+grade_level,Eighth grade,8
+grade_level,Ninth grade,9
+grade_level,Tenth grade,10
+grade_level,Eleventh grade,11
+grade_level,Twelfth grade,12
+grade_level,Grade 13,13
+race_ethnicity,American Indian - Alaska Native,Native American
+race_ethnicity,Asian,Asian
+race_ethnicity,Black - African American,Black
+race_ethnicity,Latinx,Latinx
+race_ethnicity,Multiple,Multiracial
+race_ethnicity,Native Hawaiian - Pacific Islander,Native Hawaiian - Pacific Islander
+race_ethnicity,White,White
+lep_code,Limited,Current Multilingual Learners
+lep_code,NotLimited,Never Multilingual Learners

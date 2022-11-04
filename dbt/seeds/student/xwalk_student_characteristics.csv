@@ -1,0 +1,4 @@
+characteristic_descriptor,indicator_name
+Economic Disadvantaged,is_economic_disadvantaged
+Foster Care,is_foster
+Homeless,is_homeless

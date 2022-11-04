@@ -1,0 +1,11 @@
+discipline_action,severity_order,is_oss,is_iss,is_exp,is_minor
+No action for incident,0,false,false,false,true
+Removal from Classroom,1,false,false,false,true
+Other,2,false,false,false,true
+Community Service,100,false,false,false,false
+In School Suspension,200,false,true,false,false
+Out of School Suspension,201,true,false,false,false
+Expulsion,300,false,false,true,false
+Expulsion with Services,301,false,false,true,false
+Expulsion under Guns Free School Act,302,false,false,true,false
+Expulsion under Guns Free School Act with Services,303,false,false,true,false

@@ -1,0 +1,7 @@
+namespace,attendance_event_descriptor,is_absent
+uri://ed-fi.org/,In Attendance,FALSE
+uri://ed-fi.org/,Excused Absence,TRUE
+uri://ed-fi.org/,Unexcused Absence,TRUE
+uri://ed-fi.org/,Tardy,FALSE
+uri://ed-fi.org/,Early departure,FALSE
+uri://ed-fi.org/,Partial,FALSE

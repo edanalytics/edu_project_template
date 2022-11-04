@@ -1,0 +1,5 @@
+metric_name,threshold_lower,threshold_upper,level_numeric,level_label,level_color
+absentee_category,0,80,4,4 - Severe Chronic Absence,red
+absentee_category,80,90,3,3 - Moderate Chronic Absence,orange
+absentee_category,90,95,2,2 - At Risk Attendance,yellow
+absentee_category,95,101,1,1 - Satisfactory Attendance,green

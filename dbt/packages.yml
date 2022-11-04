@@ -1,0 +1,5 @@
+packages:
+  - git: "https://github.com/edanalytics/edu_wh.git"
+    revision: 0.1.0
+  - package: brooklyn-data/dbt_artifacts
+    version: 0.8.0

@@ -1,0 +1,112 @@
+# Nulls are represented in two different ways across this YAML:
+# - `null`: An empty value
+# - `~`   : A placeholder that must be populated in each specific DAG-implementation.
+
+default_task_args: &default_task_args
+  owner: 'airflow'
+  run_as_user: null
+  depends_on_past: False
+  start_date: '2020-05-17'
+  email:
+    - 'EMAIL@edanalytics.org'
+  email_on_failure: False
+  retries: 0
+  trigger_rule: 'all_success'
+  retry_delay: !timedelta 300  # 5 minutes
+  execution_timeout: !timedelta 21600  # 6 hours
+  sla: !timedelta 86400  # 24 hours
+
+
+
+
+### AWS Parameter Store to S3 DAG
+aws_param_store_dag:
+  schedule_interval: null
+  default_args: *default_task_args
+
+  ssm_prefix: '/airflow/variables/dev/'
+  s3_region: 'us-west-2'
+
+
+
+
+### Ed-Fi Resource/Descriptor DAGs
+edfi_resource_dags__default_args: &edfi_resource_dags__default_args
+  default_args: *default_task_args
+
+  schedule_interval: null
+  schedule_interval_resources: null    # Optional to provide differing schedule logic between resources and descriptors.
+  schedule_interval_descriptors: null  # If either is unpopulated, `schedule_interval` will be used by default.
+
+  # Airflow Connection IDs
+  edfi_conn_id: ~
+  s3_conn_id: 'data_lake'
+  snowflake_conn_id: 'snowflake'
+  slack_conn_id: null
+
+  # Variables for pulling from EdFi
+  tmp_dir: '/efs/tmp_storage'
+  pool: ~
+
+  # Variables for interacting with Snowflake
+  change_version_table: '_meta_change_versions'
+
+
+edfi_resource_dags:
+  TENANT1:
+    YEAR1:
+      pool: default_pool
+      edfi_conn_id: 'edfi_TENANT1_YEAR1'
+      schedule_interval: null
+      <<: *edfi_resource_dags__default_args
+  TENANT2:
+    YEAR1:
+      pool: default_pool
+      edfi_conn_id: 'edfi_TENANT2_YEAR1'
+      schedule_interval: null
+      <<: *edfi_resource_dags__default_args
+
+
+
+
+### DBT Run DAG
+# By default, DBT is turned off for the Dev Airflow server.
+# To the user, what does a DBT run on Dev Airflow mean?
+# When will Dev data be preferable for building new DBT models over prod?
+
+dbt_run_dags__default_args: &dbt_run_dags__default_args
+  schedule_interval: null
+  default_args: *default_task_args
+
+  dbt_bin_path: '/home/airflow/.venv/dbt/bin/dbt'
+  dbt_repo_path: ~
+
+  full_refresh: False
+  full_refresh_schedule: null
+
+  opt_dest_schema: null
+  opt_swap: False
+
+  upload_artifacts: False
+  
+  slack_conn_id: null
+
+
+#dbt_run_dags:
+#  test:
+#    dbt_repo_path: '/home/airflow/code/PROJECT_REPO/dbt'
+#    dbt_target_name: 'test'
+#    <<: *dbt_run_dags__default_args
+
+
+
+### dbt docs update DAG
+# By default, DBT Docs are turned off for the Dev Airflow server.
+
+#dbt_docs_update:
+#  dbt_bin_path: '/home/airflow/.venv/dbt/bin/dbt'
+#  dbt_target_name: 'dev'
+#  dbt_repo_path: '/home/airflow/code/PROJECT_REPO/dbt'
+#  dbt_docs_s3_conn_id: dbt_docs_s3
+#  schedule_interval: null
+#  default_args: *default_task_args

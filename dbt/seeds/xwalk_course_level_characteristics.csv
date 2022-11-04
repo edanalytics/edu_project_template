@@ -1,0 +1,13 @@
+characteristic_descriptor,indicator_name
+International Baccalaureate,is_ib
+Dual Credit,is_dual_credit
+Honors,is_honors
+Remedial,is_remedial
+Advanced,is_advanced
+Advanced Placement,is_ap
+Basic,is_basic
+Core Subject,is_core_subject
+Distance Learning,is_distance_learning
+English Language Learner,is_ell
+Students with disabilities,is_swd
+Career and Technical Education,is_cte
