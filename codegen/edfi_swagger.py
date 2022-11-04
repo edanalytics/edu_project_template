@@ -1,7 +1,7 @@
 from collections import defaultdict
 from typing import Callable, Optional
 
-from edfi_api_client import EdFiBase
+from edfi_api_client import EdFiClient
 from edfi_api_client.util import camel_to_snake
 from util.dict_util import filter_dict, merge_dicts
 
@@ -11,8 +11,8 @@ class EdFiSwagger:
 
     """
     def __init__(self,
-            base_url: str,
-            api_version: int = 3
+        base_url: str,
+        api_version: int = 3
     ) -> None:
         self.base_url = base_url
         self.api_version = api_version
@@ -32,14 +32,11 @@ class EdFiSwagger:
         """
         Pulling Swagger specs does not require API credentials.
 
-        TODO:
-        * Specify a version number in pull (e.g. `https://api.ed-fi.org/v5.3/api/metadata`).
-
         :param component   :
         :return:
         """
-        conn = EdFiBase(self.base_url, self.api_version)
-        return conn.get_swagger_spec(component)
+        conn = EdFiClient(self.base_url, self.api_version)
+        return conn.get_swagger(component)
 
 
     @staticmethod
@@ -58,8 +55,8 @@ class EdFiSwagger:
 
 
     def build_domain_metadata(self,
-            domain_type  : str,
-            domain_filter: Optional[Callable[[str], bool]] = None
+        domain_type  : str,
+        domain_filter: Optional[Callable[[str], bool]] = None
     ) -> defaultdict:
         """
         Swagger's `paths` is a dictionary of Ed-Fi pathing keys (up-to-three keys per resource/descriptor).
@@ -120,8 +117,8 @@ class EdFiSwagger:
 
 
     def build_surrogate_keys(self,
-            domain_type  : str,
-            domain_filter: Optional[Callable[[str], bool]] = None
+        domain_type  : str,
+        domain_filter: Optional[Callable[[str], bool]] = None
     ) -> dict:
         """
         EdFi References and their surrogate key definition columns.

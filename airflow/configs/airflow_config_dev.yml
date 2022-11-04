@@ -74,22 +74,22 @@ edfi_resource_dags:
 # To the user, what does a DBT run on Dev Airflow mean?
 # When will Dev data be preferable for building new DBT models over prod?
 
-dbt_run_dags__default_args: &dbt_run_dags__default_args
-  schedule_interval: null
-  default_args: *default_task_args
-
-  dbt_bin_path: '/home/airflow/.venv/dbt/bin/dbt'
-  dbt_repo_path: ~
-
-  full_refresh: False
-  full_refresh_schedule: null
-
-  opt_dest_schema: null
-  opt_swap: False
-
-  upload_artifacts: False
-  
-  slack_conn_id: null
+#dbt_run_dags__default_args: &dbt_run_dags__default_args
+#  schedule_interval: null
+#  default_args: *default_task_args
+#
+#  dbt_bin_path: '/home/airflow/.venv/dbt/bin/dbt'
+#  dbt_repo_path: ~
+#
+#  full_refresh: False
+#  full_refresh_schedule: null
+#
+#  opt_dest_schema: null
+#  opt_swap: False
+#
+#  upload_artifacts: False
+#
+#  slack_conn_id: null
 
 
 #dbt_run_dags:

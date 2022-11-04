@@ -30,10 +30,7 @@ def generate_templates(base_url, api_version=3):
     BASE_DIR = pathlib.Path(__file__).resolve().parents[1]
     TEMPLATES_DIR = os.path.join(BASE_DIR, 'codegen', 'blank')
     GENERATED_DIR = os.path.join(BASE_DIR, 'codegen', 'generated')
-
     CONFIGS_DIR   = os.path.join(BASE_DIR, 'airflow', 'configs')
-    DB_SETUP_DIR  = os.path.join(BASE_DIR, 'db_setup')
-
 
     swagger = EdFiSwagger(base_url, api_version=api_version)
 
@@ -68,7 +65,7 @@ def generate_templates(base_url, api_version=3):
 
 
     # # DBT SOURCE CONFIG BLOCK
-    # This is currently unused. TODO: Revisit whether this is still necessary.
+    # This is currently unused.
     # file = 'dbt_source_config.yml'
     # template_path = os.path.join(TEMPLATES_DIR, file)
     # output_path = os.path.join(CONFIGS_DIR, file)
@@ -101,7 +98,7 @@ def generate_templates(base_url, api_version=3):
     # SQL SOURCE CREATE TABLE BLOCK
     file = 'sql_source_create_table.sql'
     template_path = os.path.join(TEMPLATES_DIR, file)
-    output_path   = os.path.join(DB_SETUP_DIR, file)
+    output_path   = os.path.join(GENERATED_DIR, file)
 
     formatted = '\n'.join(
         format_template(path=template_path, database='dev_raw', schema='edfi3', **domain_meta)

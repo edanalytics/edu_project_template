@@ -1,10 +1,7 @@
 from util import dag_util
 from util import io_helpers
 
-from edfi_airflow import EdFiResourceDAG
-
-
-# TODO: Understand Python globals() when appended within a module for `EdfiAirflowDAG.globalize()`.
+from edu_edfi_airflow import EdFiResourceDAG
 
 
 # Mapping resources to domains made sense before we upgraded Airflow to 2.0+ (i.e., Grid view).
