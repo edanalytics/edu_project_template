@@ -19,7 +19,7 @@ default_task_args: &default_task_args
 
 
 
-### AWS Parameter Store to S3 DAG
+### AWS Parameter Store to Airflow connections DAG
 aws_param_store_dag:
   schedule_interval: null
   default_args: *default_task_args
