@@ -25,7 +25,7 @@ aws_param_store_dag:
   default_args: *default_task_args
 
   ssm_prefix: '/stadium/PARTNER/connections/'
-  region_name: 'us-west-2'
+  region_name: 'us-east-2'
 
 
 
