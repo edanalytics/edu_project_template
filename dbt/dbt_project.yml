@@ -27,6 +27,8 @@ models:
       +schema: build
     core_warehouse:
       +schema: wh
+  dbt_artifacts:
+    +schema: dbt_run__audit
 
 vars:
   # labels for generated race/ethnicity groups
