@@ -27,6 +27,8 @@ models:
       +schema: build
     core_warehouse:
       +schema: wh
+      dim_subgroup:
+        +tags: ["bypass_rls"]
 
 vars:
   # labels for generated race/ethnicity groups
