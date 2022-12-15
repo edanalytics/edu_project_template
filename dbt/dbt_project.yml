@@ -19,6 +19,7 @@ clean-targets:         # directories to be removed by `dbt clean`
   - "target"
   - "dbt_packages"
 
+on-run-end: "{% if target.name == 'prod' %}{{ dbt_artifacts.upload_results(results) }}{% endif %}"
 
 models:
   edu_wh:
@@ -27,6 +28,9 @@ models:
       +schema: build
     core_warehouse:
       +schema: wh
+  dbt_artifacts:
+    +schema: dbt_run__audit
+    +tags: ['bypass_rls']
 
 vars:
   # labels for generated race/ethnicity groups
