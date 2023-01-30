@@ -19,6 +19,10 @@ column_defaults: &column_defaults
     description: Timestamp the data was pulled from the API
   - name: name
     description: Name of the API resource
+  - name: ods_version
+    description: Ed-Fi ODS version of the pulled resource
+  - name: data_model_version
+    description: Ed-Fi data model version of the pulled resource
   - name: v
     description: Variant column containing actual JSON data
 
