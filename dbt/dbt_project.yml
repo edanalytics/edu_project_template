@@ -60,3 +60,14 @@ vars:
 seeds:
   +schema: seed
   +quote_columns: false
+  edu_project_template:
+    student:
+      xwalk_subgroup_category_display_names:
+        +column_types:
+          subgroup_category: string
+          subgroup_category_display_name: string
+      xwalk_subgroup_value_display_names:
+        +column_types:
+          subgroup_category: string
+          subgroup_value: string
+          subgroup_value_display_name: string
