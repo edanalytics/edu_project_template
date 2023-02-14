@@ -11,7 +11,7 @@ def load_template(filepath: str, *, indent: int = 0) -> str:
     :param indent:
     """
     with open(filepath, 'r') as fp:
-        template = fp.read()
+        template = fp.read().strip()  # Strip off new-lines to tighten generated templates.
 
     return textwrap.indent(template, indent * ' ')
 
@@ -37,6 +37,6 @@ def write_template(
         template = sep.join(template)
 
     with open(filepath, mode) as fp:
-        fp.write(template, mode)
+        fp.write(template)
 
     print(f"Template written to `{filepath}`.")
