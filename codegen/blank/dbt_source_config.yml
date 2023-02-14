@@ -1,3 +1,0 @@
-{snake}:
-  +enabled: True
-  +fetch_deletes: {has_deletes}
