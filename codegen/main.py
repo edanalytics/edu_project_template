@@ -109,6 +109,20 @@ def generate_templates(base_url, api_version=3):
     write_template(output_path, formatted)
 
 
+    # EDU_EDFI_SOURCE GEN_SKEY REFERENCE COLUMNS
+    file = 'gen_skey__reference_columns.yml'
+    template_path = os.path.join(TEMPLATES_DIR, file)
+    output_path   = os.path.join(GENERATED_DIR, file)
+
+    template = load_template(template_path)
+    formatted = []
+    for reference, columns in REFERENCE_SKEYS.items():
+        snake = camel_to_snake(reference)
+        formatted.append(template.format(**locals()))
+
+    write_template(output_path, formatted)
+
+
     ### All done.
     print("All templates written!")
 
