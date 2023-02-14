@@ -11,7 +11,7 @@ def load_template(filepath: str, *, indent: int = 0) -> str:
     :param indent:
     """
     with open(filepath, 'r') as fp:
-        template = fp.read().strip()
+        template = fp.read()
 
     return textwrap.indent(template, indent * ' ')
 
@@ -20,8 +20,8 @@ def write_template(
     filepath: str,
     template: Union[str, list],
     *,
-    mode='w',
-    sep='\n'
+    mode: str = 'w',
+    sep : str = '\n'
 ):
     """
     Write-helper for outputting formatted templates to disk.
@@ -37,6 +37,6 @@ def write_template(
         template = sep.join(template)
 
     with open(filepath, mode) as fp:
-        fp.write(template)
+        fp.write(template, mode)
 
     print(f"Template written to `{filepath}`.")

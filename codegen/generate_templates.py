@@ -17,10 +17,10 @@ def generate_templates(base_url, api_version=3):
     :return:
     """
     ### Build directories to save filled templates
-    BASE_DIR = pathlib.Path(__file__).resolve().parents[1]
-    TEMPLATES_DIR = os.path.join(BASE_DIR, 'codegen', 'blank')
-    GENERATED_DIR = os.path.join(BASE_DIR, 'codegen', 'generated')
-    CONFIGS_DIR   = os.path.join(BASE_DIR, 'airflow', 'configs')
+    base_dir = pathlib.Path(__file__).resolve().parents[1]
+    TEMPLATES_DIR = os.path.join(base_dir, 'codegen', 'blank')
+    GENERATED_DIR = os.path.join(base_dir, 'codegen', 'generated')
+    CONFIGS_DIR   = os.path.join(base_dir, 'airflow', 'configs')
 
 
     ### Build the resources and descriptors swaggers, and extract the necessary info from each
@@ -117,6 +117,5 @@ def generate_templates(base_url, api_version=3):
 if __name__ == '__main__':
 
     import sys
-
     base_url = sys.argv[1]
     generate_templates(base_url)
