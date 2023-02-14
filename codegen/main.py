@@ -54,7 +54,7 @@ def generate_templates(base_url, api_version=3):
     # EDFI DESCRIPTOR CONFIG BLOCK
     file = 'edfi_descriptors.yml'
     template_path = os.path.join(TEMPLATES_DIR, file)
-    output_path   = os.path.join(GENERATED_DIR, file)  ### CONFIGS_DIR
+    output_path   = os.path.join(CONFIGS_DIR, file)
 
     template = load_template(template_path)
     formatted = []
@@ -67,7 +67,7 @@ def generate_templates(base_url, api_version=3):
     # EDFI RESOURCE CONFIG BLOCK
     file = 'edfi_resources.yml'
     template_path = os.path.join(TEMPLATES_DIR, file)
-    output_path   = os.path.join(GENERATED_DIR, file)  ### CONFIGS_DIR
+    output_path   = os.path.join(CONFIGS_DIR, file)
 
     template = load_template(template_path)
     formatted = []
@@ -75,13 +75,13 @@ def generate_templates(base_url, api_version=3):
         has_deletes = ((namespace, name) in RESOURCE_DELETES)
         formatted.append(template.format(**locals()))
 
-    write_template(output_path, formatted)  ### CONFIGS_DIR
+    write_template(output_path, formatted)
 
 
     # DBT SOURCE PROPERTY BLOCK
     file = 'src_edfi_3.yml'
     template_path = os.path.join(TEMPLATES_DIR, file)
-    output_path   = os.path.join(GENERATED_DIR, file)  ### CONFIGS_DIR
+    output_path   = os.path.join(GENERATED_DIR, file)
 
     template = load_template(template_path, indent=2)
     formatted = []
