@@ -4,32 +4,34 @@ import pathlib
 from edfi_api_client import EdFiClient
 from edfi_api_client import camel_to_snake
 
-from .util import FileTemplate
+from template_util import load_template, write_template
 
 
 def generate_templates(base_url, api_version=3):
     """
+    Populate blank templates with information found in the Swagger doc.
+        Note: Each template-generation uses local variables as kwargs to minimize formatting-boilerplate.
 
     :param base_url:
     :param api_version:
     :return:
     """
-    # Build directories to save filled templates
+    ### Build directories to save filled templates
     BASE_DIR = pathlib.Path(__file__).resolve().parents[1]
     TEMPLATES_DIR = os.path.join(BASE_DIR, 'codegen', 'blank')
     GENERATED_DIR = os.path.join(BASE_DIR, 'codegen', 'generated')
     CONFIGS_DIR   = os.path.join(BASE_DIR, 'airflow', 'configs')
 
-    # Build the resources and descriptors swaggers
+
+    ### Build the resources and descriptors swaggers, and extract the necessary info from each
     api = EdFiClient(base_url, api_version=api_version)
     resources_swagger   = api.get_swagger('resources')
     descriptors_swagger = api.get_swagger('descriptors')
 
-    # Extract the necessary information from each, being extra careful to separate resources from descriptors
     RESOURCES = [
         (namespace, resource)
         for namespace, resource in resources_swagger.resources
-        if 'Descriptor' not in resource
+        if 'Descriptor' not in resource  # Be extra careful to separate resources from descriptors
     ]
     RESOURCE_DELETES = resources_swagger.deletes
     RESOURCE_DESCRIPTIONS = resources_swagger.descriptions
@@ -37,64 +39,77 @@ def generate_templates(base_url, api_version=3):
     DESCRIPTORS = [
         (namespace, descriptor)
         for namespace, descriptor in descriptors_swagger.resources
-        if 'Descriptor' in descriptor
+        if 'Descriptor' in descriptor  # Be extra careful to separate resources from descriptors
     ]
-    DESCRIPTOR_DELETES = descriptors_swagger.deletes
-    DESCRIPTOR_DESCRIPTIONS = descriptors_swagger.descriptions
 
     REFERENCE_SKEYS = {  # Make references snake-cased to match their formatting in the warehouse
         camel_to_snake(reference): columns
-        for reference, columns in resources_swagger.surrogate_keys.items()
+        for reference, columns in resources_swagger.reference_skeys.items()
     }
 
     print("Successfully gathered all namespaces and definitions from Swagger.")
 
 
+    ### Populate each of the templates.
     # EDFI DESCRIPTOR CONFIG BLOCK
-    template = FileTemplate(TEMPLATES_DIR, 'edfi_descriptors.yml')
+    file = 'edfi_descriptors.yml'
+    template_path = os.path.join(TEMPLATES_DIR, file)
+    output_path   = os.path.join(GENERATED_DIR, file)  ### CONFIGS_DIR
 
+    template = load_template(template_path)
     formatted = []
     for namespace, name in DESCRIPTORS:
-        formatted.append(template.format())  # Use locals() by default.
+        formatted.append(template.format(**locals()))
 
-    template.write('\n'.join(formatted), CONFIGS_DIR)
+    write_template(output_path, formatted)
 
 
     # EDFI RESOURCE CONFIG BLOCK
-    template = FileTemplate(TEMPLATES_DIR, 'edfi_resources.yml')
+    file = 'edfi_resources.yml'
+    template_path = os.path.join(TEMPLATES_DIR, file)
+    output_path   = os.path.join(GENERATED_DIR, file)  ### CONFIGS_DIR
 
+    template = load_template(template_path)
     formatted = []
     for namespace, name in RESOURCES:
         has_deletes = ((namespace, name) in RESOURCE_DELETES)
-        formatted.append(template.format())
+        formatted.append(template.format(**locals()))
 
-    template.write('\n'.join(formatted), CONFIGS_DIR)
+    write_template(output_path, formatted)  ### CONFIGS_DIR
 
 
     # DBT SOURCE PROPERTY BLOCK
-    template = FileTemplate(TEMPLATES_DIR, 'src_edfi_3.yml', indent=2)
+    file = 'src_edfi_3.yml'
+    template_path = os.path.join(TEMPLATES_DIR, file)
+    output_path   = os.path.join(GENERATED_DIR, file)  ### CONFIGS_DIR
 
-    formatted = []
-    for namespace, name in RESOURCES:
-        description = RESOURCE_DESCRIPTIONS.get(name, "[NO DESCRIPTION FOUND]")
-        formatted.append(template.format())
-
-    template.write('\n'.join(formatted), GENERATED_DIR)
-
-
-    # SQL SOURCE CREATE TABLE BLOCK
-    template = FileTemplate(TEMPLATES_DIR, 'sql_source_create_table.sql')
-
+    template = load_template(template_path, indent=2)
     formatted = []
     for namespace, name in RESOURCES:
         snake = camel_to_snake(name)
-        database = 'dev_raw'
+        description = RESOURCE_DESCRIPTIONS.get(name, "[NO DESCRIPTION FOUND]")
+        formatted.append(template.format(**locals()))
+
+    write_template(output_path, formatted)
+
+
+    # SQL SOURCE CREATE TABLE BLOCK
+    file = 'sql_source_create_table.sql'
+    template_path = os.path.join(TEMPLATES_DIR, file)
+    output_path   = os.path.join(GENERATED_DIR, file)
+
+    template = load_template(template_path)
+    formatted = []
+    for namespace, name in RESOURCES:
+        snake = camel_to_snake(name)
+        database = 'raw'
         schema = 'edfi3'
-        formatted.append(template.format())
+        formatted.append(template.format(**locals()))
 
-    template.write(formatted, GENERATED_DIR)
+    write_template(output_path, formatted)
 
 
+    ### All done.
     print("All templates written!")
 
 
