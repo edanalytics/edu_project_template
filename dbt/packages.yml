@@ -1,5 +1,5 @@
 packages:
-  - git: "https://github.com/edanalytics/edu_wh.git"
-    revision: 0.1.3
+  - package: edanalytics/edu_wh
+    revision: [">=0.2.2", "<0.3.0"]
   - package: brooklyn-data/dbt_artifacts
     version: [">=2.2.2", "<3.0.0"]
