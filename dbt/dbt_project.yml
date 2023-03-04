@@ -33,13 +33,6 @@ models:
     +tags: ['bypass_rls']
 
 vars:
-  # Enable optional domains and programs
-  'src:domain:assessment:enabled': False
-  'src:domain:discipline:enabled': False
-  'src:program:special_ed:enabled': False
-  'src:program:homeless:enabled': False
-  'src:program:language_instruction:enabled': False
-  'src:program:title_i:enabled': False
 
   # labels for generated race/ethnicity groups
   'edu:stu_demos:multiple_races_code': Multiple
@@ -48,8 +41,8 @@ vars:
 
   # rules for inclusion in 'special education' demographic group
   # Begin and end dates to use for cutoffs, and a list of program names to exclude
-  'edu:special_ed:start_date_column': spec_ed_program_begin_date
-  'edu:special_ed:exit_date_column': spec_ed_program_end_date
+  'edu:special_ed:start_date_column': program_enroll_begin_date
+  'edu:special_ed:exit_date_column': program_enroll_end_date
   'edu:special_ed:exclude_programs': Null
 
   # label for 'Present' days generated from negative attendance
@@ -63,6 +56,14 @@ vars:
 
   # source config
   extensions: null
+  
+   # Enable optional domains and programs
+  'src:domain:assessment:enabled': False
+  'src:domain:discipline:enabled': True
+  'src:program:special_ed:enabled': False
+  'src:program:homeless:enabled': False
+  'src:program:language_instruction:enabled': False
+  'src:program:title_i:enabled': False
 
 
 seeds:
