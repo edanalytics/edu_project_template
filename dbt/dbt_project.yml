@@ -55,7 +55,7 @@ vars:
   'edu:enroll:exclude_withdraw_codes': ['No show', 'Invalid enrollment']
   
   # student discipline participation codes that map to non-offenders
-  'edu:discipline:non_offender_codes': ['Victim', 'Witness']
+  'edu:discipline:non_offender_codes': ['Victim', 'Witness', 'Reporter']
 
   # source config
   extensions: null
