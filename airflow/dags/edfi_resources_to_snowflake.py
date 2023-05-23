@@ -1,12 +1,12 @@
-from util import dag_util
 from util import io_helpers
+
+from airflow.utils.task_group import TaskGroup
 
 from edu_edfi_airflow import EdFiResourceDAG
 
-
-# Mapping resources to domains made sense before we upgraded Airflow to 2.0+ (i.e., Grid view).
-# By default, toggle off this mapping. (Maybe we'll find use for it again in the future.)
-GROUP_TASKS_BY_DOMAIN = False
+# Turning on descriptor DAGs doubles the total number processed by Airflow.
+# Only turn these on if they're actually being used.
+INGEST_DESCRIPTORS = False
 
 
 configs_dir =  '/home/airflow/airflow/configs'
@@ -54,39 +54,73 @@ for tenant_code, api_year_vars in dag_params.items():
             **dag_vars
         )
 
-        dag_util.assign_endpoints_to_edfi_dag(
-            resources_dag,
-            EDFI_RESOURCES,
-            domain_mapping=EDFI_DOMAIN_MAPPING if GROUP_TASKS_BY_DOMAIN else None,
-            get_deletes=True,
-            use_change_version=dag_vars.get('use_change_version', True)
+        endpoints_task_group = TaskGroup(
+            group_id="Ed-Fi Endpoints",
+            prefix_group_id=False,
+            dag=resources_dag.dag
         )
+
+        deletes_task_group = TaskGroup(
+            group_id="Ed-Fi Endpoint Deletes",
+            prefix_group_id=False,
+            dag=resources_dag.dag
+        )
+
+        for endpoint, endpoint_vars in EDFI_RESOURCES.items():
+
+            # Not all resources must be ingested per DAG run.
+            if not endpoint_vars.get('enabled'):
+                continue
+
+            namespace = endpoint_vars.get('namespace')
+            page_size = endpoint_vars.get('page_size', 500)
+
+            resources_dag.build_edfi_to_snowflake_task_group(
+                endpoint, namespace=namespace, page_size=page_size,
+                deletes=False, table=None,  # Define table dynamically by resource-name.
+                parent_group=endpoints_task_group
+            )
+
+            if endpoint_vars.get('fetch_deletes'):
+                resources_dag.build_edfi_to_snowflake_task_group(
+                    endpoint, namespace=namespace, page_size=page_size,
+                    deletes=True, table="_deletes",
+                    parent_group=deletes_task_group
+                )
 
         globals()[resources_dag.dag.dag_id] = resources_dag.dag
 
 
-        ### EdFi Descriptors DAG: One `descriptors` table
-        # Note: Descriptors do not have deletes.
-        descriptors_dag_id = f"edfi_el_{tenant_code}_{api_year}_descriptors"
+        # Turning on descriptor DAGs doubles the total number processed by Airflow.
+        # Only turn these on if they're actually being used.
+        if INGEST_DESCRIPTORS:
+            ### EdFi Descriptors DAG: One `descriptors` table
+            # Note: Descriptors do not have deletes.
+            descriptors_dag_id = f"edfi_el_{tenant_code}_{api_year}_descriptors"
 
-        # Reassign `schedule_interval` if a descriptors-specific value has been provided.
-        dag_vars['schedule_interval'] = dag_vars.get('schedule_interval_descriptors') or dag_vars.get('schedule_interval')
+            # Reassign `schedule_interval` if a descriptors-specific value has been provided.
+            dag_vars['schedule_interval'] = dag_vars.get('schedule_interval_descriptors') or dag_vars.get('schedule_interval')
 
-        descriptors_dag = EdFiResourceDAG(
-            dag_id=descriptors_dag_id,
-            tenant_code=tenant_code,
-            api_year=api_year,
-            full_refresh=True,  # Descriptors should be reset at every run.
-            **dag_vars
-        )
+            descriptors_dag = EdFiResourceDAG(
+                dag_id=descriptors_dag_id,
+                tenant_code=tenant_code,
+                api_year=api_year,
+                use_change_version=False,  # Descriptors should be reset at every run.
+                **dag_vars
+            )
 
-        dag_util.assign_endpoints_to_edfi_dag(
-            descriptors_dag,
-            EDFI_DESCRIPTORS,
-            domain_mapping=EDFI_DOMAIN_MAPPING if GROUP_TASKS_BY_DOMAIN else None,
-            table="_descriptors",
-            get_deletes=False,
-            use_change_version=False
-        )
+            for endpoint, endpoint_vars in EDFI_DESCRIPTORS.items():
 
-        globals()[descriptors_dag.dag.dag_id] = descriptors_dag.dag
+                # Not all resources must be ingested per DAG run.
+                if not endpoint_vars.get('enabled'):
+                    continue
+
+                namespace = endpoint_vars.get('namespace')
+                page_size = endpoint_vars.get('page_size', 500)
+
+                descriptors_dag.build_edfi_to_snowflake_task_group(
+                    endpoint, namespace=namespace, page_size=page_size,
+                    deletes=False, table="_descriptors"
+                )
+
+            globals()[descriptors_dag.dag.dag_id] = descriptors_dag.dag
