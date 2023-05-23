@@ -17,6 +17,9 @@ default_task_args: &default_task_args
   sla: !timedelta 86400  # 24 hours
 
 
+variables:
+  dbt_incrementer_var: &dbt_incrementer_var 'COMPLETED_EDFI_DAG_RUNS'
+
 
 
 ### AWS Parameter Store to Airflow connections DAG
@@ -43,6 +46,9 @@ edfi_resource_dags__default_args: &edfi_resource_dags__default_args
   s3_conn_id: 'data_lake'
   snowflake_conn_id: 'snowflake'
   slack_conn_id: 'slack'
+
+  # Airflow Variables
+  dbt_incrementer_var: *dbt_incrementer_var
 
   # Variables for pulling from EdFi
   tmp_dir: '/efs/tmp_storage'
@@ -86,6 +92,9 @@ dbt_run_dags__default_args: &dbt_run_dags__default_args
   upload_artifacts: True
 
   slack_conn_id: 'slack'
+
+  # Airflow Variables
+  dbt_incrementer_var: *dbt_incrementer_var
 
 
 dbt_run_dags:
