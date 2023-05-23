@@ -27,8 +27,11 @@ aws_param_store_dag:
   schedule_interval: null
   default_args: *default_task_args
 
-  ssm_prefix: '/stadium/PARTNER/connections/'
   region_name: 'us-east-2'
+  connection_mapping: ~
+
+  prefix_year_mapping: ~
+  tenant_mapping: ~
 
 
 
