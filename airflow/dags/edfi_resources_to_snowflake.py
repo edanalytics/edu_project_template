@@ -54,39 +54,16 @@ for tenant_code, api_year_vars in dag_params.items():
             **dag_vars
         )
 
-        endpoints_task_group = TaskGroup(
-            group_id="Ed-Fi Endpoints",
-            prefix_group_id=False,
-            dag=resources_dag.dag
-        )
-
-        deletes_task_group = TaskGroup(
-            group_id="Ed-Fi Endpoint Deletes",
-            prefix_group_id=False,
-            dag=resources_dag.dag
-        )
-
         for endpoint, endpoint_vars in EDFI_RESOURCES.items():
 
             # Not all resources must be ingested per DAG run.
             if not endpoint_vars.get('enabled'):
                 continue
 
-            namespace = endpoint_vars.get('namespace')
-            page_size = endpoint_vars.get('page_size', 500)
-
-            resources_dag.build_edfi_to_snowflake_task_group(
-                endpoint, namespace=namespace, page_size=page_size,
-                deletes=False, table=None,  # Define table dynamically by resource-name.
-                parent_group=endpoints_task_group
-            )
+            resources_dag.add_resource(endpoint, **endpoint_vars)
 
             if endpoint_vars.get('fetch_deletes'):
-                resources_dag.build_edfi_to_snowflake_task_group(
-                    endpoint, namespace=namespace, page_size=page_size,
-                    deletes=True, table="_deletes",
-                    parent_group=deletes_task_group
-                )
+                resources_dag.add_resource_deletes(endpoint, **endpoint_vars)
 
         globals()[resources_dag.dag.dag_id] = resources_dag.dag
 
@@ -115,12 +92,6 @@ for tenant_code, api_year_vars in dag_params.items():
                 if not endpoint_vars.get('enabled'):
                     continue
 
-                namespace = endpoint_vars.get('namespace')
-                page_size = endpoint_vars.get('page_size', 500)
-
-                descriptors_dag.build_edfi_to_snowflake_task_group(
-                    endpoint, namespace=namespace, page_size=page_size,
-                    deletes=False, table="_descriptors"
-                )
+                descriptors_dag.add_descriptor(endpoint, **endpoint_vars)
 
             globals()[descriptors_dag.dag.dag_id] = descriptors_dag.dag
