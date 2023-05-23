@@ -30,7 +30,7 @@ def generate_templates(base_url, api_version=3):
 
     RESOURCES = [
         (namespace, resource)
-        for namespace, resource in resources_swagger.resources
+        for namespace, resource in resources_swagger.endpoints
         if 'Descriptor' not in resource  # Be extra careful to separate resources from descriptors
     ]
     RESOURCE_DELETES = resources_swagger.deletes
@@ -38,7 +38,7 @@ def generate_templates(base_url, api_version=3):
 
     DESCRIPTORS = [
         (namespace, descriptor)
-        for namespace, descriptor in descriptors_swagger.resources
+        for namespace, descriptor in descriptors_swagger.endpoints
         if 'Descriptor' in descriptor  # Be extra careful to separate resources from descriptors
     ]
 
