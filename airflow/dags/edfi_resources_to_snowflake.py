@@ -53,7 +53,6 @@ for tenant_code, api_year_vars in dag_params.items():
             api_year=api_year,
             **dag_vars
         )
-        # print(f"@ Initialized DAG: {resources_dag.dag.dag_id}")
 
         for endpoint, endpoint_vars in EDFI_RESOURCES.items():
 
@@ -62,11 +61,9 @@ for tenant_code, api_year_vars in dag_params.items():
                 continue
 
             resources_dag.add_resource(endpoint, **endpoint_vars)
-            # print(f"    Added branch: {endpoint}")
 
             if endpoint_vars.get('fetch_deletes'):
                 resources_dag.add_resource_deletes(endpoint, **endpoint_vars)
-                # print(f"    Added branch: {endpoint} deletes")
 
         globals()[resources_dag.dag.dag_id] = resources_dag.dag
 
