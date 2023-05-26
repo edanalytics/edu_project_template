@@ -65,6 +65,9 @@ for tenant_code, api_year_vars in dag_params.items():
             if endpoint_vars.get('fetch_deletes'):
                 resources_dag.add_resource_deletes(endpoint, **endpoint_vars)
 
+        # Chain task groups at the end of endpoints being added to ensure they are included in dependencies.
+        resources_dag.chain_task_groups_into_dag()
+
         globals()[resources_dag.dag.dag_id] = resources_dag.dag
 
 
@@ -93,5 +96,8 @@ for tenant_code, api_year_vars in dag_params.items():
                     continue
 
                 descriptors_dag.add_descriptor(endpoint, **endpoint_vars)
+
+            # Chain task groups at the end of endpoints being added to ensure they are included in dependencies.
+            descriptors_dag.chain_task_groups_into_dag()
 
             globals()[descriptors_dag.dag.dag_id] = descriptors_dag.dag
