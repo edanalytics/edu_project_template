@@ -14,22 +14,22 @@ CONSTRAINT_URL="https://raw.githubusercontent.com/apache/airflow/constraints-${A
 pip install "apache-airflow[amazon, snowflake, slack, postgres]==${AIRFLOW_VERSION}" --constraint "${CONSTRAINT_URL}"  --quiet
 pip install airflow-dbt
 
-### Install EDU packages
-pip install edfi_api_client
-
-# Install executable repos to the `code` directory.
+### Install EDU packages as executable repos in the `code` directory.
 cd ~/code
 
 git clone https://github.com/edanalytics/ea_airflow_util.git
+git clone https://github.com/edanalytics/edfi_api_client.git
 git clone https://github.com/edanalytics/edu_edfi_airflow.git
 
 pip install -e ea_airflow_util
+pip install -e edfi_api_client
 pip install -e edu_edfi_airflow
 
 # Checkout the most recent tagged releases.
 # UPDATE THESE LINES AS VERSIONS INCREMENT.
-git -C ea_airflow_util  checkout tags/v0.1.0
-git -C edu_edfi_airflow checkout tags/v0.1.0
+git -C ea_airflow_util  checkout tags/v1.0.0
+git -C edfi_api_client  checkout tags/v1.0.0
+git -C edu_edfi_airflow checkout tags/v1.0.0
 
 # Return to the original path.
 cd -
