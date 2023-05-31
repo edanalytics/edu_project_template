@@ -8,8 +8,8 @@ pip install wheel setuptools  --quiet
 # we should probably pass in airflow (and python version) as args to cloudformation template
 # debugging; we were asking python for its version number, which is weird because we set it above... might as well just
 # use the same param eventually to reference here too. for some reason using python (no version) inside the herdoc block didn't work.
-AIRFLOW_VERSION=2.3.4
-PYTHON_VERSION=3.10
+AIRFLOW_VERSION=2.6.1
+PYTHON_VERSION="$(python --version | cut -d " " -f 2 | cut -d "." -f 1-2)"  # Force dynamic introspection of Python environment.
 CONSTRAINT_URL="https://raw.githubusercontent.com/apache/airflow/constraints-${AIRFLOW_VERSION}/constraints-${PYTHON_VERSION}.txt"
 pip install "apache-airflow[amazon, snowflake, slack, postgres]==${AIRFLOW_VERSION}" --constraint "${CONSTRAINT_URL}"  --quiet
 pip install airflow-dbt
