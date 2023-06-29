@@ -2,7 +2,6 @@
 AIRFLOW_VERSION=2.6.1
 
 EA_AIRFLOW_UTIL=1.0.0
-EDFI_API_CLIENT=1.0.0
 EDU_EDFI_AIRFLOW=1.0.0
 
 
@@ -20,22 +19,20 @@ PYTHON_VERSION="$(python --version | cut -d " " -f 2 | cut -d "." -f 1-2)"  # Fo
 CONSTRAINT_URL="https://raw.githubusercontent.com/apache/airflow/constraints-${AIRFLOW_VERSION}/constraints-${PYTHON_VERSION}.txt"
 pip install "apache-airflow[amazon, snowflake, slack, postgres, ssh]==${AIRFLOW_VERSION}" --constraint "${CONSTRAINT_URL}"  --quiet
 pip install airflow-dbt
+pip install edfi_api_client
 pip install pysftp
 
 ### Install EDU packages as executable repos in the `code` directory.
 cd ~/code
 
 git clone https://github.com/edanalytics/ea_airflow_util.git
-git clone https://github.com/edanalytics/edfi_api_client.git
 git clone https://github.com/edanalytics/edu_edfi_airflow.git
 
 pip install -e ea_airflow_util
-pip install -e edfi_api_client
 pip install -e edu_edfi_airflow
 
 # Checkout the most recent tagged releases.
 git -C ea_airflow_util  checkout "tags/v${EA_AIRFLOW_UTIL}"
-git -C edfi_api_client  checkout "tags/v${EDFI_API_CLIENT}"
 git -C edu_edfi_airflow checkout "tags/v${EDU_EDFI_AIRFLOW}"
 
 # Return to the original path.
