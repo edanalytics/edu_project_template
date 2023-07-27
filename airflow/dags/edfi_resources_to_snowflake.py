@@ -1,8 +1,18 @@
+import importlib
+
 from util import io_helpers
 
 from airflow.utils.task_group import TaskGroup
 
 from edu_edfi_airflow import EdFiResourceDAG
+
+### Optimizing DAG parsing delays during execution (only Airflow 2.4+)
+if importlib.metadata.version('apache-airflow') >= '2.4':
+    from airflow.utils.dag_parsing_context import get_parsing_context
+    __current_dag_id__ = get_parsing_context().dag_id
+else:
+    __current_dag_id__ = None
+
 
 # Turning on descriptor DAGs doubles the total number processed by Airflow.
 # Only turn these on if they're actually being used.
@@ -44,6 +54,10 @@ for tenant_code, api_year_vars in dag_params.items():
         ### EdFi Resources DAG: One table per resource
         resources_dag_id = f"edfi_el_{tenant_code}_{api_year}_resources"
 
+        # Optimizing DAG parsing delays during execution
+        if __current_dag_id__ and __current_dag_id__ != resources_dag_id:
+            continue  # skip generation of non-selected DAG
+
         # Reassign `schedule_interval` if a resource-specific value has been provided.
         dag_vars['schedule_interval'] = dag_vars.get('schedule_interval_resources') or dag_vars.get('schedule_interval')
 
@@ -77,6 +91,10 @@ for tenant_code, api_year_vars in dag_params.items():
             ### EdFi Descriptors DAG: One `descriptors` table
             # Note: Descriptors do not have deletes.
             descriptors_dag_id = f"edfi_el_{tenant_code}_{api_year}_descriptors"
+
+            # Optimizing DAG parsing delays during execution
+            if __current_dag_id__ and __current_dag_id__ != descriptors_dag_id:
+                continue  # skip generation of non-selected DAG
 
             # Reassign `schedule_interval` if a descriptors-specific value has been provided.
             dag_vars['schedule_interval'] = dag_vars.get('schedule_interval_descriptors') or dag_vars.get('schedule_interval')
