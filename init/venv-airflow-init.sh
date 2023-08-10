@@ -1,8 +1,8 @@
 # Set versions to install into Airflow virtual environment
 AIRFLOW_VERSION=2.6.1
 
-EA_AIRFLOW_UTIL=1.0.0
-EDU_EDFI_AIRFLOW=1.0.0
+EA_AIRFLOW_UTIL=0.2.0
+EDU_EDFI_AIRFLOW=0.2.0
 
 
 ### set up airflow environment ###
