@@ -19,8 +19,11 @@ PYTHON_VERSION="$(python --version | cut -d " " -f 2 | cut -d "." -f 1-2)"  # Fo
 CONSTRAINT_URL="https://raw.githubusercontent.com/apache/airflow/constraints-${AIRFLOW_VERSION}/constraints-${PYTHON_VERSION}.txt"
 pip install "apache-airflow[amazon, snowflake, slack, postgres, ssh, sftp]==${AIRFLOW_VERSION}" --constraint "${CONSTRAINT_URL}"  --quiet
 pip install airflow-dbt
-pip install edfi_api_client
 pip install pysftp
+
+pip install edfi_api_client
+pip install earthmover
+pip install lightbeam
 
 ### Install EDU packages as executable repos in the `code` directory.
 cd ~/code
