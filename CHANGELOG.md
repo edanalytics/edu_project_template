@@ -6,6 +6,7 @@
 - Move Git-repo installation in EC2 from venv subfolder to `code` folder
 - Add SSH and SFTP Airflow providers to default provider list at installation
 - Add `pysftp` library at installation
+- Add `earthmover` and `lightbeam` libraries at installation
 
 ## Under the hood
 - Refactor `EdFiResourceDAG` instantiation code to match new refactor
