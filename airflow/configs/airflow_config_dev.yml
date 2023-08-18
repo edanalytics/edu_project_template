@@ -17,6 +17,9 @@ default_task_args: &default_task_args
   sla: !timedelta 86400  # 24 hours
 
 
+variables:
+  dbt_incrementer_var: &dbt_incrementer_var 'COMPLETED_EDFI_DAG_RUNS'
+
 
 
 ### AWS Parameter Store to Airflow connections DAG
@@ -24,8 +27,11 @@ aws_param_store_dag:
   schedule_interval: null
   default_args: *default_task_args
 
-  ssm_prefix: '/stadium/PARTNER/connections/'
   region_name: 'us-east-2'
+  connection_mapping: ~
+
+  prefix_year_mapping: ~
+  tenant_mapping: ~
 
 
 
@@ -43,6 +49,9 @@ edfi_resource_dags__default_args: &edfi_resource_dags__default_args
   s3_conn_id: 'data_lake'
   snowflake_conn_id: 'snowflake'
   slack_conn_id: null
+
+  # Airflow Variables
+  dbt_incrementer_var: *dbt_incrementer_var
 
   # Variables for pulling from EdFi
   tmp_dir: '/efs/tmp_storage'
@@ -74,22 +83,25 @@ edfi_resource_dags:
 # To the user, what does a DBT run on Dev Airflow mean?
 # When will Dev data be preferable for building new DBT models over prod?
 
-#dbt_run_dags__default_args: &dbt_run_dags__default_args
-#  schedule_interval: null
-#  default_args: *default_task_args
-#
-#  dbt_bin_path: '/home/airflow/.venv/dbt/bin/dbt'
-#  dbt_repo_path: ~
-#
-#  full_refresh: False
-#  full_refresh_schedule: null
-#
-#  opt_dest_schema: null
-#  opt_swap: False
-#
-#  upload_artifacts: False
-#
-#  slack_conn_id: null
+dbt_run_dags__default_args: &dbt_run_dags__default_args
+  schedule_interval: null
+  default_args: *default_task_args
+
+  dbt_bin_path: '/home/airflow/.venv/dbt/bin/dbt'
+  dbt_repo_path: ~
+
+  full_refresh: False
+  full_refresh_schedule: null
+
+  opt_dest_schema: null
+  opt_swap: False
+
+  upload_artifacts: False
+
+  slack_conn_id: null
+
+  # Airflow Variables
+  dbt_incrementer_var: *dbt_incrementer_var
 
 
 #dbt_run_dags:
