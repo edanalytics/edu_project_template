@@ -1,5 +1,5 @@
 # Set versions to install into Airflow virtual environment
-AIRFLOW_VERSION=2.6.1
+AIRFLOW_VERSION=2.6.3
 
 EA_AIRFLOW_UTIL_VERSION=0.2.0
 EDFI_API_CLIENT_VERSION=0.2.0
