@@ -1,0 +1,23 @@
+grade_level,grade_level_integer
+Infant/toddler,-3
+Early Education,-2
+Preschool/Prekindergarten,-1
+Kindergarten,0
+First grade,1
+Second grade,2
+Third grade,3
+Fourth grade,4
+Fifth grade,5
+Sixth grade,6
+Seventh grade,7
+Eighth grade,8
+Ninth grade,9
+Tenth grade,10
+Eleventh grade1,11
+Twelfth grade,12
+Grade 13,13
+Postsecondary,20
+Adult Education,30
+No grade level,99
+Other,99
+Ungraded,99
