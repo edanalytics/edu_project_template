@@ -102,7 +102,7 @@ if results:
                 lea_id
             ]
         }
-        r = requests.post(admin_api_url + "/v1/applications/", json=payload)
+        r = requests.post(admin_api_url + "/v1/applications/", json=payload, headers=headers)
         if r.status_code!=200:
             raise Exception("Admin API authentication failed... check your credentials?")
         credentials = r.json()
