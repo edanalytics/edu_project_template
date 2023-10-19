@@ -71,7 +71,7 @@ if results:
     auth_payload = {
         "client_id": admin_api_key,
         "client_secret": admin_api_secret,
-        "grant_type": "client_credntials",
+        "grant_type": "client_credentials",
         "scope": "edfi_admin_api/full_access"
     }
     r = requests.post(admin_api_url + "/connect/token", json=auth_payload)
