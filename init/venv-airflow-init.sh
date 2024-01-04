@@ -3,7 +3,7 @@ AIRFLOW_VERSION=2.6.3
 
 EA_AIRFLOW_UTIL_VERSION=0.2.5
 EDFI_API_CLIENT_VERSION=0.2.0
-EDU_EDFI_AIRFLOW_VERSION=0.2.2
+EDU_EDFI_AIRFLOW_VERSION=0.2.3
 
 EARTHMOVER_VERSION=0.2.0
 LIGHTBEAM_VERSION=0.1.0
@@ -24,6 +24,7 @@ CONSTRAINT_URL="https://raw.githubusercontent.com/apache/airflow/constraints-${A
 pip install "apache-airflow[amazon, snowflake, slack, postgres, ssh, sftp]==${AIRFLOW_VERSION}" --constraint "${CONSTRAINT_URL}"  --quiet
 pip install airflow-dbt
 pip install pysftp
+pip install pyarrow
 
 pip install edfi_api_client=="${EDFI_API_CLIENT_VERSION}"
 pip install earthmover=="${EARTHMOVER_VERSION}"
@@ -34,6 +35,7 @@ cd ~/code
 
 git clone https://github.com/edanalytics/ea_airflow_util.git
 git clone https://github.com/edanalytics/edu_edfi_airflow.git
+git clone https://github.com/edanalytics/earthmover_edfi_bundles.git
 
 pip install -e ea_airflow_util
 pip install -e edu_edfi_airflow
