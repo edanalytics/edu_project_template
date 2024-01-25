@@ -1,7 +1,10 @@
 grade_level,grade_level_integer
 Infant/toddler,-3
 Early Education,-2
+Preschool,-1
+Prekindergarten,-1
 Preschool/Prekindergarten,-1
+Transitional Kindergarten,-1
 Kindergarten,0
 First grade,1
 Second grade,2
@@ -13,7 +16,7 @@ Seventh grade,7
 Eighth grade,8
 Ninth grade,9
 Tenth grade,10
-Eleventh grade1,11
+Eleventh grade,11
 Twelfth grade,12
 Grade 13,13
 Postsecondary,20
@@ -21,3 +24,4 @@ Adult Education,30
 No grade level,
 Other,
 Ungraded,
+Out of School,
