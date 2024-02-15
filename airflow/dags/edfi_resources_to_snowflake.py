@@ -98,12 +98,12 @@ for tenant_code, api_year_vars in dag_params.items():
 
             # Reassign `schedule_interval` if a descriptors-specific value has been provided.
             dag_vars['schedule_interval'] = dag_vars.get('schedule_interval_descriptors') or dag_vars.get('schedule_interval')
+            dag_vars['use_change_version'] = False # Descriptors never use change version stepping
 
             descriptors_dag = EdFiResourceDAG(
                 dag_id=descriptors_dag_id,
                 tenant_code=tenant_code,
                 api_year=api_year,
-                use_change_version=False,  # Descriptors should be reset at every run.
                 **dag_vars
             )
 
