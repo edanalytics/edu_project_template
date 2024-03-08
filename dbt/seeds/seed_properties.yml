@@ -6,9 +6,9 @@ seeds:
     config:
         column_types:
             metric_name: varchar
-            threshold_lower: int
-            threshold_upper: int
-            level_numeric: int
+            threshold_lower: number
+            threshold_upper: number
+            level_numeric: number
             level_label: varchar
             level_color: varchar
     - name: xwalk_parent_email_types
@@ -52,7 +52,7 @@ seeds:
         column_types:
             namespace: varchar
             attendance_event_descriptor: varchar
-            is_absent: float
+            is_absent: number
     - name: xwalk_calendar_events
     config: 
         column_types:
@@ -68,7 +68,7 @@ seeds:
     config:
         column_types:
             discipline_action: varchar
-            severity_order: int
+            severity_order: number
             is_oss: boolean
             is_iss: boolean
             is_exp: boolean
@@ -78,7 +78,7 @@ seeds:
     config:
         column_types:
             grade_level: varchar
-            grade_level_integer: int
+            grade_level_numbereger: number
     - name: xwalk_id_types_course 
     config:
         column_types:
@@ -103,8 +103,8 @@ seeds:
     config:
         column_types:
             letter_grade: varchar
-            unweighted_gpa_points: float
+            unweighted_gpa_ponumbers: number
             exclude_from_gpa: boolean
             is_dorf: boolean
-            grade_sort_index: int
+            grade_sort_index: number
     - name: xwalk_network_association_types
