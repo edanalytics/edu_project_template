@@ -120,3 +120,15 @@ dbt_docs_update:
   dbt_docs_s3_conn_id: dbt_docs_s3
   schedule_interval: '@weekly'
   default_args: *default_task_args
+
+
+
+
+## Airflow DB Clean DAG
+airflow_db_clean:
+  retention_days: 90
+  dry_run: False
+  verbose: True
+  dag_id: "airflow_db_clean"
+  schedule_interval: '@weekly'
+  default_args: *default_task_args
