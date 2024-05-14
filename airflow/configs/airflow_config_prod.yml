@@ -129,7 +129,6 @@ airflow_db_clean:
   retention_days: 90
   dry_run: False
   verbose: True
-
   dag_id: "airflow_db_clean"
-  schedule_interval: null
+  schedule_interval: '@weekly'
   default_args: *default_task_args
