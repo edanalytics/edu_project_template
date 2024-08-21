@@ -1,5 +1,6 @@
 import os
 import pathlib
+import yaml
 
 from edfi_api_client import EdFiClient
 from edfi_api_client import camel_to_snake
@@ -76,6 +77,17 @@ def generate_templates(base_url, api_version=3):
         formatted.append(template.format(**locals()))
 
     write_template(output_path, formatted)
+
+
+    ### Ensure resources that are required by edu_edfi_source are added to 'src_edfi_3.yml' and 'sql_source_create_table.sql'
+    with open('./required_resources.yml') as fp:
+        required_resources = yaml.safe_load(fp)
+
+    for name in required_resources:
+        resource = ('ed-fi', name)
+        if resource not in RESOURCES:
+            RESOURCES.append(resource)
+            RESOURCE_DESCRIPTIONS[name] = required_resources[name]
 
 
     # DBT SOURCE PROPERTY BLOCK
