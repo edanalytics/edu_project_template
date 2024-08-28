@@ -1,5 +1,4 @@
 packages:
-  - package: edanalytics/edu_wh
-    version: [">=0.2.2", "<0.3.0"]
+  - local: ../../edu_wh
   - package: brooklyn-data/dbt_artifacts
     version: [">=2.2.2", "<3.0.0"]
