@@ -1,4 +1,5 @@
 packages:
-  - local: ../../edu_wh
+  - git: https://github.com/tnedu/edu_wh.git
+    revision: main
   - package: brooklyn-data/dbt_artifacts
     version: [">=2.2.2", "<3.0.0"]

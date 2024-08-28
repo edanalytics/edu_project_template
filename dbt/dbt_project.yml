@@ -1,11 +1,11 @@
 # change 'edu_project_template' everywhere it appears in this document 
 # to match your project's name
-name: 'edu_project_template'
+name: 'stadium_tennessee'
 version: '1.0.0'
 config-version: 2
 
 # This setting configures which "profile" dbt uses for this project.
-profile: 'edu_project_template'
+profile: 'stadium_tennessee'
 
 model-paths: ["models"]
 analysis-paths: ["analyses"]
