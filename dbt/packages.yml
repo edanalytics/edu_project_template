@@ -1,5 +1,5 @@
 packages:
-  - package: edanalytics/edu_wh
-    version: [">=0.2.2", "<0.3.0"]
+  - git: https://github.com/tnedu/edu_wh.git
+    revision: main
   - package: brooklyn-data/dbt_artifacts
     version: [">=2.2.2", "<3.0.0"]

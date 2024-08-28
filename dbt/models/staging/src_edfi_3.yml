@@ -29,15 +29,585 @@ column_defaults: &column_defaults
 
 # define source
 sources:
-- name: raw_edfi_3
+- name: edfi_raw
   description: JSON data from Ed-Fi APIs
   database: |
     {%- if target.name == 'data_dev' -%} {{ var('raw_db_dev', 'dev_raw') }}
-    {%- else -%} {{ var('raw_db_prod', 'raw') }}
+    {%- else -%} {{ var('raw_db_prod', 'teds_dev') }}
     {%- endif -%}
-  schema: "{{ var('raw_edfi3_schema', 'edfi3') }}"
+  schema: "{{ var('raw_edfi3_schema', 'edfi_raw') }}"
   tables:
   - name: _deletes
     columns: *column_defaults
   - name: _descriptors
+    columns: *column_defaults
+  - name: academic_weeks
+    description: >
+      This entity represents the academic weeks for a school year, optionally captured to support analyses.
+    enabled: true
+    columns: *column_defaults
+  - name: accounts
+    description: >
+      This financial entity represents a funding source combined with its purpose and type of transaction. It provides a formal record of the debits and credits relating to the specific account.
+    enabled: true
+    columns: *column_defaults
+  - name: accountability_ratings
+    description: >
+      An accountability rating for a school or district.
+    enabled: true
+    columns: *column_defaults
+  - name: account_codes
+    description: >
+      The set of account codes defined by an education organization for a fiscal year.
+    enabled: true
+    columns: *column_defaults
+  - name: actuals
+    description: >
+      This financial entity represents the sum of the financial transactions to date relating to a specific account.
+    enabled: true
+    columns: *column_defaults
+  - name: assessments
+    description: >
+      This entity represents a tool, instrument, process, or exhibition composed of a systematic sampling of behavior for measuring a student's competence, knowledge, skills, or behavior. An assessment can be used to measure differences in individuals or groups and changes in performance from one occasion to the next.
+    enabled: true
+    columns: *column_defaults
+  - name: assessment_items
+    description: >
+      This entity represents one of many single measures that make up an assessment.
+    enabled: true
+    columns: *column_defaults
+  - name: assessment_score_range_learning_standards
+    description: >
+      Score ranges of an assessment associated with one or more learning standards.
+    enabled: true
+    columns: *column_defaults
+  - name: bell_schedules
+    description: >
+      This entity represents the schedule of class period meeting times.
+    enabled: true
+    columns: *column_defaults
+  - name: budgets
+    description: >
+      This financial entity represents the amount of monies allocated to be spent or received by an education organization as related to a specific account.
+    enabled: true
+    columns: *column_defaults
+  - name: calendars
+    description: >
+      A set of dates associated with an organization.
+    enabled: true
+    columns: *column_defaults
+  - name: calendar_dates
+    description: >
+      The type of scheduled or unscheduled event for the day.
+    enabled: true
+    columns: *column_defaults
+  - name: class_periods
+    description: >
+      This entity represents the designation of a regularly scheduled series of class meetings at designated times and days of the week.
+    enabled: true
+    columns: *column_defaults
+  - name: cohorts
+    description: >
+      This entity represents any type of list of designated students for tracking, analysis, or intervention.
+    enabled: true
+    columns: *column_defaults
+  - name: community_organizations
+    description: >
+      This entity represents an administrative unit at the state level which exists primarily to operate local community providers.
+    enabled: true
+    columns: *column_defaults
+  - name: community_providers
+    description: >
+      This entity represents an educational organization that includes staff and students who participate in classes and educational activity groups.
+    enabled: true
+    columns: *column_defaults
+  - name: community_provider_licenses
+    description: >
+      The legal document held by the CommunityProvider that authorizes the holder to perform certain functions and or services.
+    enabled: true
+    columns: *column_defaults
+  - name: competency_objectives
+    description: >
+      This entity holds additional competencies for student achievement that are not associated with specific learning objectives (e.g., paying attention in class).
+    enabled: true
+    columns: *column_defaults
+  - name: contracted_staffs
+    description: >
+      This financial entity represents the sum of the financial transactions to date for contracted staff. ContractedStaff includes "contractors" or "consultants" who perform services for an agreed upon fee, or an employee of a management service contracted to work on site.
+    enabled: true
+    columns: *column_defaults
+  - name: courses
+    description: >
+      This educational entity represents the organization of subject matter and related learning experiences provided for the instruction of students on a regular or systematic basis.
+    enabled: true
+    columns: *column_defaults
+  - name: course_offerings
+    description: >
+      This entity represents an entry in the course catalog of available courses offered by the school during a session.
+    enabled: true
+    columns: *column_defaults
+  - name: course_transcripts
+    description: >
+      This entity is the final record of a student's performance in their courses at the end of a semester or school year.
+    enabled: true
+    columns: *column_defaults
+  - name: credentials
+    description: >
+      The legal document giving authorization to perform teaching assignment services.
+    enabled: true
+    columns: *column_defaults
+  - name: discipline_actions
+    description: >
+      This event entity represents actions taken by an education organization after a disruptive event that is recorded as a discipline incident.
+    enabled: true
+    columns: *column_defaults
+  - name: discipline_incidents
+    description: >
+      This event entity represents an occurrence of an infraction ranging from a minor behavioral problem that disrupts the orderly functioning of a school or classroom (such as tardiness) to a criminal act that results in the involvement of a law enforcement official (such as robbery). A single event (e.g., a fight) is one incident regardless of how many perpetrators or victims are involved. Discipline incidents are events classified as warranting discipline action.
+    enabled: true
+    columns: *column_defaults
+  - name: education_contents
+    description: >
+      This entity represents materials for students or teachers that can be used for teaching, learning, research, and more. Education content includes full courses, course materials, modules, intervention descriptions, textbooks, streaming videos, tests, software, and any other tools, materials, or techniques used to support access to knowledge.
+    enabled: true
+    columns: *column_defaults
+  - name: education_organization_intervention_prescription_associations
+    description: >
+      This association indicates interventions made available by an education organization. Often, a district-level education organization purchases a set of intervention prescriptions and makes them available to its schools for use on demand.
+    enabled: true
+    columns: *column_defaults
+  - name: education_organization_networks
+    description: >
+      This entity is a self-organized membership network of peer-level education organizations intended to provide shared services or collective procurement.
+    enabled: true
+    columns: *column_defaults
+  - name: education_organization_network_associations
+    description: >
+      Properties of the association between the EducationOrganization and its network(s).
+    enabled: true
+    columns: *column_defaults
+  - name: education_organization_peer_associations
+    description: >
+      The association from an education organization to its peers.
+    enabled: true
+    columns: *column_defaults
+  - name: education_service_centers
+    description: >
+      This entity represents a regional, multi-services public agency authorized by state law to develop, manage and provide services, programs, or other support options (e.g., construction, food services, and technology services) to LEAs.
+    enabled: true
+    columns: *column_defaults
+  - name: feeder_school_associations
+    description: >
+      The association from feeder school to the receiving school.
+    enabled: true
+    columns: *column_defaults
+  - name: grades
+    description: >
+      This educational entity represents an overall score or assessment tied to a course over a period of time (i.e., the grading period). Student grades are usually a compilation of marks and other scores.
+    enabled: true
+    columns: *column_defaults
+  - name: gradebook_entries
+    description: >
+      This entity represents an assignment, homework, or classroom assessment to be recorded in a gradebook.
+    enabled: true
+    columns: *column_defaults
+  - name: grading_periods
+    description: >
+      This entity represents the time span for which grades are reported.
+    enabled: true
+    columns: *column_defaults
+  - name: graduation_plans
+    description: >
+      This entity is a plan outlining the required credits, credits by subject, credits by course, and other criteria required for graduation. A graduation plan may be one or more standard plans defined by an education organization and/or individual plans for some or all students.
+    enabled: true
+    columns: *column_defaults
+  - name: interventions
+    description: >
+      An implementation of an instructional approach focusing on the specific techniques and materials used to teach a given subject.
+    enabled: true
+    columns: *column_defaults
+  - name: intervention_prescriptions
+    description: >
+      This entity represents a formal prescription of an instructional approach focusing on the specific techniques and materials used to teach a given subject. This can be prescribed by academic research, an interventions vendor, or another entity.
+    enabled: true
+    columns: *column_defaults
+  - name: intervention_studies
+    description: >
+      An experimental or quasi-experimental study of an intervention technique.
+    enabled: true
+    columns: *column_defaults
+  - name: learning_objectives
+    description: >
+      Deprecated: Users of this element are advised to use LearningStandard instead. Expect removal of this element in a future release. This entity represents identified learning objectives for courses in specific grades.
+    enabled: true
+    columns: *column_defaults
+  - name: learning_standards
+    description: >
+      A statement that describes a specific competency or academic standard.
+    enabled: true
+    columns: *column_defaults
+  - name: learning_standard_equivalence_associations
+    description: >
+      Indicates a directional association of equivalence from a source to a target learning standard.
+    enabled: true
+    columns: *column_defaults
+  - name: local_education_agencies
+    description: >
+      This entity represents an administrative unit at the local level which exists primarily to operate schools or to contract for educational services. It includes school districts, charter schools, charter management organizations, or other local administrative organizations.
+    enabled: true
+    columns: *column_defaults
+  - name: locations
+    description: >
+      This entity represents the physical space where students gather for a particular class/section. The Location may be an indoor or outdoor area designated for the purpose of meeting the educational needs of students.
+    enabled: true
+    columns: *column_defaults
+  - name: objective_assessments
+    description: >
+      This entity represents subtests that assess specific learning objectives.
+    enabled: true
+    columns: *column_defaults
+  - name: open_staff_positions
+    description: >
+      This entity represents an open staff position that the education organization is seeking to fill.
+    enabled: true
+    columns: *column_defaults
+  - name: organization_departments
+    description: >
+      An organizational unit of another education organization, often devoted to a particular academic discipline, area of study, or organization function.
+    enabled: true
+    columns: *column_defaults
+  - name: parents
+    description: >
+      This entity represents a parent or guardian of a student, such as mother, father, or caretaker.
+    enabled: true
+    columns: *column_defaults
+  - name: payrolls
+    description: >
+      This financial entity represents the sum of the financial transactions to date for employee compensation. An "employee" who performs services under the direction of the employing institution or agency, is compensated for such services by the employer and is eligible for employee benefits and wage or salary tax withholdings.
+    enabled: true
+    columns: *column_defaults
+  - name: people
+    description: >
+      This entity represents a human being.
+    enabled: true
+    columns: *column_defaults
+  - name: post_secondary_events
+    description: >
+      This entity captures significant postsecondary events during a student's high school tenure (e.g., FAFSA application or college application, acceptance, and enrollment) or during a student's enrollment at a post-secondary institution.
+    enabled: true
+    columns: *column_defaults
+  - name: post_secondary_institutions
+    description: >
+      An organization that provides educational programs for individuals who have completed or otherwise left educational programs in secondary school(s).
+    enabled: true
+    columns: *column_defaults
+  - name: programs
+    description: >
+      This entity represents any program designed to work in conjunction with, or as a supplement to, the main academic program. Programs may provide instruction, training, services, or benefits through federal, state, or local agencies. Programs may also include organized extracurricular activities for students.
+    enabled: true
+    columns: *column_defaults
+  - name: report_cards
+    description: >
+      This educational entity represents the collection of student grades for courses taken during a grading period.
+    enabled: true
+    columns: *column_defaults
+  - name: restraint_events
+    description: >
+      This event entity represents the instances where a special education student was physically or mechanically restrained due to imminent serious physical harm to themselves or others, imminent serious property destruction or a combination of both imminent serious physical harm to themselves or others and imminent serious property destruction.
+    enabled: true
+    columns: *column_defaults
+  - name: schools
+    description: >
+      This entity represents an educational organization that includes staff and students who participate in classes and educational activity groups.
+    enabled: true
+    columns: *column_defaults
+  - name: school_year_types
+    description: >
+      Identifier for a school year.
+    enabled: true
+    columns: *column_defaults
+  - name: sections
+    description: >
+      This entity represents a setting in which organized instruction of course content is provided, in-person or otherwise, to one or more students for a given period of time. A course offering may be offered to more than one section.
+    enabled: true
+    columns: *column_defaults
+  - name: section_attendance_taken_events
+    description: >
+      Captures attendance taken event for given section.
+    enabled: true
+    columns: *column_defaults
+  - name: sessions
+    description: >
+      A term in the school year, generally a unit of time into which courses are scheduled, instruction occurs and by which credits are awarded. Sessions may be interrupted by vacations or other events.
+    enabled: true
+    columns: *column_defaults
+  - name: staffs
+    description: >
+      This entity represents an individual who performs specified activities for any public or private education institution or agency that provides instructional and/or support services to students or staff at the early childhood level through high school completion. For example, this includes:    1. An "employee" who performs services under the direction of the employing institution or agency is compensated for such services by the employer and is eligible for employee benefits and wage or salary tax withholdings    2. A "contractor" or "consultant" who performs services for an agreed upon fee or an employee of a management service contracted to work on site    3. A "volunteer" who performs services on a voluntary and uncompensated basis    4. An in-kind service provider    5. An independent contractor or businessperson working at a school site.
+    enabled: true
+    columns: *column_defaults
+  - name: staff_absence_events
+    description: >
+      This event entity represents the recording of the dates of staff absence.
+    enabled: true
+    columns: *column_defaults
+  - name: staff_cohort_associations
+    description: >
+      This association indicates the Staff associated with a cohort of students.
+    enabled: true
+    columns: *column_defaults
+  - name: staff_discipline_incident_associations
+    description: >
+      This association indicates those staff who were victims, perpetrators, witnesses, and reporters for a discipline incident.
+    enabled: true
+    columns: *column_defaults
+  - name: staff_education_organization_assignment_associations
+    description: >
+      This association indicates the education organization to which a staff member provides services.
+    enabled: true
+    columns: *column_defaults
+  - name: staff_education_organization_contact_associations
+    description: >
+      This association provides the contact information of the staff associated with the education organization.
+    enabled: true
+    columns: *column_defaults
+  - name: staff_education_organization_employment_associations
+    description: >
+      This association indicates the EducationOrganization an employee, contractor, volunteer, or other service provider is formally associated with typically indicated by which organization the staff member has a services contract with or receives compensation from.
+    enabled: true
+    columns: *column_defaults
+  - name: staff_leaves
+    description: >
+      This entity represents the recording of the dates of staff leave (e.g., sick leave, personal time, vacation).
+    enabled: true
+    columns: *column_defaults
+  - name: staff_program_associations
+    description: >
+      This association indicates the Staff associated with a program.
+    enabled: true
+    columns: *column_defaults
+  - name: staff_school_associations
+    description: >
+      This association indicates the School(s) to which a staff member provides instructional services.
+    enabled: true
+    columns: *column_defaults
+  - name: staff_section_associations
+    description: >
+      This association indicates the class sections to which a staff member is assigned.
+    enabled: true
+    columns: *column_defaults
+  - name: state_education_agencies
+    description: >
+      This entity represents the agency of the state charged with the primary responsibility for coordinating and supervising public instruction, including the setting of standards for elementary and secondary instructional programs.
+    enabled: true
+    columns: *column_defaults
+  - name: students
+    description: >
+      This entity represents an individual for whom instruction, services, and/or care are provided in an early childhood, elementary, or secondary educational program under the jurisdiction of a school, education agency or other institution or program. A student is a person who has been enrolled in a school or other educational institution.
+    enabled: true
+    columns: *column_defaults
+  - name: student_academic_records
+    description: >
+      This educational entity represents the cumulative record of academic achievement for a student.
+    enabled: true
+    columns: *column_defaults
+  - name: student_assessments
+    description: >
+      This entity represents the analysis or scoring of a student's response on an assessment. The analysis results in a value that represents a student's performance on a set of items on a test.
+    enabled: true
+    columns: *column_defaults
+  - name: student_cohort_associations
+    description: >
+      This association represents the Cohort(s) for which a student is designated.
+    enabled: true
+    columns: *column_defaults
+  - name: student_competency_objectives
+    description: >
+      This entity represents the competency assessed or evaluated for the student against a specific competency objective.
+    enabled: true
+    columns: *column_defaults
+  - name: student_cte_program_associations
+    description: >
+      This association represents the career and technical education (CTE) program that a student participates in. The association is an extension of the StudentProgramAssociation particular for CTE programs.
+    enabled: true
+    columns: *column_defaults
+  - name: student_discipline_incident_associations
+    description: >
+      Deprecated: Users of this element are advised to use StudentDisciplineIncidentBehaviorAssociation or StudentDisciplineIncidentNonOffenderAssociation instead. Expect removal of this element in a future release. This association indicates those students who were victims, perpetrators, witnesses, and reporters for a discipline incident.
+    enabled: true
+    columns: *column_defaults
+  - name: student_discipline_incident_behavior_associations
+    description: >
+      This association describes the behavior of students involved in a discipline incident.
+    enabled: true
+    columns: *column_defaults
+  - name: student_discipline_incident_non_offender_associations
+    description: >
+      This association indicates those students who were involved and not perpetrators for a discipline incident.
+    enabled: true
+    columns: *column_defaults
+  - name: student_education_organization_associations
+    description: >
+      This association represents student information as reported in the context of the student's relationship to the Education Organization. Enrollment relationship semantics are covered by StudentSchoolAssociation.
+    enabled: true
+    columns: *column_defaults
+  - name: student_education_organization_responsibility_associations
+    description: >
+      This association indicates a relationship between a student and an education organization other than an enrollment relationship, and generally indicating some kind of responsibility of the education organization for the student. Enrollment relationship semantics are covered by StudentSchoolAssociation.
+    enabled: true
+    columns: *column_defaults
+  - name: student_gradebook_entries
+    description: >
+      This entity holds a student's grade or competency level for a gradebook entry.
+    enabled: true
+    columns: *column_defaults
+  - name: student_homeless_program_associations
+    description: >
+      This association represents the McKinney-Vento Homeless Program program(s) that a student participates in or from which the Student receives services.
+    enabled: true
+    columns: *column_defaults
+  - name: student_intervention_associations
+    description: >
+      This association indicates the students participating in an intervention.
+    enabled: true
+    columns: *column_defaults
+  - name: student_intervention_attendance_events
+    description: >
+      This event entity represents the recording of whether a student is in attendance for an intervention service.
+    enabled: true
+    columns: *column_defaults
+  - name: student_language_instruction_program_associations
+    description: >
+      This association represents the Title III Language Instruction for Limited English Proficient and Immigrant Students program(s) that a student participates in or from which the Student receives services.
+    enabled: true
+    columns: *column_defaults
+  - name: student_learning_objectives
+    description: >
+      Deprecated: Users of this element are advised to use Grade.LearningStandardGrade instead. Expect removal of this element in a future release. This entity represents the competency assessed or evaluated for the student against a specific LearningObjective.
+    enabled: true
+    columns: *column_defaults
+  - name: student_migrant_education_program_associations
+    description: >
+      This association represents the migrant education program(s) that a student participates in or receives services from. The association is an extension of the StudentProgramAssociation with added elements particular to migrant education programs.
+    enabled: true
+    columns: *column_defaults
+  - name: student_neglected_or_delinquent_program_associations
+    description: >
+      This association represents the Title I Part D Neglected or Delinquent program(s) that a student participates in or from which the Student receives services.
+    enabled: true
+    columns: *column_defaults
+  - name: student_parent_associations
+    description: >
+      This association relates students to their parents, guardians, or caretakers.
+    enabled: true
+    columns: *column_defaults
+  - name: student_program_associations
+    description: >
+      This association represents the Program(s) that a student participates in or is served by.
+    enabled: true
+    columns: *column_defaults
+  - name: student_program_attendance_events
+    description: >
+      This event entity represents the recording of whether a student is in attendance to receive or participate in program services.
+    enabled: true
+    columns: *column_defaults
+  - name: student_school_associations
+    description: >
+      This association represents the School in which a student is enrolled. The semantics of enrollment may differ slightly by state. Non-enrollment relationships between a student and an education organization may be described using the StudentEducationOrganizationAssociation.
+    enabled: true
+    columns: *column_defaults
+  - name: student_school_attendance_events
+    description: >
+      This event entity represents the recording of whether a student is in attendance for a school day.
+    enabled: true
+    columns: *column_defaults
+  - name: student_school_food_service_program_associations
+    description: >
+      This association represents the school food services program(s), such as the Free or Reduced Lunch Program, that a student participates in or from which the Student receives services.
+    enabled: true
+    columns: *column_defaults
+  - name: student_section_associations
+    description: >
+      This association indicates the course sections to which a student is assigned.
+    enabled: true
+    columns: *column_defaults
+  - name: student_section_attendance_events
+    description: >
+      This event entity represents the recording of whether a student is in attendance for a section.
+    enabled: true
+    columns: *column_defaults
+  - name: student_special_education_program_associations
+    description: >
+      This association represents the special education program(s) that a student participates in or receives services from. The association is an extension of the StudentProgramAssociation particular for special education programs.
+    enabled: true
+    columns: *column_defaults
+  - name: student_title_i_part_a_program_associations
+    description: >
+      This association represents the Title I Part A program(s) that a student participates in or from which the Student receives services. The association is an extension of the StudentProgramAssociation particular for Title I Part A programs.
+    enabled: true
+    columns: *column_defaults
+  - name: surveys
+    description: >
+      A survey to identified or anonymous respondents.
+    enabled: true
+    columns: *column_defaults
+  - name: survey_course_associations
+    description: >
+      The course associated with the survey.
+    enabled: true
+    columns: *column_defaults
+  - name: survey_program_associations
+    description: >
+      The program associated with the survey.
+    enabled: true
+    columns: *column_defaults
+  - name: survey_questions
+    description: >
+      The questions for the survey.
+    enabled: true
+    columns: *column_defaults
+  - name: survey_question_responses
+    description: >
+      The response to a survey question.
+    enabled: true
+    columns: *column_defaults
+  - name: survey_responses
+    description: >
+      Responses to a Survey for named or anonymous persons.
+    enabled: true
+    columns: *column_defaults
+  - name: survey_response_education_organization_target_associations
+    description: >
+      This association provides information about the survey being taken and the education organization the survey is about.
+    enabled: true
+    columns: *column_defaults
+  - name: survey_response_staff_target_associations
+    description: >
+      The association provides information about the survey being taken and who the survey is about.
+    enabled: true
+    columns: *column_defaults
+  - name: survey_sections
+    description: >
+      The section of questions for the survey.
+    enabled: true
+    columns: *column_defaults
+  - name: survey_section_associations
+    description: >
+      The section associated with the survey.
+    enabled: true
+    columns: *column_defaults
+  - name: survey_section_responses
+    description: >
+      Optional information about the responses provided for a section of a survey.
+    enabled: true
+    columns: *column_defaults
+  - name: survey_section_response_education_organization_target_associations
+    description: >
+      This association provides information about the survey section and the Education Organization the survey section is about.
+    enabled: true
+    columns: *column_defaults
+  - name: survey_section_response_staff_target_associations
+    description: >
+      This association provides information about the survey section and the staff the survey section is about.
+    enabled: true
     columns: *column_defaults
