@@ -1,7 +1,7 @@
 namespace,calendar_event_descriptor,is_school_day
 uri://ed-fi.org/,Emergency day,FALSE
 uri://ed-fi.org/,Holiday,FALSE
-uri://ed-fi.org/,Instructional day,TRUE
+uri://ed-fi.org/,ID,TRUE
 uri://ed-fi.org/,Make-up day,TRUE
 uri://ed-fi.org/,Non-instructional day,FALSE
 uri://ed-fi.org/,Other,FALSE
