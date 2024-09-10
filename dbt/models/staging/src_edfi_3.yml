@@ -31,6 +31,13 @@ column_defaults: &column_defaults
 sources:
 - name: raw_edfi_3
   description: JSON data from Ed-Fi APIs
+  database: |
+    {%- if target.name == 'data_dev' -%} {{ var('raw_db', 'teds_dev') }}
+    {%- elif target.name == 'data_qa' -%} {{ var('raw_db', 'teds_qa') }}
+    {%- elif target.name == 'data_uat' -%} {{ var('raw_db', 'teds_uat') }}
+    {%- elif target.name == 'data_prod' -%} {{ var('raw_db', 'teds_prod') }}
+    {%- else -%} {{ var('raw_db', target.catalog) }}
+    {%- endif -%}
   schema: "{{ var('raw_edfi3_schema', 'edfi_raw') }}"
   tables:
   - name: _deletes
