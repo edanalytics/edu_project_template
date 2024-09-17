@@ -1,11 +1,28 @@
 namespace,calendar_event_descriptor,is_school_day
-uri://ed-fi.org/,Emergency day,FALSE
-uri://ed-fi.org/,Holiday,FALSE
-uri://ed-fi.org/,ID,TRUE
-uri://ed-fi.org/,Make-up day,TRUE
-uri://ed-fi.org/,Non-instructional day,FALSE
-uri://ed-fi.org/,Other,FALSE
-uri://ed-fi.org/,Strike,FALSE
-uri://ed-fi.org/,Student late arrival/early dismissal,TRUE
-uri://ed-fi.org/,Teacher only day,FALSE
-uri://ed-fi.org/,Weather day,FALSE
+uri://tdoe.edu/,IS,FALSE
+uri://tdoe.edu/,CS,FALSE
+uri://tdoe.edu/,CE,FALSE
+uri://tdoe.edu/,AE,FALSE
+uri://tdoe.edu/,AS,FALSE
+uri://tdoe.edu/,IO,FALSE
+uri://tdoe.edu/,TV,FALSE
+uri://tdoe.edu/,PT,FALSE
+uri://tdoe.edu/,AD,FALSE
+uri://tdoe.edu/,OH,FALSE
+uri://tdoe.edu/,CH,FALSE
+uri://tdoe.edu/,OS,FALSE
+uri://tdoe.edu/,SH,FALSE
+uri://tdoe.edu/,OV,FALSE
+uri://tdoe.edu/,OA,FALSE
+uri://tdoe.edu/,OI,FALSE
+uri://tdoe.edu/,OO,FALSE
+uri://tdoe.edu/,MI,FALSE
+uri://tdoe.edu/,SI,FALSE
+uri://tdoe.edu/,SP,FALSE
+uri://tdoe.edu/,ID,TRUE
+uri://tdoe.edu/,MS,FALSE
+uri://tdoe.edu/,MD,FALSE
+uri://tdoe.edu/,MA,FALSE
+uri://tdoe.edu/,MU,FALSE
+uri://tdoe.edu/,MH,FALSE
+uri://tdoe.edu/,WN,FALSE
