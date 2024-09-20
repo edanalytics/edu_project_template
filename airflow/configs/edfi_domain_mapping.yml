@@ -112,7 +112,6 @@ surveySectionAssociations: 'Survey Domain'
 surveySectionResponses: 'Survey Domain'
 surveySectionResponseEducationOrganizationTargetAssociations: 'Survey Domain'
 surveySectionResponseStaffTargetAssociations: 'Survey Domain'
-
 absenceEventCategoryDescriptors: 'Staff Domain Domain'
 academicHonorCategoryDescriptors: 'Student Academic Record Domain'
 academicSubjectDescriptors: 'Cross-Domain'
