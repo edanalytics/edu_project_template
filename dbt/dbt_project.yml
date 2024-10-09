@@ -57,6 +57,11 @@ vars:
   # student discipline participation codes that map to non-offenders
   'edu:discipline:non_offender_codes': ['Victim', 'Witness', 'Reporter']
 
+  # custom intersections of other demographic groupings
+  'edu:stu_demos:intersection_groups': Null
+  # custom data sources for student characteristics. must contain and be unique by `k_student`
+  'edu:stu_demos:custom_data_sources': Null
+
   # source config
   extensions: null
   
@@ -68,6 +73,19 @@ vars:
   'src:program:language_instruction:enabled': False
   'src:program:title_i:enabled': False
 
+  # custom data sources for calendar dates
+  'edu:calendar_date:custom_data_sources':
+    cds_calendar_date_report_periods:
+      report_period:
+        where: report_period
+      day_of_report_period:
+        where: day_of_report_period
+      report_period_begin_date:
+        where: report_period_begin_date
+      report_period_end_date:
+        where: report_period_end_date
+      days_in_report_period:
+        where: days_in_report_period
 
 seeds:
   +schema: seed
