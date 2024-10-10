@@ -1,8 +1,9 @@
-from util import io_helpers
+from tn_edu_airflow.util import io_helpers
 
 from ea_airflow_util import UpdateDbtDocsDag
 
-configs_dir = '/home/airflow/airflow/configs'
+#configs_dir = '/home/airflow/airflow/configs'
+configs_dir = '/opt/airflow/config'
 
 # Load Airflow project-level configs to define dynamic DAGs.
 airflow_configs_file = 'airflow_config.yml'

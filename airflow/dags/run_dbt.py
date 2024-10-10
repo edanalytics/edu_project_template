@@ -1,9 +1,9 @@
-from util import io_helpers
+from tn_edu_airflow.util import io_helpers
 
 from ea_airflow_util import RunDbtDag
 
-
-configs_dir = '/home/airflow/airflow/configs'
+# configs_dir = '/home/airflow/airflow/configs'
+configs_dir = '/opt/airflow/config'
 
 # Load Airflow project-level configs to define dynamic DAGs.
 airflow_configs_file = 'airflow_config.yml'
@@ -13,12 +13,11 @@ if dag_params := airflow_configs.get('dbt_run_dags'):
 
     # Build one DBT dag per environment.
     for environment, environment_vars in dag_params.items():
-
         #
         dag_id = f"run_dbt_{environment}"
 
         dbt_dag = RunDbtDag(
-            dag_id = dag_id,
+            dag_id=dag_id,
             environment=environment,
             **environment_vars
         )

@@ -1,0 +1,915 @@
+absenceEventCategoryDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+academicHonorCategoryDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+academicSubjectDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+accommodationDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+accountClassificationDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+achievementCategoryDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+additionalCreditTypeDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+addressTypeDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+administrationEnvironmentDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+administrativeFundingControlDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+ancestryEthnicOriginDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+assessmentCategoryDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+assessmentIdentificationSystemDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+assessmentItemCategoryDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+assessmentItemResultDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+assessmentPeriodDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+assessmentReportingMethodDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+attemptStatusDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+attendanceEventCategoryDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+barrierToInternetAccessInResidenceDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+behaviorDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+calendarEventDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+calendarTypeDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+careerPathwayDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+charterApprovalAgencyTypeDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+charterStatusDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+citizenshipStatusDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+classroomPositionDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+cohortScopeDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+cohortTypeDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+cohortYearTypeDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+competencyLevelDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+contactTypeDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+contentClassDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+continuationOfServicesReasonDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+costRateDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+countryDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+courseAttemptResultDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+courseDefinedByDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+courseGPAApplicabilityDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+courseIdentificationSystemDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+courseLevelCharacteristicDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+courseRepeatCodeDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+credentialFieldDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+credentialTypeDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+creditCategoryDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+creditTypeDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+cteProgramServiceDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+curriculumUsedDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+deliveryMethodDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+diagnosisDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+diplomaLevelDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+diplomaTypeDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+disabilityDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+disabilityDesignationDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+disabilityDeterminationSourceTypeDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+disciplineActionLengthDifferenceReasonDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+disciplineDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+disciplineIncidentParticipationCodeDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+educationalEnvironmentDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+educationOrganizationCategoryDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+educationOrganizationIdentificationSystemDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+educationPlanDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+electronicMailTypeDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+employmentStatusDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+entryGradeLevelReasonDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+entryTypeDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+eventCircumstanceDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+exitWithdrawTypeDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+gradebookEntryTypeDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+gradeLevelDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+gradePointAverageTypeDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+gradeTypeDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+gradingPeriodDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+graduationPlanTypeDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+gunFreeSchoolsActReportingStatusDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+homelessPrimaryNighttimeResidenceDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+homelessProgramServiceDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+identificationDocumentUseDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+incidentLocationDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+indicatorDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+indicatorGroupDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+indicatorLevelDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+institutionTelephoneNumberTypeDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+interactivityStyleDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+internetAccessDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+internetAccessTypeInResidenceDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+internetPerformanceInResidenceDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+interventionClassDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+interventionEffectivenessRatingDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+languageDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+languageInstructionProgramServiceDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+languageUseDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+learningStandardCategoryDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+learningStandardEquivalenceStrengthDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+learningStandardScopeDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+levelOfEducationDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+licenseStatusDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+licenseTypeDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+limitedEnglishProficiencyDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+localeDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+localEducationAgencyCategoryDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+magnetSpecialProgramEmphasisSchoolDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+mediumOfInstructionDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+methodCreditEarnedDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+migrantEducationProgramServiceDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+monitoredDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+neglectedOrDelinquentProgramDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+neglectedOrDelinquentProgramServiceDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+networkPurposeDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+oldEthnicityDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+operationalStatusDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+otherNameTypeDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+participationDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+participationStatusDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+performanceBaseConversionDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+performanceLevelDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+personalInformationVerificationDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+platformTypeDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+populationServedDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+postingResultDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+postSecondaryEventCategoryDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+postSecondaryInstitutionLevelDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+primaryLearningDeviceAccessDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+primaryLearningDeviceAwayFromSchoolDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+primaryLearningDeviceProviderDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+proficiencyDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+programAssignmentDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+programCharacteristicDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+programSponsorDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+programTypeDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+progressDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+progressLevelDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+providerCategoryDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+providerProfitabilityDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+providerStatusDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+publicationStatusDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+questionFormDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+raceDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+reasonExitedDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+reasonNotTestedDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+recognitionTypeDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+relationDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+repeatIdentifierDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+reporterDescriptionDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+residencyStatusDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+responseIndicatorDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+responsibilityDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+restraintEventReasonDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+resultDatatypeTypeDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+retestIndicatorDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+schoolCategoryDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+schoolChoiceImplementStatusDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+schoolFoodServiceProgramServiceDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+schoolTypeDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+sectionCharacteristicDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+separationDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+separationReasonDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+serviceDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+sexDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+sourceSystemDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+specialEducationProgramServiceDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+specialEducationSettingDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+staffClassificationDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+staffIdentificationSystemDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+staffLeaveEventCategoryDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+stateAbbreviationDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+studentCharacteristicDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+studentIdentificationSystemDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+studentParticipationCodeDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+surveyCategoryDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+surveyLevelDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+teachingCredentialBasisDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+teachingCredentialDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+technicalSkillsAssessmentDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+telephoneNumberTypeDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+termDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+titleIPartAParticipantDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+titleIPartAProgramServiceDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+titleIPartASchoolDesignationDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+tribalAffiliationDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+visaDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
+weaponDescriptors:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: False
