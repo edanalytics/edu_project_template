@@ -10,7 +10,7 @@
 }}
 
 {# Load custom data sources from var #}
-{% set custom_data_sources = var("edu:stu_demos:custom_data_sources") %}
+{% set custom_data_sources = var('edu:stu_demos:custom_data_sources') %}
 
 
 {# If edu var has been configured to make demos immutable, set join var to `k_student_xyear` bc demos are unique by xyear #}
@@ -26,7 +26,6 @@
 {% set custom_homeless_program_agg_indicators = var('edu:homeless:custom_program_agg_indicators', None) %}
 {% set custom_language_instruction_program_agg_indicators = var('edu:language_instruction:custom_program_agg_indicators', None) %}
 {% set custom_title_i_program_agg_indicators = var('edu:title_i:custom_program_agg_indicators', None) %}
-
 
 with stg_student as (
     select * from {{ ref('stg_ef3__students') }}
@@ -217,7 +216,7 @@ formatted as (
     left join stu_grade
         on stu_demos.k_student = stu_grade.k_student
         and stg_student.api_year = stu_grade.school_year
-
+    
     -- student programs
     {% if var('src:program:special_ed:enabled', True) %}
         left join stu_special_ed
