@@ -10,7 +10,7 @@ with stg_sections as (
 ),
 courseLevelsExploded as (
     select distinct k_course_section,
-        {{ edu_edfi_source.extract_descriptor('value:sectionCharacteristicDescriptor::string') }} as courseLevelCharacteristic
+        {{ edu_edfi_source.extract_descriptor('value:courseLevelCharacteristicDescriptor::string') }} as courseLevelCharacteristic
     from stg_sections, 
         lateral variant_explode(v_course_level_characteristics)
     where size(cast(v_course_level_characteristics as array<string>)) > 1
@@ -27,19 +27,23 @@ courseLevelCounts as (
     ) x
     where courseLevelCount > 1
 ), 
-sectionsExploded as (
+sectionsCharacteristicsExploded as (
     select distinct k_course_section, 
         {{ edu_edfi_source.extract_descriptor('value:sectionCharacteristicDescriptor::string') }} as sectionCharacteristic
     from stg_sections, 
         lateral variant_explode(v_section_characteristics)
 ),
 sectionScheduleTypes as (
-    select k_course_section, 
-        count(*) as sectionScheduleTypeCount,
-        cast(array_agg(sectionCharacteristic) as String) as sectionSchedules
-    from sectionsExploded
-    where sectionCharacteristic in ('F', 'S', 'T')
-    group by k_course_section
+    select *
+    from (
+        select k_course_section, 
+            count(*) as sectionScheduleTypeCount,
+            cast(array_agg(sectionCharacteristic) as String) as sectionSchedules
+        from sectionsCharacteristicsExploded
+        where sectionCharacteristic in ('F', 'S', 'T')
+        group by k_course_section
+    ) x
+    where sectionScheduleTypeCount > 1
 ),
 stg_sections_class_periods as (
     select s.k_course_section, s.educational_environment_type, cp.*
@@ -78,13 +82,11 @@ union
 select s.k_course_section, s.k_course_offering, s.k_school, s.k_location, s.k_school__location, 
     s.section_id, s.local_course_code, s.school_id, s.school_year, s.session_name,
     2005 as error_code,
-    concat('WARNING:- Section can only have one of the following value for Test Admin Window: F or S or T. Values Recieved: ', 
-        ifnull(sst.sectionSchedules, '[]')) as error
+    concat('Section can only have one of the following value for Test Admin Window: F or S or T. Values Recieved: ', 
+        sst.sectionSchedules) as error
 from stg_sections s
-left outer join sectionScheduleTypes sst
+join sectionScheduleTypes sst
     on sst.k_course_section = s.k_course_section
-where sst.sectionScheduleTypeCount is null 
-    or sst.sectionScheduleTypeCount != 1
 union
 /* Sections that are not Pull Out must have a meeting time duration. */
 select s.k_course_section, s.k_course_offering, s.k_school, s.k_location, s.k_school__location, 
