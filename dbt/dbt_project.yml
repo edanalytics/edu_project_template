@@ -22,6 +22,19 @@ clean-targets:         # directories to be removed by `dbt clean`
 on-run-end: "{% if target.name == 'prod' %}{{ dbt_artifacts.upload_results(results) }}{% endif %}"
 
 models:
+  # We have to disable some edu_edfi_source models because we are replacing them.
+  edu_edfi_source:
+    staging:
+      edfi_3:
+        stage:
+          stg_ef3__student_education_organization_associations:
+            +enabled: false
+          stg_ef3__stu_ed_org__characteristics:
+            +enabled: false
+          stg_ef3__stu_ed_org__languages:
+            +enabled: false
+          stg_ef3__stu_ed_org__races:
+            +enabled: false
   edu_wh:
     +materialized: table
     build:

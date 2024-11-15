@@ -6,13 +6,13 @@
 }}
 
 with stg_calendar_date as (
-    select * from {{ ref('stg_ef3__calendar_dates') }}
+    select * from {{ ref('edu_edfi_source', 'stg_ef3__calendar_dates') }}
 ),
 stg_calendar_events as (
-    select * from {{ ref('stg_ef3__calendar_dates__calendar_events')}}
+    select * from {{ ref('edu_edfi_source', 'stg_ef3__calendar_dates__calendar_events')}}
 ),
 dim_school_calendar as (
-    select * from {{ ref('dim_school_calendar') }}
+    select * from {{ ref('edu_wh', 'dim_school_calendar') }}
 ),
 xwalk_calendar_events as (
     select * from {{ ref('xwalk_calendar_events') }}

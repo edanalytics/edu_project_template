@@ -1,0 +1,8 @@
+tdoe_error_code,end_point,error_school_year_start,error_school_year_end,tdoe_severity,tdoe_error_description
+3001,studentEducationOrganizationAssociations,2025,,critical,Date Entered US cannot be missing for an immigrant student.
+3002,studentEducationOrganizationAssociations,2025,,critical,"Date Entered US must exist for students with English Language Background code L,W,1,2,3,4,F,N."
+3003,studentEducationOrganizationAssociations,2025,,critical,Native Language must exist for students.
+3004,studentEducationOrganizationAssociations,2025,,critical,Race must exist for students.
+3005,studentEducationOrganizationAssociations,2025,,critical,Cohort Year must exist for Students with instructional grade greater than 8.
+3006,studentEducationOrganizationAssociations,2025,,critical,Student Characteristics End Date must be greater than or equal to Begin Date.
+3007,studentEducationOrganizationAssociations,2025,,critical,Student cannot have overlapping Student Characteristics records for the same characteristics.

@@ -28,52 +28,52 @@
 {% set custom_title_i_program_agg_indicators = var('edu:title_i:custom_program_agg_indicators', None) %}
 
 with stg_student as (
-    select * from {{ ref('stg_ef3__students') }}
+    select * from {{ ref('edu_edfi_source', 'stg_ef3__students') }}
 ),
 stu_demos as (
     select * from {{ ref('bld_ef3__choose_stu_demos_by_school') }}
 ),
 stu_immutable_demos as (
-    select * from {{ ref('bld_ef3__immutable_stu_demos') }}
+    select * from {{ ref('edu_wh', 'bld_ef3__immutable_stu_demos') }}
 ),
 stu_ids as (
-    select * from {{ ref('bld_ef3__wide_ids_student') }}
+    select * from {{ ref('edu_wh', 'bld_ef3__wide_ids_student') }}
 ),
 stu_chars as (
-    select * from {{ ref('bld_ef3__student_characteristics') }}
+    select * from {{ ref('edu_wh', 'bld_ef3__student_characteristics') }}
 ),
 stu_indicators as (
-    select * from {{ ref('bld_ef3__student_indicators') }}
+    select * from {{ ref('edu_wh', 'bld_ef3__student_indicators') }}
 ),
 stu_programs as (
-    select * from {{ ref('bld_ef3__student_programs') }}
+    select * from {{ ref('edu_wh', 'bld_ef3__student_programs') }}
 ),
 stu_grade as (
-    select * from {{ ref('bld_ef3__stu_grade_level') }}
+    select * from {{ ref('edu_wh', 'bld_ef3__stu_grade_level') }}
 ),
 
 -- student programs
 {% if var('src:program:special_ed:enabled', True) %}
     stu_special_ed as (
-        select * from {{ ref('bld_ef3__student_program__special_education') }}
+        select * from {{ ref('edu_wh', 'bld_ef3__student_program__special_education') }}
     ),
 {% endif %}
 
 {% if var('src:program:language_instruction:enabled', True) %}
     stu_language_instruction as (
-        select * from {{ ref('bld_ef3__student_program__language_instruction') }}
+        select * from {{ ref('edu_wh', 'bld_ef3__student_program__language_instruction') }}
     ),
 {% endif %}
 
 {% if var('src:program:homeless:enabled', True) %}
     stu_homeless as (
-        select * from {{ ref('bld_ef3__student_program__homeless') }}
+        select * from {{ ref('edu_wh', 'bld_ef3__student_program__homeless') }}
     ),
 {% endif %}
 
 {% if var('src:program:title_i:enabled', True) %}
     stu_title_i_part_a as (
-        select * from {{ ref('bld_ef3__student_program__title_i_part_a') }}
+        select * from {{ ref('edu_wh', 'bld_ef3__student_program__title_i_part_a') }}
     ),
 {% endif %}
 
