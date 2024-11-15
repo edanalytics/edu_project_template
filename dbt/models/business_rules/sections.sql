@@ -82,7 +82,7 @@ union
 select s.k_course_section, s.k_course_offering, s.k_school, s.k_location, s.k_school__location, 
     s.section_id, s.local_course_code, s.school_id, s.school_year, s.session_name,
     2005 as error_code,
-    concat('Section can only have one of the following value for Test Admin Window: F or S or T. Values Recieved: ', 
+    concat('Section can only have one of the following value for Test Admin Window: F or S or T. Values received: ', 
         sst.sectionSchedules) as error
 from stg_sections s
 join sectionScheduleTypes sst
