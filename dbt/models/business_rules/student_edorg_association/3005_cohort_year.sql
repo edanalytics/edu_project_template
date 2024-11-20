@@ -22,7 +22,7 @@ select se.k_student, se.k_lea, se.k_school, se.school_year, se.ed_org_id, se.stu
 from stg_student_edorgs se
 join {{ ref('edu_edfi_source', 'stg_ef3__schools') }} s
     on s.k_lea = se.k_lea
-join {{ ref('edu_edfi_source', 'stg_ef3__student_school_associations') }} ssa
+join {{ ref('stg_ef3__student_school_associations_orig') }} ssa
     on ssa.k_student = se.k_student
     and ssa.k_school = s.k_school
 join {{ ref('xwalk_grade_levels') }} gl

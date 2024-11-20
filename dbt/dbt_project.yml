@@ -35,6 +35,10 @@ models:
             +enabled: false
           stg_ef3__stu_ed_org__races:
             +enabled: false
+          stg_ef3__student_school_associations:
+            +enabled: false
+          stg_ef3__student_homeless_program_associations:
+            +enabled: false
   edu_wh:
     +materialized: table
     build:
