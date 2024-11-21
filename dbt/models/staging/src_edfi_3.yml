@@ -614,3 +614,13 @@ sources:
       This association provides information about the survey section and the staff the survey section is about.
     enabled: true
     columns: *column_defaults
+  - name: contacts
+    description: >
+      Something about contacts.
+    enabled: true
+    columns: *column_defaults
+  - name: student_contact_associations
+    description: >
+      Something about contacts.
+    enabled: true
+    columns: *column_defaults
