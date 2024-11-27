@@ -39,6 +39,16 @@ models:
             +enabled: false
           stg_ef3__student_homeless_program_associations:
             +enabled: false
+          stg_ef3__sessions:
+            +enabled: false
+          stg_ef3__sections:
+            +enabled: false
+          stg_ef3__sections__class_periods:
+            +enabled: false
+          stg_ef3__class_periods:
+            +enabled: false
+          stg_ef3__bell_schedules:
+            +enabled: false
   edu_wh:
     +materialized: table
     build:

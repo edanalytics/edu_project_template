@@ -1,16 +1,12 @@
 {{
   config(
     materialized="table",
-    schema="stage",
-    post_hook=[
-        "drop table {{ ref('stg_ef3__class_periods') }}",
-        "alter table {{ this }} rename to {{ ref('stg_ef3__class_periods') }}"
-    ]
+    schema="stage"
   )
 }}
 
 with stg_class_periods as (
-    select * from {{ ref('stg_ef3__class_periods') }}
+    select * from {{ ref('stg_ef3__class_periods_orig') }}
 ),
 errors as (
     select * from {{ ref('class_periods')}}

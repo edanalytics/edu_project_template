@@ -1,4 +1,14 @@
 tdoe_error_code,end_point,error_school_year_start,error_school_year_end,tdoe_severity,tdoe_error_description
+2001,sessions,2025,,critical,Session Begin Date must be within the school year.
+2002,sessions,2025,,critical,Session End Date must be within the school year.
+2003,sessions,2025,,critical,Session Begin Date must be less than or equal to End Date.
+2004,sections,2025,,critical,"Sections only get one of Honors, Statewide Dual Credit, Local Dual Credit, Dual Enrollment."
+2005,sections,2025,,critical,Sections only get one of F or S or T.
+2005,sections,2025,,critical,Sections that are not Pull Out must have a meeting time duration.
+2010,sections,2025,,critical,Sections must have an educational_environment_type.
+2007,classPeriods,2025,,critical,Class Periods cannot have more than one meeting time.
+2009,classPeriods,2025,,critical,Class Periods must have a positive meeting time duration.
+2008,bellSchedules,2025,,critical,Bell Schedules must have dates.
 3001,studentEducationOrganizationAssociations,2025,,critical,Date Entered US cannot be missing for an immigrant student.
 3002,studentEducationOrganizationAssociations,2025,,critical,"Date Entered US must exist for students with English Language Background code L,W,1,2,3,4,F,N."
 3003,studentEducationOrganizationAssociations,2025,,critical,Native Language must exist for students.
@@ -6,12 +16,12 @@ tdoe_error_code,end_point,error_school_year_start,error_school_year_end,tdoe_sev
 3005,studentEducationOrganizationAssociations,2025,,critical,Cohort Year must exist for Students with instructional grade greater than 8.
 3006,studentEducationOrganizationAssociations,2025,,critical,Student Characteristics End Date must be greater than or equal to Begin Date.
 3007,studentEducationOrganizationAssociations,2025,,critical,Student cannot have overlapping Student Characteristics records for the same characteristics.
-3101,studentSchoolAssociation,2025,,critical,Entry Date must be within the school year.
-3102,studentSchoolAssociation,2025,,critical,Withdrawal Date must be within the school year.
-3103,studentSchoolAssociation,2025,,critical,Withdrawal Date must be greater than or equal to Entry Date.
-3104,studentSchoolAssociation,2025,,critical,No primary enrollment exists but secondary enrollment does exist.
-3105,studentSchoolAssociation,2025,,critical,Student cannot have overlapping Primary enrollments.
-3106,studentSchoolAssociation,2025,,critical,Student cannot have more than one School Association with Enrollment Reason Code of E or E1 in a single school year.
-3107,studentSchoolAssociation,2025,,critical,Student cannot have TR Enrollment Reason Code if there is not existing E or E1 at a different school in a single school year.
-3108,studentSchoolAssociation,2025,,critical,Student cannot have more than one enrollment reason code in a single school year.
-3109,studentHomelessProgramAssociation,2025,,critical,Homeless students must have homeless primary nighttime residence.
+3101,studentSchoolAssociations,2025,,critical,Entry Date must be within the school year.
+3102,studentSchoolAssociations,2025,,critical,Withdrawal Date must be within the school year.
+3103,studentSchoolAssociations,2025,,critical,Withdrawal Date must be greater than or equal to Entry Date.
+3104,studentSchoolAssociations,2025,,critical,No primary enrollment exists but secondary enrollment does exist.
+3105,studentSchoolAssociations,2025,,critical,Student cannot have overlapping Primary enrollments.
+3106,studentSchoolAssociations,2025,,critical,Student cannot have more than one School Association with Enrollment Reason Code of E or E1 in a single school year.
+3107,studentSchoolAssociations,2025,,critical,Student cannot have TR Enrollment Reason Code if there is not existing E or E1 at a different school in a single school year.
+3108,studentSchoolAssociations,2025,,critical,Student cannot have more than one enrollment reason code in a single school year.
+3109,studentHomelessProgramAssociations,2025,,critical,Homeless students must have homeless primary nighttime residence.

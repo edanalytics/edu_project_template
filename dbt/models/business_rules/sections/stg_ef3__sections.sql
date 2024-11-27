@@ -1,16 +1,12 @@
 {{
   config(
     materialized="table",
-    schema="stage",
-    post_hook=[
-        "drop table {{ ref('stg_ef3__sections') }}",
-        "alter table {{ this }} rename to {{ ref('stg_ef3__sections') }}"
-    ]
+    schema="stage"
   )
 }}
 
 with stg_sections as (
-    select * from {{ ref('stg_ef3__sections') }}
+    select * from {{ ref('stg_ef3__sections_orig') }}
 ),
 errors as (
     select * from {{ ref('sections')}}

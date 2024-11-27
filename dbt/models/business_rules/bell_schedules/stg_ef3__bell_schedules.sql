@@ -1,16 +1,12 @@
 {{
   config(
     materialized="table",
-    schema="stage",
-    post_hook=[
-        "drop table {{ ref('stg_ef3__bell_schedules') }}",
-        "alter table {{ this }} rename to {{ ref('stg_ef3__bell_schedules') }}"
-    ]
+    schema="stage"
   )
 }}
 
 with stg_bell_schedules as (
-    select * from {{ ref('stg_ef3__bell_schedules') }}
+    select * from {{ ref('stg_ef3__bell_schedules_orig') }}
 ),
 errors as (
     select * from {{ ref('bell_schedules')}}
