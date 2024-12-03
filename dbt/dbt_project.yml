@@ -49,6 +49,8 @@ models:
             +enabled: false
           stg_ef3__bell_schedules:
             +enabled: false
+          stg_ef3__student_school_attendance_events:
+            +enabled: false
   edu_wh:
     +materialized: table
     build:

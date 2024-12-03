@@ -29,7 +29,7 @@ select ssae.k_student, ssae.k_student_xyear, ssae.k_school, sc.k_school_calendar
       -1)
     , to_date(concat(ssae.school_year, '-06-30'), 'yyyy-MM-dd')) as ssd_date_end, 
   ssae.school_attendance_duration as ssd_duration
-from {{ ref('edu_edfi_source', 'stg_ef3__student_school_attendance_events') }} ssae
+from {{ ref('stg_ef3__student_school_attendance_events') }} ssae
 join {{ ref('edu_wh', 'dim_school_calendar') }} sc
   on sc.k_school = ssae.k_school
   and sc.calendar_code = split_part(ssae.session_name, ' ', 1)
