@@ -35,7 +35,7 @@ where p1.is_primary_school = true
                 and p1.entry_date = p2.entry_date
             )
             /* This looks for overlapping dates. */
-            and (p1.entry_date <= ifnull(p2.exit_withdraw_date, to_date('9999-12-31', 'yyyy-MM-dd'))) 
-            and (ifnull(p1.exit_withdraw_date, to_date('9999-12-31', 'yyyy-MM-dd')) >= p2.entry_date)
+            and (p1.entry_date <= date_add(ifnull(p2.exit_withdraw_date, to_date('9999-12-31', 'yyyy-MM-dd')), -1)
+                and date_add(ifnull(p1.exit_withdraw_date, to_date('9999-12-31', 'yyyy-MM-dd')), -1) >= p2.entry_date)
     )
 order by p1.school_year, p1.student_unique_id, p1.entry_date
