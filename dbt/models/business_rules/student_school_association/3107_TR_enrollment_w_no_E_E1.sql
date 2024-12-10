@@ -32,6 +32,6 @@ where p1.is_primary_school = true
             and p2.school_id != p1.school_id
             and p2.entry_date < p1.entry_date
             and p2.exit_withdraw_date is not null
-            and p2.exit_withdraw_date < p1.entry_date
+            and p2.exit_withdraw_date <= p1.entry_date
     )
 order by p1.school_year, p1.student_unique_id, p1.entry_date
