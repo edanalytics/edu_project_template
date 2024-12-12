@@ -47,6 +47,6 @@ where (
             and x.school_year = cast(ssd.school_year as int)
             /* No shows don't count. */
             --and x.entry_date < ifnull(x.exit_withdraw_date, to_date('9999-12-31','yyyy-MM-dd'))
-            and not(ssd.attendance_event_date between x.entry_date 
-                and ifnull(x.exit_withdraw_date, to_date('9999-12-31','yyyy-MM-dd')))
+            and ssd.attendance_event_date between x.entry_date 
+                and ifnull(x.exit_withdraw_date, to_date('9999-12-31','yyyy-MM-dd'))
     )
