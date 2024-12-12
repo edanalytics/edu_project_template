@@ -29,7 +29,7 @@ left outer join {{ ref('stg_ef3__student_school_associations_orig') }} ssa
     and ssa.k_school = ssd.k_school
     and ssa.school_year = cast(ssd.school_year as int)
     /* No shows don't count. */
-    and ssa.entry_date < ifnull(ssa.exit_withdraw_date, to_date('9999-12-31','yyyy-MM-dd'))
+    --and ssa.entry_date < ifnull(ssa.exit_withdraw_date, to_date('9999-12-31','yyyy-MM-dd'))
 where (
         ssa.k_student is null
         or (ssa.k_student is not null 
@@ -46,7 +46,7 @@ where (
             and x.k_school = ssd.k_school
             and x.school_year = cast(ssd.school_year as int)
             /* No shows don't count. */
-            and x.entry_date < ifnull(x.exit_withdraw_date, to_date('9999-12-31','yyyy-MM-dd'))
+            --and x.entry_date < ifnull(x.exit_withdraw_date, to_date('9999-12-31','yyyy-MM-dd'))
             and not(ssd.attendance_event_date between x.entry_date 
                 and ifnull(x.exit_withdraw_date, to_date('9999-12-31','yyyy-MM-dd')))
     )
