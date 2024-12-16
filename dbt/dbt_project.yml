@@ -53,6 +53,8 @@ models:
             +enabled: false
           stg_ef3__discipline_actions:
             +enabled: false
+          stg_ef3__student_section_associations:
+            +enabled: false
   edu_wh:
     +materialized: table
     build:
