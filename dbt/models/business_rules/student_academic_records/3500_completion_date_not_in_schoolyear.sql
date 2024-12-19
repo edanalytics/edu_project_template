@@ -13,7 +13,7 @@ with stg_student_academic_records as (
 stg_student_academic_records__diplomas as (
     select * from {{ ref('stg_ef3__student_academic_records__diplomas') }} sard
 )
-/* Student Section Begin Date must be within the school year begin and end date. */
+/* Diploma Award Date must be within the school year begin and end date. */
 select sar.k_student_academic_record, sar.k_student, sar.k_lea, sar.k_school, sar.ed_org_id,
     sar.school_year, sar.student_unique_id, sar.academic_term,
     sard.diploma_type, sard.diploma_description,
