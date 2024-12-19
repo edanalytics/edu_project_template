@@ -35,3 +35,5 @@ tdoe_error_code,end_point,error_school_year_start,error_school_year_end,tdoe_sev
 3400,studentSectionAssociations,2025,,critical,Student Section Begin Date must be within the school year.
 3401,studentSectionAssociations,2025,,critical,Student Section End Date must be within the school year.
 3402,studentSectionAssociations,2025,,critical,Student Section Begin Date must be within the enrollment period.
+3600,courseTranscripts,2025,,critical,Final Letter Grade must be an acceptable value.
+3601,courseTranscripts,2025,,critical,Final Numeric Grade must be an acceptable value.

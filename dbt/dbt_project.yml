@@ -55,6 +55,8 @@ models:
             +enabled: false
           stg_ef3__student_section_associations:
             +enabled: false
+          stg_ef3__course_transcripts:
+            +enabled: false
   edu_wh:
     +materialized: table
     build:
