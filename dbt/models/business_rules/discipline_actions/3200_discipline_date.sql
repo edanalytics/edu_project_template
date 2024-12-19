@@ -41,4 +41,4 @@ select da.k_student, da.k_school__responsibility, da.school_year,
         da.discipline_date, '.') as error,
     {{ error_severity_column(error_code, 'da') }}
 from discipline_start_day_of_school_year da
-where da.day_of_school_year is not null
+where da.day_of_school_year is null
