@@ -57,6 +57,10 @@ models:
             +enabled: false
           stg_ef3__course_transcripts:
             +enabled: false
+          stg_ef3__student_academic_records:
+            +enabled: false
+          stg_ef3__student_academic_records__diplomas:
+            +enabled: false
   edu_wh:
     +materialized: table
     build:
