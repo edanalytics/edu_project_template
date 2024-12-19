@@ -25,11 +25,9 @@ tdoe_error_code,end_point,error_school_year_start,error_school_year_end,tdoe_sev
 3107,studentSchoolAssociations,2025,,critical,Student cannot have TR Enrollment Reason Code if there is not existing E or E1 at a different school in a single school year.
 3108,studentSchoolAssociations,2025,,critical,Student cannot have more than one enrollment reason code in a single school year.
 3109,studentHomelessProgramAssociations,2025,,critical,Homeless students must have homeless primary nighttime residence.
-3200,disciplineActions,2025,,critical,Discipline Date must fall on a School Day.
-3201,disciplineActions,2025,,critical,Discipline Action Length must fall on a School Day.
-3202,disciplineActions,2025,,critical,Actual Discipline Action Length must fall on a School Day.
-3203,disciplineActions,2025,,critical,Discipline Incident Date cannot be after Discipline Action Date.
-3204,disciplineActions,2025,,critical,Discipline Actions for a Student are not allowed to overlap.
+3200,disciplineActions,2025,,critical,Discipline Date must be within the school year.
+3201,disciplineActions,2025,,critical,Discipline Incident Date cannot be after Discipline Action Date.
+3202,disciplineActions,2025,,critical,Discipline Actions for a Student are not allowed to overlap.
 3300,studentSchoolAttendanceEvents,2025,,critical,Student Standard Day must be within enrollment period.
 3301,studentSchoolAttendanceEvents,2025,,critical,Student attendance/absence must be within enrollment period.
 3400,studentSectionAssociations,2025,,critical,Student Section Begin Date must be within the school year.

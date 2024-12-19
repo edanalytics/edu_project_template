@@ -5,7 +5,7 @@
   )
 }}
 
-{% set error_code = 3203 %}
+{% set error_code = 3201 %}
 
 with stg_discipline_actions as (
     select * 
