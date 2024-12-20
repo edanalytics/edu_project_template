@@ -8,7 +8,9 @@
 {% set error_code = 2008 %}
 
 with stg_bell_schedules as (
-    select * from {{ ref('stg_ef3__bell_schedules_orig') }}
+    select * from {{ ref('stg_ef3__bell_schedules_orig') }} bs
+    where 1=1
+        {{ school_year_exists(error_code, 'bs') }}
 ),
 missingDates as (
     select k_bell_schedule,

@@ -8,7 +8,9 @@
 {% set error_code = 2001 %}
 
 with stg_sessions as (
-    select * from {{ ref('stg_ef3__sessions_orig') }}
+    select * from {{ ref('stg_ef3__sessions_orig') }} s
+    where 1=1
+        {{ school_year_exists(error_code, 's') }}
 )
 /* Session Begin Date must be within the school year begin and end date. */
 select s.k_session, s.session_name, s.school_id, s.school_year, s.session_begin_date as begin_date, s.session_end_date as end_date,

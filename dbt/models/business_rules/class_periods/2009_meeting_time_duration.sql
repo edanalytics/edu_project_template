@@ -8,7 +8,9 @@
 {% set error_code = 2009 %}
 
 with stg_class_periods as (
-    select * from {{ ref('stg_ef3__class_periods_orig') }}
+    select * from {{ ref('stg_ef3__class_periods_orig') }} cp
+    where 1=1
+        {{ school_year_exists(error_code, 'cp') }}
 ),
 tooManyClassPeriods as (
     select cp.k_class_period,

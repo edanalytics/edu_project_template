@@ -36,3 +36,5 @@ tdoe_error_code,end_point,error_school_year_start,error_school_year_end,tdoe_sev
 3500,studentAcademicRecords,2025,,critical,Student Academic Record Completion Date is not within the school year.
 3600,courseTranscripts,2025,,critical,Final Letter Grade must be an acceptable value.
 3601,courseTranscripts,2025,,critical,Final Numeric Grade must be an acceptable value.
+4100,staffEducationOrganizationAssignmentAssociations,2025,,critical,Staff EdOrg Assignment Association Full Time Equivalency must be [null] or between 0 and 1.
+4101,staffEducationOrganizationAssignmentAssociations,2025,,critical,"Staff EdOrg Assignment Association Order of Assignment must be [null], 1, 2, or 3."

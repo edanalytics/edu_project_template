@@ -8,7 +8,9 @@
 {% set error_code = 2010 %}
 
 with stg_sections as (
-    select * from {{ ref('stg_ef3__sections_orig') }}
+    select * from {{ ref('stg_ef3__sections_orig') }} s
+    where 1=1
+        {{ school_year_exists(error_code, 's') }}
 )
 /* Sections must have an educational_environment_type. */
 select s.k_course_section, s.k_course_offering, s.k_school, s.k_location, s.k_school__location, 

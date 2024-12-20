@@ -8,7 +8,9 @@
 {% set error_code = 2006 %}
 
 with stg_sections as (
-    select * from {{ ref('stg_ef3__sections_orig') }}
+    select * from {{ ref('stg_ef3__sections_orig') }} s
+    where 1=1
+        {{ school_year_exists(error_code, 's') }}
 ),
 stg_sections_class_periods as (
     select s.k_course_section, s.educational_environment_type, cp.*

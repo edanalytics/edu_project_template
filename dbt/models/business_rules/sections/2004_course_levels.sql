@@ -8,7 +8,9 @@
 {% set error_code = 2004 %}
 
 with stg_sections as (
-    select * from {{ ref('stg_ef3__sections_orig') }}
+    select * from {{ ref('stg_ef3__sections_orig') }} s
+    where 1=1
+        {{ school_year_exists(error_code, 's') }}
 ),
 courseLevelsExploded as (
     select distinct k_course_section,

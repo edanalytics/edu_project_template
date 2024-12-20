@@ -11,8 +11,9 @@ with stg_attendance as (
     select k_student, k_school, k_session, 
         cast(school_year as int) as school_year, 
         school_id, student_unique_id, attendance_event_date, attendance_event_category
-    from {{ ref('stg_ef3__student_school_attendance_events_orig') }}
+    from {{ ref('stg_ef3__student_school_attendance_events_orig') }} ssae
     where attendance_event_category != 'SSD'
+        {{ school_year_exists(error_code, 'ssae') }}
 )
 /* Student Attendance/Absence events must be within enrollment period. */
 select ssd.k_student, ssd.k_school, ssd.k_session, ssd.school_year, ssd.school_id, ssd.student_unique_id,

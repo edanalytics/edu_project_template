@@ -9,6 +9,8 @@
 
 with stg_student_academic_records as (
     select * from {{ ref('stg_ef3__student_academic_records_orig') }} sar
+    where 1=1
+        {{ school_year_exists(error_code, 'sar') }}
 ),
 stg_student_academic_records__diplomas as (
     select * from {{ ref('stg_ef3__student_academic_records__diplomas') }} sard
