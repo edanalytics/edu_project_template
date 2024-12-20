@@ -9,7 +9,9 @@
 
 with stg_discipline_actions as (
     select * 
-    from {{ ref('stg_ef3__discipline_actions_orig') }}
+    from {{ ref('stg_ef3__discipline_actions_orig') }} da
+    where 1=1
+        {{ school_year_exists(error_code, 'da') }}
 ),
 discipline_incidents_exploded as (
     select distinct k_student, k_school__responsibility, school_year, discipline_action_id, discipline_date, 

@@ -9,7 +9,9 @@
 
 with stg_discipline_actions as (
     select * 
-    from {{ ref('stg_ef3__discipline_actions_orig') }}
+    from {{ ref('stg_ef3__discipline_actions_orig') }} da
+    where 1=1
+        {{ school_year_exists(error_code, 'da') }}
 ),
 calendar_dates as (
     select k_school, calendar_code, school_year, calendar_date, day_of_school_year
