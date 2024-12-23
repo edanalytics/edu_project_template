@@ -63,6 +63,8 @@ models:
             +enabled: false
           stg_ef3__staff_education_organization_assignment_associations:
             +enabled: false
+          stg_ef3__staff_section_associations:
+            +enabled: false
   edu_wh:
     +materialized: table
     build:
