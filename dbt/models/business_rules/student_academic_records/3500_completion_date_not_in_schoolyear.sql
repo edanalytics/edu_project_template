@@ -21,8 +21,10 @@ select sar.k_student_academic_record, sar.k_student, sar.k_lea, sar.k_school, sa
     sard.diploma_type, sard.diploma_description,
     {{ error_code }} as error_code,
     concat('Diploma Award Date does not fall within the school year. Value Received: ', sard.diploma_award_date, '. The state school year starts ',
-      concat((sar.school_year-1), '-07-01'), ' and ends ', concat(sar.school_year, '-06-30'), '.') as error,
+      concat((cast(sar.school_year as int)-1), '-07-01'), ' and ends ', concat(cast(sar.school_year as int), '-06-30'), '.') as error,
     {{ error_severity_column(error_code, 'sar') }}
 from stg_student_academic_records sar
 join stg_student_academic_records__diplomas sard
     on sard.k_student_academic_record = sar.k_student_academic_record
+where not(sard.diploma_award_date between to_date(concat(cast(sar.school_year as int)-1, '-07-01'), 'yyyy-MM-dd') 
+        and to_date(concat(cast(sar.school_year as int), '-06-30'), 'yyyy-MM-dd'))
