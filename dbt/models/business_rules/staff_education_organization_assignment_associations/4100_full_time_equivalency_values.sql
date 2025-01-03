@@ -20,5 +20,5 @@ select seaa.k_staff, seaa.k_lea, seaa.k_school, seaa.school_year, seaa.ed_org_id
         ifnull(seaa.full_time_equivalency, '[null]'), '.') as error,
     {{ error_severity_column(error_code, 'seaa') }}
 from stg_staff_edorg_assignment_assoc seaa
-where seaa.order_of_assignment is not null
-    and not (seaa.order_of_assignment between 0 and 1)
+where seaa.full_time_equivalency is not null
+    and not (seaa.full_time_equivalency between 0 and 1)
