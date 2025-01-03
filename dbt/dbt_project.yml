@@ -65,6 +65,12 @@ models:
             +enabled: false
           stg_ef3__staff_section_associations:
             +enabled: false
+          stg_ef3__calendars:
+            +enabled: false
+          stg_ef3__calendar_dates:
+            +enabled: false
+          stg_ef3__calendar_dates__calendar_events:
+            +enabled: false
   edu_wh:
     +materialized: table
     build:
