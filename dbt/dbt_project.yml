@@ -158,6 +158,12 @@ vars:
         where: report_period_end_date
       days_in_report_period:
         where: days_in_report_period
+  
+  # custom data sources for staff
+  'edu:staff:custom_data_sources':
+    cds_staff_additional_columns:
+      oid:
+        where: oid
 
 seeds:
   +schema: seed
