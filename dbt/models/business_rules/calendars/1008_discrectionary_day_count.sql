@@ -5,7 +5,7 @@
   )
 }}
 
-{% set error_code = 1000 %}
+{% set error_code = 1008 %}
 
 with calendars as (
     select *
