@@ -34,10 +34,10 @@ not_enough_dates as (
 select c.k_school, c.k_school_calendar, c.school_year, c.school_id, c.calendar_code, 
     {{ error_code }} as error_code,
     concat('Calculated total Parent-Teacher days is less than the minimum of 1. Total days calculated: ',
-      x.pt_days, '.') as error,
+      ifnull(x.pt_days,0), '.') as error,
     {{ error_severity_column(error_code, 'c') }}
 from calendars c
-join not_enough_dates x
+left outer join not_enough_dates x
     on x.k_school = c.k_school
     and x.k_school_calendar = c.k_school_calendar
 order by 3, 4, 5
