@@ -28,7 +28,6 @@ not_enough_dates as (
     from calendar_events
     where calendar_event in ('IS', 'IO')
     group by k_school, k_school_calendar, school_year, school_id, calendar_code
-    having count(*) < 5
 )
 /* There must be at least 5 in service days. */
 select c.k_school, c.k_school_calendar, c.school_year, c.school_id, c.calendar_code, 
@@ -40,4 +39,5 @@ from calendars c
 left outer join not_enough_dates x
     on x.k_school = c.k_school
     and x.k_school_calendar = c.k_school_calendar
+where ifnull(x.inservice_days, 0) < 5
 order by 3, 4, 5
