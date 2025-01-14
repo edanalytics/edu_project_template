@@ -27,9 +27,7 @@ required_events as (
     select 'AS' as required_calendar_event union
     select 'AE' as required_calendar_event union
     select 'CS' as required_calendar_event union
-    select 'CE' as required_calendar_event union
-    select 'CH' as required_calendar_event union
-    select 'SH' as required_calendar_event 
+    select 'CE' as required_calendar_event
 ),
 missing_events as (
     select k_school, k_school_calendar, school_year, school_id, calendar_code,
