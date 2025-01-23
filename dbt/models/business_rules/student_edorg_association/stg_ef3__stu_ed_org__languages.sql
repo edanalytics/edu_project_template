@@ -1,3 +1,10 @@
+{{
+  config(
+    materialized="table",
+    schema="stage"
+  )
+}}
+
 with stg_stu_ed_org as (
     select * from {{ ref('stg_ef3__student_education_organization_associations_orig') }}
 ),
