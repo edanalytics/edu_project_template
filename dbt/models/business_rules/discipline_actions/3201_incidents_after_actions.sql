@@ -24,7 +24,7 @@ discipline_incident_dates as (
         da.discipline_action_id, da.discipline_date, da.incidentIdentifier,
         di.incident_date
     from discipline_incidents_exploded da
-    join teds_dev.dev_smckee_stage.stg_ef3__discipline_incidents di
+    join {{ ref('edu_edfi_source', 'stg_ef3__discipline_incidents') }} di
         on di.k_school = da.k_school__responsibility
         and di.incident_id = da.incidentIdentifier
 )
