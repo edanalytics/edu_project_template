@@ -1,3 +1,6 @@
+# Unreleased
+- Ensure that all resources that are required by `edu_edfi_source` are included in `src_edfi_3.yml` and `sql_source_create_table.sql`
+
 # edu_project_template v0.2.0
 ## New features
 - Add optional `dbt_incrementer_var` to `edu_edfi_airflow.EdFiResourceDAG` and `ea_airflow_util.RunDbtDag` in Airflow config YAMLs

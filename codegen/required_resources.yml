@@ -1,0 +1,39 @@
+# These are resources that are required by edu_edfi_source
+# The format is {name}: {description}
+bellSchedules: This entity represents the schedule of class period meeting times.
+calendarDates: The type of scheduled or unscheduled event for the day.
+calendars: A set of dates associated with an organization.
+classPeriods: This entity represents the designation of a regularly scheduled series of class meetings at designated times and days of the week.
+contacts: This entity represents a contact of a student, such as a parent, guardian or caretaker.
+courseOfferings: This entity represents an entry in the course catalog of available courses offered by the school during a session.
+courseTranscripts: This entity is the final record of a student's performance in their courses at the end of a semester or school year.
+courses: This educational entity represents the organization of subject matter and related learning experiences provided for the instruction of students on a regular or systematic basis.
+educationOrganizationNetworkAssociations: Properties of the association between the EducationOrganization and its network(s).
+educationOrganizationNetworks: This entity is a self-organized membership network of peer-level education organizations intended to provide shared services or collective procurement.
+grades: This educational entity represents an overall score or assessment tied to a course over a period of time (i.e., the grading period). Student grades are usually a compilation of marks and other scores.
+gradingPeriods: This entity represents the time span for which grades are reported.
+graduationPlans: This entity is a plan outlining the required credits, credits by subject, credits by course, and other criteria required for graduation. A graduation plan may be one or more standard plans defined by an education organization and/or individual plans for some or all students.
+learningStandards: A statement that describes a specific competency or academic standard.
+localEducationAgencies: This entity represents an administrative unit at the local level which exists primarily to operate schools or to contract for educational services. It includes school districts, charter schools, charter management organizations, or other local administrative organizations.
+locations: This entity represents the physical space where students gather for a particular class/section. The Location may be an indoor or outdoor area designated for the purpose of meeting the educational needs of students.
+parents: This entity represents a parent or guardian of a student, such as mother, father, or caretaker.
+programs: This entity represents any program designed to work in conjunction with, or as a supplement to, the main academic program. Programs may provide instruction, training, services, or benefits through federal, state, or local agencies. Programs may also include organized extracurricular activities for students.
+schools: This entity represents an educational organization that includes staff and students who participate in classes and educational activity groups.
+sections: This entity represents a setting in which organized instruction of course content is provided, in-person or otherwise, to one or more students for a given period of time. A course offering may be offered to more than one section.
+sessions: A term in the school year, generally a unit of time into which courses are scheduled, instruction occurs and by which credits are awarded. Sessions may be interrupted by vacations or other events.
+staffEducationOrganizationAssignmentAssociations: This association indicates the education organization to which a staff member provides services; also known as school of service.
+staffEducationOrganizationEmploymentAssociations: This association indicates the EducationOrganization an employee, contractor, volunteer, or other service provider is formally associated with typically indicated by which organization the staff member has a services contract with or receives compensation from.
+staffSchoolAssociations: This association indicates the School(s) to which a staff member provides instructional services.
+staffSectionAssociations: This association indicates the class sections to which a staff member is assigned.
+staffs: 'This entity represents an individual who performs specified activities for any public or private education institution or agency that provides instructional and/or support services to students or staff at the early childhood level through high school completion. For example, this includes:     1. An "employee" who performs services under the direction of the employing institution or agency is compensated for such services by the employer and is eligible for employee benefits and wage or salary tax withholdings     2. A "contractor" or "consultant" who performs services for an agreed upon fee or an employee of a management service contracted to work on site     3. A "volunteer" who performs services on a voluntary and uncompensated basis     4. An in-kind service provider     5. An independent contractor or businessperson working at a school site.'
+stateEducationAgencies: This entity represents the agency of the state charged with the primary responsibility for coordinating and supervising public instruction, including the setting of standards for elementary and secondary instructional programs.
+studentAcademicRecords: This educational entity represents the cumulative record of academic achievement for a student.
+studentContactAssociations: This association relates students to their parents, guardians, or caretakers.
+studentEducationOrganizationAssociations: This association represents student information as reported in the context of the student's relationship to the Education Organization. Enrollment relationship semantics are covered by StudentSchoolAssociation.
+studentParentAssociations: This association relates students to their parents, guardians, or caretakers.
+studentProgramAssociations: This association represents the Program(s) that a student participates in or is served by.
+studentSchoolAssociations: This association represents the School in which a student is enrolled. The semantics of enrollment may differ slightly by state. Non-enrollment relationships between a student and an education organization may be described using the StudentEducationOrganizationAssociation.
+studentSchoolAttendanceEvents: This event entity represents the recording of whether a student is in attendance for a school day.
+studentSectionAssociations: This association indicates the course sections to which a student is assigned.
+studentSectionAttendanceEvents: This event entity represents the recording of whether a student is in attendance for a section.
+students: This entity represents an individual for whom instruction, services, and/or care are provided in an early childhood, elementary, or secondary educational program under the jurisdiction of a school, education agency or other institution or program. A student is a person who has been enrolled in a school or other educational institution.
