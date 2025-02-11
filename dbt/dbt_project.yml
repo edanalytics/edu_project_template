@@ -164,6 +164,14 @@ vars:
     cds_staff_additional_columns:
       oid:
         where: oid
+      TeacherLicenseNumber:
+        where: TeacherLicenseNumber
+      TeacherLicenseEffectiveDate:
+        where: TeacherLicenseEffectiveDate
+      TeacherLicenseExpirationDate:
+        where: TeacherLicenseExpirationDate
+      TeacherLicenseIssuanceDate:
+        where: TeacherLicenseIssuanceDate
 
 seeds:
   +schema: seed

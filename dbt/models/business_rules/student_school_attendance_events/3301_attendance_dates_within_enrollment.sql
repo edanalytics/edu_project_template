@@ -16,7 +16,7 @@ with stg_attendance as (
         {{ school_year_exists(error_code, 'ssae') }}
 )
 /* Student Attendance/Absence events must be within enrollment period. */
-select ssd.k_student, ssd.k_school, ssd.k_session, ssd.school_year, ssd.school_id, ssd.student_unique_id,
+select ssd.k_student, ssd.k_school, ssd.k_session, ssd.school_year, cast(ssd.school_id as int) as school_id, ssd.student_unique_id,
     ssd.attendance_event_date, ssd.attendance_event_category,
     {{ error_code }} as error_code,
     concat('Student attendance/absence does not fall within Enrollment Period. Enrollment Start Date: ',
