@@ -1,19 +1,19 @@
 # Set versions to install into Airflow virtual environment
 AIRFLOW_VERSION=2.6.3
 
-EA_AIRFLOW_UTIL_VERSION=0.3.1
-EDFI_API_CLIENT_VERSION=0.2.1
-EDU_EDFI_AIRFLOW_VERSION=0.2.5
+EA_AIRFLOW_UTIL_VERSION=0.3.5
+EDFI_API_CLIENT_VERSION=0.2.2
+EDU_EDFI_AIRFLOW_VERSION=0.4.4
 
-EARTHMOVER_VERSION=0.3.1
-LIGHTBEAM_VERSION=0.1.2
+EARTHMOVER_VERSION=0.4.3
+LIGHTBEAM_VERSION=0.1.6
 
 
 ### set up airflow environment ###
 echo Beginning venv-airflow-init.sh
 
 python3.8 -m pip install --upgrade pip
-pip install wheel setuptools  --quiet
+pip install wheel setuptools==70.*  --quiet #pinning setuptools due to package version leading zeros bug
 
 # install airflow, modeled on: https://airflow.apache.org/docs/apache-airflow/2.1.2/installation.html#installation-script
 # we should probably pass in airflow (and python version) as args to cloudformation template
