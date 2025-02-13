@@ -15,9 +15,9 @@ with stg_sections as (
 stg_sections_class_periods as (
     select s.k_course_section, s.educational_environment_type, cp.*
     from stg_sections s
-    join {{ ref('stg_ef3__sections__class_periods') }} scp
+    left outer join {{ ref('stg_ef3__sections__class_periods') }} scp
         on scp.k_course_section = s.k_course_section
-    join {{ ref('stg_ef3__class_periods') }} cp
+    left outer join {{ ref('stg_ef3__class_periods') }} cp
         on cp.k_class_period = scp.k_class_period
 ),
 nonPullOutsMissingClassPeriodDurations as (
