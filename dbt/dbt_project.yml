@@ -136,6 +136,10 @@ vars:
 
   # source config
   extensions: null
+
+  descriptors:
+    exitWithdrawTypeDescriptor:
+      replace_with: short_description
   
   # Enable optional domains and programs
   'src:domain:assessment:enabled': False
@@ -172,6 +176,12 @@ vars:
         where: TeacherLicenseExpirationDate
       TeacherLicenseIssuanceDate:
         where: TeacherLicenseIssuanceDate
+  
+  # custom data sources for schools
+  'edu:schools:custom_data_sources':
+    cds_schools_additional_columns:
+      grade_levels:
+        where: grade_levels
 
 seeds:
   +schema: seed
