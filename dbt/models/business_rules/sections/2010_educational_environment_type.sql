@@ -19,4 +19,4 @@ select s.k_course_section, s.k_course_offering, s.k_school, s.k_location, s.k_sc
     concat('Educational environment designation is blank for section. ', s.local_course_code, ', ', s.section_id, ', ', session_name, '.') as error,
     {{ error_severity_column(error_code, 's') }}
 from stg_sections s
-where s.educational_environment_type is not null
+where s.educational_environment_type is null
