@@ -1,5 +1,5 @@
 tdoe_error_code,end_point,error_school_year_start,error_school_year_end,tdoe_severity,tdoe_error_description
-1000,calendars,2025,,critical,Instructional Day count must be at least 180.
+1000,calendars,2030,,critical,Instructional Day count must be at least 180.
 1001,calendars,2025,,critical,"AS, AE, AD, MS, MD, MA, MU, MH require an ID on the same date."
 1002,calendars,2025,,critical,"CH, MI, OH, SH, SI, TV are incorrectly paired with an ID on the same date."
 1003,calendars,2025,,critical,Calendar Event Date must be within the school year.
@@ -11,7 +11,7 @@ tdoe_error_code,end_point,error_school_year_start,error_school_year_end,tdoe_sev
 2001,sessions,2025,,critical,Session Begin Date must be within the school year.
 2002,sessions,2025,,critical,Session End Date must be within the school year.
 2003,sessions,2025,,critical,Session Begin Date must be less than or equal to End Date.
-2004,sections,2025,,critical,"Sections only get one of Honors, Statewide Dual Credit, Local Dual Credit, Dual Enrollment."
+2004,sections,2030,,critical,"Sections only get one of Honors, Statewide Dual Credit, Local Dual Credit, Dual Enrollment."
 2005,sections,2025,,critical,Sections only get one of F or S or T.
 2006,sections,2025,,critical,Sections that are not Pull Out must have a meeting time duration.
 2010,sections,2025,,critical,Sections must have an educational_environment_type.

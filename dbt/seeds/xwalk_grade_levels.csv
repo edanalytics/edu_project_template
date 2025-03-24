@@ -1,29 +1,41 @@
-grade_level,grade_level_integer
-Infant/toddler,-3
-Early Education,-2
-Preschool,-1
-Prekindergarten,-1
-Preschool/Prekindergarten,-1
-P3,-1
-P4,-1
-Transitional Kindergarten,-1
-Kindergarten,0
-First grade,1
-Second grade,2
-Third grade,3
-Fourth grade,4
-Fifth grade,5
-Sixth grade,6
-Seventh grade,7
-Eighth grade,8
-Ninth grade,9
-Tenth grade,10
-Eleventh grade,11
-Twelfth grade,12
-Grade 13,13
-Postsecondary,20
-Adult Education,30
-No grade level,
-Other,
-Ungraded,
-Out of School,
+grade_level,grade_level_integer,grade_level_short,grade_level_adm
+Infant/toddler,-3,PK,PK
+Early Education,-2,PK,PK
+Preschool,-1,PK,PK
+Prekindergarten,-1,PK,PK
+Preschool/Prekindergarten,-1,PK,PK
+P3,-1,P3,P3
+P4,-1,P4,P4
+Transitional Kindergarten,-1,PK,PK
+Kindergarten,0,PK,PK
+First grade,1,01,01
+Second grade,2,02,02
+Third grade,3,03,03
+Fourth grade,4,04,04
+Fifth grade,5,05,05
+Sixth grade,6,06,06
+Seventh grade,7,07,07
+Eighth grade,8,08,08
+Ninth grade,9,09,09
+Tenth grade,10,10,10
+Eleventh grade,11,11,11
+Twelfth grade,12,12,12
+Grade 13,13,13,13
+Postsecondary,20,20,20
+Adult Education,30,30,30
+No grade level,,,
+Other,,,
+Ungraded,,,
+Out of School,,,
+T1,1,T1,01
+T2,2,T2,02
+T3,3,T3,03
+T4,4,T4,04
+T5,5,T5,05
+T6,6,T6,06
+T7,7,T7,07
+T8,8,T8,08
+T9,9,T9,09
+T10,10,T10,10
+T11,11,T11,11
+T12,12,T12,12
