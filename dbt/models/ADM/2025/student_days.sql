@@ -83,6 +83,6 @@ select k_student, k_lea, k_school, k_school_calendar,
             and (exit_withdraw_date is null
                 or calendar_date <= exit_withdraw_date) then 1
         else 0
-    end as has_membership
+    end as isa_member
 from q
 order by k_school, k_student, calendar_date
