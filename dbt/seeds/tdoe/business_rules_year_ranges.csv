@@ -39,6 +39,8 @@ tdoe_error_code,end_point,error_school_year_start,error_school_year_end,tdoe_sev
 3202,disciplineActions,2025,,critical,Discipline Actions for a Student are not allowed to overlap.
 3300,studentSchoolAttendanceEvents,2025,,critical,Student Standard Day must be within enrollment period.
 3301,studentSchoolAttendanceEvents,2025,,critical,Student attendance/absence must be within enrollment period.
+3302,studentAttendanceEvents,2025,,critical,Student must have SSD for every calendar day of their enrollments.
+3303,studentAttendanceEvents,2025,,critical,Student SSD duration must be non-zero.
 3400,studentSectionAssociations,2025,,critical,Student Section Begin Date must be within the school year.
 3401,studentSectionAssociations,2025,,critical,Student Section End Date must be within the school year.
 3402,studentSectionAssociations,2025,,critical,Student Section Begin Date must be within the enrollment period.
@@ -49,4 +51,4 @@ tdoe_error_code,end_point,error_school_year_start,error_school_year_end,tdoe_sev
 4101,staffEducationOrganizationAssignmentAssociations,2025,,critical,"Staff EdOrg Assignment Association Order of Assignment must be [null], 1, 2, or 3."
 4200,staffSectionAssociations,2025,,critical,Staff Section Begin Date must be within the school year.
 4201,staffSectionAssociations,2025,,critical,Staff Section End Date must be null or within the school year.
-4202,staffSectionAssociations,2025,,critical,Staff Section Begin Date less than Staff Section End Date.
+4202,staffSectionAssociations,2025,,critical,Staff Section Begin Date greater than Staff Section End Date.
