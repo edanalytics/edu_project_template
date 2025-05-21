@@ -23,3 +23,10 @@ where c.k_lea is not null
         from {{ ref('xwalk_student_characteristics') }} x
         where upper(x.characteristic_descriptor) = upper(c.student_characteristic)
     )
+    and exists (
+        /* The student must be in dim_student after the business rules are applied. */
+        select 1
+        from {{ ref('dim_student') }} x
+            where x.tenant_code = c.tenant_code
+            and x.k_student = c.k_student
+    )

@@ -5,6 +5,11 @@
   )
 }}
 
+/* 
+The purpose of this model is to get every student by day and all their various flags for that day.
+This is needed to determine the membership calculation, so the main column here is the "isAMember" column.
+*/
+
 with q as (
     select fssa.k_student, fssa.k_lea, fssa.k_school, fssa.k_school_calendar,
         fssa.school_year, fssa.is_primary_school, fssa.entry_date, fssa.exit_withdraw_date,
@@ -68,7 +73,9 @@ select k_student, k_lea, k_school, k_school_calendar,
     grade_level, grade_level_adm, coalesce(is_early_graduate,0) as is_early_graduate, ssd_duration,
     calendar_date, day_of_school_year, report_period, report_period_begin_date,
     report_period_end_date, days_in_report_period, 
-    is_funding_ineligible, is_expelled, is_EconDis,
+    coalesce(is_funding_ineligible,0) as is_funding_ineligible,
+    coalesce(is_expelled,0) as is_expelled, 
+    coalesce(is_EconDis,0) as is_EconDis,
     case
         when exit_withdraw_date is not null and calendar_date >= exit_withdraw_date 
             and is_early_graduate = 1 then 1

@@ -5,6 +5,13 @@
   )
 }}
 
+/*
+Student Expulsions has a start date and then a number of school days. But that's hard to reason out
+when joining lots of other tables. So the purpose of this model is to figure out expulsion windows.
+That is to say, a student is expelled from Date A to Date B, inclusive. That's much easier to use
+when you need to know if they are expelled on any given day (for ADM calculations).
+*/
+
 select k_student, k_school, school_year, tenant_code, discipline_date, discipline_action_length,
     min(calendar_date) as discipline_date_begin,
     max(calendar_date) as discipline_date_end
