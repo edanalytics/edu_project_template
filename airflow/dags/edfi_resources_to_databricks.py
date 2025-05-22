@@ -77,7 +77,10 @@ for tenant_code, api_year_vars in dag_params.items():
             if not endpoint_vars.get('enabled'):
                 continue
 
+            logging.info(f"Endpoint vars: {endpoint_vars}")
             resources_dag.add_resource(endpoint, **endpoint_vars)
+            if endpoint_vars.get('fetch_deletes'):
+                resources_dag.add_resource_deletes(endpoint, **endpoint_vars)
 
         # Chain task groups at the end of endpoints being added to ensure they are included in dependencies.
         resources_dag.chain_task_groups_into_dag()

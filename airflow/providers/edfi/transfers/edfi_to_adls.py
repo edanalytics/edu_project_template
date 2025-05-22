@@ -49,9 +49,11 @@ class EdFiToADLSOperator(BaseOperator):
                  page_size: int = 500,
                  num_retries: int = 5,
                  change_version_step_size: int = 50000,
+                 reverse_paging: bool = True,
                  query_parameters: Optional[dict] = None,
 
                  enabled_endpoints: Optional[List[str]] = None,
+                 offset: int = 0,
 
                  **kwargs
                  ) -> None:
@@ -78,10 +80,12 @@ class EdFiToADLSOperator(BaseOperator):
         self.page_size = page_size
         self.num_retries = num_retries
         self.change_version_step_size = change_version_step_size
+        self.reverse_paging = reverse_paging
         self.query_parameters = query_parameters
 
         # Optional variable to allow immediate skips when endpoint not specified in dynamic get-change-version output.
         self.enabled_endpoints = enabled_endpoints
+        self.offset = offset
 
     def execute(self, context) -> str:
         """
@@ -116,7 +120,7 @@ class EdFiToADLSOperator(BaseOperator):
             resource=self.resource, namespace=self.namespace, page_size=self.page_size,
             num_retries=self.num_retries, change_version_step_size=self.change_version_step_size,
             min_change_version=self.min_change_version, max_change_version=self.max_change_version,
-            query_parameters=self.query_parameters, adls_destination_key=self.adls_destination_key
+            query_parameters=self.query_parameters, adls_destination_key=self.adls_destination_key, offset=self.offset
         )
 
         return (self.resource, self.adls_destination_key)
@@ -150,7 +154,8 @@ class EdFiToADLSOperator(BaseOperator):
                           min_change_version: Optional[int],
                           max_change_version: Optional[int],
                           query_parameters: dict,
-                          adls_destination_key: str
+                          adls_destination_key: str,
+                          offset: Optional[int],
                           ):
         """
         Break out EdFi-to-S3 logic to allow code-duplication in bulk version of operator.
@@ -181,6 +186,7 @@ class EdFiToADLSOperator(BaseOperator):
             paged_iter = resource_endpoint.get_pages(
                 page_size=page_size,
                 step_change_version=step_change_version, change_version_step_size=change_version_step_size,
+                reverse_paging=self.reverse_paging,
                 retry_on_failure=True, max_retries=num_retries
             )
 
@@ -233,7 +239,7 @@ class EdFiToADLSOperator(BaseOperator):
         try:
             os.remove(path)
         except FileNotFoundError:
-            pass
+            logging.error("File not found.")
 
     @staticmethod
     def to_jsonl_string(rows: Iterator[dict]) -> bytes:

@@ -111,6 +111,7 @@ def get_previous_change_versions(
         filter_clause = "is_key_changes"
     else:
         filter_clause = "TRUE"
+    logging.info(f"filter_clause: {filter_clause}")
 
     qry_prior_max = f"""
         select name, max(max_version) as max_version
@@ -180,6 +181,8 @@ def get_previous_change_versions_with_deltas(
     delta_endpoints = []
     failed_endpoints = []
 
+    logging.info(f"Tuples: {return_tuples}")
+
     for endpoint, last_max_version in return_tuples:
 
         # If a subset of endpoints have been selected, only get CV counts for these.
@@ -190,7 +193,7 @@ def get_previous_change_versions_with_deltas(
             continue
 
         namespace = endpoint_namespaces[endpoint]
-
+        logging.info(f"Endpoint: {endpoint}")
         try:
             resource = edfi_conn.resource(
                 endpoint, namespace=namespace,
@@ -199,13 +202,16 @@ def get_previous_change_versions_with_deltas(
                 max_change_version=max_change_version
             )
 
+            logging.info(f"Resource: {resource}")
+
             if not (delta_record_count := resource.total_count()):
                 continue
 
             logging.info(f"    {namespace}/{endpoint}: {delta_record_count} new records")
             delta_endpoints.append((endpoint, last_max_version))
 
-        except Exception:
+        except Exception as e:
+            print(f"Caught exception: {type(e).__name__} - {e}")
             logging.warning(
                 f"    Unable to retrieve record count for endpoint: {namespace}/{endpoint}"
             )
