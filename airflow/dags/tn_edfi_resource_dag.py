@@ -1,4 +1,5 @@
 import copy
+import logging
 import os
 from functools import partial
 from typing import Dict, List, Optional, Set, Tuple, Union
@@ -49,6 +50,7 @@ class TNEdFiResourceDAG:
         'change_version_step_size': 50000,
         'num_retries': 5,
         'query_parameters': {},
+        'offset': 0
     }
 
     newest_edfi_cv_task_id = "get_latest_edfi_change_version"  # Original name for historic run compatibility
@@ -80,7 +82,7 @@ class TNEdFiResourceDAG:
                  deletes_table: str = '_deletes',
                  key_changes_table: str = '_key_changes',
                  descriptors_table: str = '_descriptors',
-
+                 get_deletes_cv_with_deltas: bool = False,
                  dbt_incrementer_var: Optional[str] = None,
 
                  **kwargs
@@ -120,6 +122,7 @@ class TNEdFiResourceDAG:
         self.descriptors = set(descriptor_configs.keys())
         self.deletes_to_ingest = resource_deletes
         self.key_changes_to_ingest = resource_key_changes
+        self.get_deletes_cv_with_deltas = get_deletes_cv_with_deltas
 
         # Populate DAG params with optionally-defined resources and descriptors; default to empty-list (i.e., run all).
         dag_params = {
@@ -157,6 +160,7 @@ class TNEdFiResourceDAG:
         if self.multiyear:
             configs['query_parameters']['schoolYear'] = self.api_year
 
+        logging.info(f"Configurations: {configs}")
         return configs
 
     def parse_endpoint_configs(self, raw_configs: Optional[Union[dict, list]] = None) -> Tuple[
@@ -270,7 +274,8 @@ class TNEdFiResourceDAG:
             endpoints=sorted(list(self.deletes_to_ingest)),
             table=self.deletes_table,
             adls_destination_dir=os.path.join(adls_parent_directory, 'resource_deletes'),
-            get_deletes=True
+            get_deletes=True,
+            get_with_deltas=self.get_deletes_cv_with_deltas
         )
 
         # Resource Key-Changes (only applicable in Ed-Fi v6.x and up)
@@ -370,7 +375,8 @@ class TNEdFiResourceDAG:
                                           task_id: str,
                                           endpoints: List[Tuple[str, str]],
                                           get_deletes: bool = False,
-                                          get_key_changes: bool = False
+                                          get_key_changes: bool = False,
+                                          get_with_deltas: bool = True
                                           ) -> PythonOperator:
         """
 
@@ -378,7 +384,7 @@ class TNEdFiResourceDAG:
         """
         get_cv_operator = PythonOperator(
             task_id=task_id,
-            python_callable=change_version.get_previous_change_versions_with_deltas,
+            python_callable=change_version.get_previous_change_versions_with_deltas if get_with_deltas else change_version.get_previous_change_versions,
             op_kwargs={
                 'tenant_code': self.tenant_code,
                 'api_year': self.api_year,
@@ -471,12 +477,14 @@ class TNEdFiResourceDAG:
                                                     table: Optional[str] = None,
                                                     get_deletes: bool = False,
                                                     get_key_changes: bool = False,
+                                                    get_with_deltas: bool = True,
                                                     **kwargs
                                                     ) -> TaskGroup:
         """
         Build one EdFiToS3 task per endpoint
         Bulk copy the data to its respective table in Snowflake.
 
+        :param get_with_deltas:
         :param endpoints:
         :param group_id:
         :param adls_destination_dir:
@@ -502,6 +510,7 @@ class TNEdFiResourceDAG:
                     endpoints=[(self.endpoint_configs[endpoint]['namespace'], endpoint) for endpoint in endpoints],
                     get_deletes=get_deletes,
                     get_key_changes=get_key_changes,
+                    get_with_deltas=get_with_deltas
                 )
                 enabled_endpoints = self.xcom_pull_template_map_idx(get_cv_operator, 0)
             else:
@@ -524,9 +533,9 @@ class TNEdFiResourceDAG:
 
                     get_deletes=get_deletes,
                     get_key_changes=get_key_changes,
-                    min_change_version=self.xcom_pull_template_get_key(get_cv_operator,
-                                                                       endpoint) if get_cv_operator else None,
+                    min_change_version=self.xcom_pull_template_get_key(get_cv_operator, endpoint) if get_cv_operator else None,
                     max_change_version=airflow_util.xcom_pull_template(self.newest_edfi_cv_task_id),
+                    reverse_paging=self.get_deletes_cv_with_deltas if get_deletes else True,
 
                     # Optional config-specified run-attributes (overridden by those in configs)
                     **self.endpoint_configs[endpoint],
@@ -583,12 +592,15 @@ class TNEdFiResourceDAG:
                                                     table: Optional[str] = None,
                                                     get_deletes: bool = False,
                                                     get_key_changes: bool = False,
+                                                    get_with_deltas: bool = True,
+
                                                     **kwargs
                                                     ):
         """
         Build one EdFiToS3 task per endpoint
         Bulk copy the data to its respective table in Snowflake.
 
+        :param get_with_deltas:
         :param endpoints:
         :param group_id:
         :param adls_destination_dir:
@@ -613,7 +625,8 @@ class TNEdFiResourceDAG:
                     task_id=f"get_last_change_versions_from_databricks",
                     endpoints=[(self.endpoint_configs[endpoint]['namespace'], endpoint) for endpoint in endpoints],
                     get_deletes=get_deletes,
-                    get_key_changes=get_key_changes
+                    get_key_changes=get_key_changes,
+                    get_with_deltas=get_with_deltas
                 )
                 enabled_endpoints = self.xcom_pull_template_map_idx(get_cv_operator, 0)
                 kwargs_dicts = get_cv_operator.output.map(lambda endpoint__cv: {
@@ -644,9 +657,10 @@ class TNEdFiResourceDAG:
                 adls_conn_id=self.adls_conn_id,
                 adls_destination_dir=adls_destination_dir,
 
-                get_deletes=get_deletes,
-                get_key_changes=get_key_changes,
-                max_change_version=airflow_util.xcom_pull_template(self.newest_edfi_cv_task_id),
+                    get_deletes=get_deletes,
+                    get_key_changes=get_key_changes,
+                    max_change_version=airflow_util.xcom_pull_template(self.newest_edfi_cv_task_id),
+                    reverse_paging=self.get_deletes_cv_with_deltas if get_deletes else True,
 
                 # Only run endpoints specified at DAG or delta-level.
                 enabled_endpoints=enabled_endpoints,
@@ -701,12 +715,14 @@ class TNEdFiResourceDAG:
                                                  table: Optional[str] = None,
                                                  get_deletes: bool = False,
                                                  get_key_changes: bool = False,
+                                                 get_with_deltas: bool = True,
                                                  **kwargs
                                                  ):
         """
         Build one EdFiToS3 task (with inner for-loop across endpoints).
         Bulk copy the data to its respective table in Snowflake.
 
+        :param get_with_deltas:
         :param endpoints:
         :param group_id:
         :param adls_destination_dir:
@@ -731,7 +747,8 @@ class TNEdFiResourceDAG:
                     task_id=f"get_last_change_versions",
                     endpoints=[(self.endpoint_configs[endpoint]['namespace'], endpoint) for endpoint in endpoints],
                     get_deletes=get_deletes,
-                    get_key_changes=get_key_changes
+                    get_key_changes=get_key_changes,
+                    get_with_deltas=get_with_deltas
                 )
                 min_change_versions = [
                     self.xcom_pull_template_get_key(get_cv_operator, endpoint)
@@ -762,6 +779,7 @@ class TNEdFiResourceDAG:
                 get_deletes=get_deletes,
                 get_key_changes=get_key_changes,
                 max_change_version=airflow_util.xcom_pull_template(self.newest_edfi_cv_task_id),
+                reverse_paging=self.get_deletes_cv_with_deltas if get_deletes else True,
 
                 # Arguments that are required to be lists in Ed-Fi bulk-operator.
                 resource=endpoints,
