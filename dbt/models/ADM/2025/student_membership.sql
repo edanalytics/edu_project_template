@@ -5,6 +5,12 @@
   )
 }}
 
+/* In this model we calculate the student's membership. Membership is a ratio of the 
+class duration over the student standard day. If everything is perfect then it should be
+1.0. But it might not be. You need this membership value to calculate ADM (average daily membership),
+which is their average membership over any given report period.
+*/
+
 select k_student, k_lea, k_school, k_school_calendar, school_year, is_primary_school, entry_date,
     exit_withdraw_date, grade_level, grade_level_adm, is_early_graduate, 
     calendar_date, isa_member, is_funding_ineligible, is_expelled, is_EconDis,

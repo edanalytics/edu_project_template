@@ -17,6 +17,9 @@
   )
 }}
 
+/* This model calculates the Economically Disadvantaged ADM. 
+I don't know why this is a thing. */
+
 with raw_ed_adm as (
     select sm.k_student, sm.k_lea, sm.k_school, sm.k_school_calendar, sm.school_year, 
         l.lea_id as district_id, l.lea_name as district_name, 
