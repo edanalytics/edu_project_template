@@ -1,13 +1,13 @@
 tdoe_error_code,end_point,error_school_year_start,error_school_year_end,tdoe_severity,tdoe_error_description
-1000,calendars,2030,,critical,Instructional Day count must be at least 180.
+1000,calendars,2025,,error,Instructional Day count must be at least 180.
 1001,calendars,2025,,critical,"AS, AE, AD, MS, MD, MA, MU, MH require an ID on the same date."
 1002,calendars,2025,,critical,"CH, MI, OH, SH, SI, TV are incorrectly paired with an ID on the same date."
 1003,calendars,2025,,critical,Calendar Event Date must be within the school year.
-1004,calendars,2025,,critical,"AS, AE, CS, CE are required."
-1005,calendars,2025,,critical,In Service Days cannot be less than 5.
-1006,calendars,2025,,critical,Abbreviated Days cannot be greater than 3.
-1007,calendars,2025,,critical,Parent Teacher Days cannot be less than 1.
-1008,calendars,2025,,critical,Discrectionary Days cannot be greater than 4.
+1004,calendars,2025,,error,"AS, AE, CS, CE are required."
+1005,calendars,2030,,critical,In Service Days cannot be less than 5.
+1006,calendars,2030,,critical,Abbreviated Days cannot be greater than 3.
+1007,calendars,2030,,critical,Parent Teacher Days cannot be less than 1.
+1008,calendars,2030,,critical,Discrectionary Days cannot be greater than 4.
 2001,sessions,2025,,critical,Session Begin Date must be within the school year.
 2002,sessions,2025,,critical,Session End Date must be within the school year.
 2003,sessions,2025,,critical,Session Begin Date must be less than or equal to End Date.
