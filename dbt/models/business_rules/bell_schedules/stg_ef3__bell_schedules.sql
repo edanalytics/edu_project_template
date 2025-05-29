@@ -17,4 +17,5 @@ where not exists (
     select 1
     from errors e
     where e.k_bell_schedule = x.k_bell_schedule
+        and e.severity = 'critical'
 )

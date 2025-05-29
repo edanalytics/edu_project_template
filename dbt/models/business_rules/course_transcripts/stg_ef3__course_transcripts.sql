@@ -12,4 +12,5 @@ where not exists (
     from {{ ref('course_transcripts') }} e
     where e.k_course = x.k_course
         and e.k_student_academic_record = x.k_student_academic_record
+        and e.severity = 'critical'
 )

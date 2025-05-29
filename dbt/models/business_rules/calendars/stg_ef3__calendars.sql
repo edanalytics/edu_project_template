@@ -18,4 +18,5 @@ where not exists (
     from errors e
     where e.k_school = x.k_school
       and e.k_school_calendar = x.k_school_calendar
+        and e.severity = 'critical'
 )

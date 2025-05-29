@@ -17,4 +17,5 @@ where not exists (
     select 1
     from errors e
     where e.k_course_section = x.k_course_section
+        and e.severity = 'critical'
 )

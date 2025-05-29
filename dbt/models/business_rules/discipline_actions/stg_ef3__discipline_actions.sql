@@ -21,4 +21,5 @@ where not exists (
         and e.school_year = x.school_year
         and e.discipline_action_id = x.discipline_action_id
         and e.discipline_date = x.discipline_date
+        and e.severity = 'critical'
 )

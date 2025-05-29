@@ -17,4 +17,5 @@ where not exists (
     select 1
     from errors e
     where e.k_class_period = x.k_class_period
+        and e.severity = 'critical'
 )

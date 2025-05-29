@@ -17,4 +17,5 @@ where not exists (
     select 1
     from errors e
     where e.k_school_calendar = x.k_school_calendar
+        and e.severity = 'critical'
 )

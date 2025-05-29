@@ -11,6 +11,7 @@ where not exists (
     select 1
     from {{ ref('student_section_associations') }} e
     where e.k_student = x.k_student
-      and e.k_course_section = x.k_course_section
-      and e.begin_date = x.begin_date
+        and e.k_course_section = x.k_course_section
+        and e.begin_date = x.begin_date
+        and e.severity = 'critical'
 )

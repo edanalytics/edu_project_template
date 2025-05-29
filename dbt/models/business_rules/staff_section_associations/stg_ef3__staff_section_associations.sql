@@ -12,4 +12,5 @@ where not exists (
     from {{ ref('staff_section_associations') }} e
     where e.k_staff = x.k_staff
         and e.k_course_section = x.k_course_section
+        and e.severity = 'critical'
 )

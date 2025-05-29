@@ -11,4 +11,5 @@ where not exists (
     select 1
     from {{ ref('student_academic_records') }} e
     where e.k_student_academic_record = x.k_student_academic_record
+        and e.severity = 'critical'
 )
