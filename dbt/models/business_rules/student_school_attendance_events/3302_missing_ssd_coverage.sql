@@ -50,7 +50,7 @@ enrollments_and_ssd_date as (
             else 1
         end as ssd_good
     from {{ ref('stg_ef3__student_school_associations_orig') }} ssa
-    left outer join first_ssd_per_student fssd
+    join first_ssd_per_student fssd
         on fssd.k_school = ssa.k_school
         and fssd.k_student = ssa.k_student
         and fssd.school_year = ssa.school_year
