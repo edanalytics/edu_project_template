@@ -39,7 +39,7 @@ aws_param_store_dag:
 edfi_resource_dags__default_args: &edfi_resource_dags__default_args
   default_args: *default_task_args
 
-  schedule_interval: ~
+  schedule_interval: '0 */8 * * *'
   schedule_interval_resources: ~    # Optional to provide differing schedule logic between resources and descriptors.
   schedule_interval_descriptors: ~  # If either is unpopulated, `schedule_interval` will be used by default.
 
