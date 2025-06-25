@@ -4,7 +4,7 @@ import warnings
 warnings.filterwarnings("ignore", module="airflow_dbt", category=DeprecationWarning)
 
 from datetime import datetime
-from typing import Optionalx
+from typing import Optional
 
 from airflow.models.param import Param
 from airflow.operators.python import PythonOperator
