@@ -38,7 +38,11 @@
 #  namespace: ed-fi
 #  page_size: 500
 #  fetch_deletes: True
-
+bellSchedules:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
 #budgets:
 #  enabled: True
 #  namespace: ed-fi
