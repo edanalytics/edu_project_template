@@ -25,5 +25,5 @@ where
             from {{ ref('stg_ef3__stu_ed_org__languages') }} sl
             where sl.k_lea = se.k_lea
                 and sl.k_student = se.k_student
-                and sl.language_use = 'Native language'
+                and sl.language_use in ('Native language', 'Home language', 'Dominant language')
         )

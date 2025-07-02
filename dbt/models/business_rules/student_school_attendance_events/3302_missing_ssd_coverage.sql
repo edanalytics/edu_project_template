@@ -23,8 +23,8 @@ first_ssd_per_student as (
 calendar_dates as (
     select cd.k_calendar_date, cd.k_school_calendar, c.k_school, cd.tenant_code,
         cd.school_year, cd.calendar_date, summarize_calendar_events.is_school_day
-    from {{ ref('stg_ef3__calendar_dates') }} cd
-    join {{ ref('stg_ef3__calendars') }} c
+    from {{ ref('stg_ef3__calendar_dates_orig') }} cd
+    join {{ ref('stg_ef3__calendars_orig') }} c
         on cd.k_school_calendar = c.k_school_calendar
     join (
             select 
@@ -32,7 +32,7 @@ calendar_dates as (
                 -- if there are multiple events on a day, having at least one 
                 -- that counts as a school day applies to the whole day
                 sum(xce.is_school_day::integer) >= 1 as is_school_day
-            from {{ ref('stg_ef3__calendar_dates__calendar_events') }} ce
+            from {{ ref('stg_ef3__calendar_dates__calendar_events_orig') }} ce
             join {{ ref('xwalk_calendar_events') }} xce
                 on ce.calendar_event = xce.calendar_event_descriptor
             group by 1

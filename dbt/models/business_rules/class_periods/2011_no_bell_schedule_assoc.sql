@@ -10,7 +10,7 @@
 with bs_class_periods as (
     select bs.k_bell_schedule, bs.k_bell_schedule, bs.k_school, bs.school_year, bs.tenant_code,
         cp.k_class_period, cp.class_period_name, cp.class_period_school_id
-    from {{ ref('stg_ef3__bell_schedules') }} bs
+    from {{ ref('stg_ef3__bell_schedules_orig') }} bs
     join {{ ref('stg_ef3__bell_schedules__class_periods') }} cp
         on cp.k_bell_schedule = bs.k_bell_schedule
         and cp.k_school = bs.k_school

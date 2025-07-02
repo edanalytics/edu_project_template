@@ -135,10 +135,17 @@ vars:
   # custom intersections of other demographic groupings
   'edu:stu_demos:intersection_groups': Null
   # custom data sources for student characteristics. must contain and be unique by `k_student`
-  'edu:stu_demos:custom_data_sources': Null
+  'edu:stu_demos:custom_data_sources': 
+    cds_student_additional_columns:
+      state_student_id:
+        where: stateStudentId
 
   # source config
-  extensions: null
+  extensions:
+    stg_ef3__students:
+      state_student_id:
+        name: 'tdoe:stateStudentId'
+        dtype: 'bigint'
 
   descriptors:
     exitWithdrawTypeDescriptor:

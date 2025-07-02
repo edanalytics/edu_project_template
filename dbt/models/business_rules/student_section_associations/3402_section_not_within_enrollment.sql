@@ -18,7 +18,7 @@ select ssa.k_student, ssa.k_course_section, ssa.school_id, ssa.student_unique_id
     {{ error_code }} as error_code,
     concat('Student Section Begin Date does not fall within student enrollment period. Student Section Begin Date: ',
         ssa.begin_date, 
-        ', Enrollment Entry Date: ', enrollments.entry_date,
+        ', Enrollment Entry Date: ', ifnull(enrollments.entry_date, '[orphan (probably)]'),
         ', Exit Withdraw Date: ', ifnull(enrollments.exit_withdraw_date, '[null]'),
         '.') as error,
     {{ error_severity_column(error_code, 'ssa') }}
