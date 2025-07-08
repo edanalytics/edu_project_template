@@ -1,53 +1,53 @@
-#academicWeeks:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
-#accounts:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
-#accountabilityRatings:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
-#accountCodes:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
-#actuals:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
-#assessments:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
-#assessmentItems:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
-#assessmentScoreRangeLearningStandards:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
+academicWeeks:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
+accounts:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
+accountabilityRatings:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
+accountCodes:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
+actuals:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
+assessments:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
+assessmentItems:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
+assessmentScoreRangeLearningStandards:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
 bellSchedules:
   enabled: True
   namespace: ed-fi
   page_size: 500
   fetch_deletes: True
-#budgets:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
+budgets:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
 calendars:
   enabled: True
   namespace: ed-fi
@@ -68,31 +68,31 @@ cohorts:
   namespace: ed-fi
   page_size: 500
   fetch_deletes: True
-#communityOrganizations:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
-#communityProviders:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
-#communityProviderLicenses:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
-#competencyObjectives:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
-#contractedStaffs:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
+communityOrganizations:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
+communityProviders:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
+communityProviderLicenses:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
+competencyObjectives:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
+contractedStaffs:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
 courses:
   enabled: True
   namespace: ed-fi
@@ -123,91 +123,91 @@ disciplineIncidents:
   namespace: ed-fi
   page_size: 500
   fetch_deletes: True
-#educationContents:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
-#educationOrganizationInterventionPrescriptionAssociations:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
-#educationOrganizationNetworks:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
-#educationOrganizationNetworkAssociations:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
-#educationOrganizationPeerAssociations:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
+educationContents:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
+educationOrganizationInterventionPrescriptionAssociations:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
+educationOrganizationNetworks:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
+educationOrganizationNetworkAssociations:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
+educationOrganizationPeerAssociations:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
 educationServiceCenters:
   enabled: True
   namespace: ed-fi
   page_size: 500
   fetch_deletes: True
-#feederSchoolAssociations:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
+feederSchoolAssociations:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
 grades:
   enabled: True
   namespace: ed-fi
   page_size: 500
   fetch_deletes: True
-#gradebookEntries:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
+gradebookEntries:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
 gradingPeriods:
   enabled: True
   namespace: ed-fi
   page_size: 500
   fetch_deletes: True
-#graduationPlans:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
-#interventions:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
-#interventionPrescriptions:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
-#interventionStudies:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
-#learningObjectives:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
-#learningStandards:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
-#learningStandardEquivalenceAssociations:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
+graduationPlans:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
+interventions:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
+interventionPrescriptions:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
+interventionStudies:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
+learningObjectives:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
+learningStandards:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
+learningStandardEquivalenceAssociations:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
 localEducationAgencies:
   enabled: True
   namespace: ed-fi
@@ -218,41 +218,41 @@ locations:
   namespace: ed-fi
   page_size: 500
   fetch_deletes: True
-#objectiveAssessments:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
-#openStaffPositions:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
-#organizationDepartments:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
-#parents:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
-#payrolls:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
-#people:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
-#postSecondaryEvents:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
+objectiveAssessments:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
+openStaffPositions:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
+organizationDepartments:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
+parents:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
+payrolls:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
+people:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
+postSecondaryEvents:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
 postSecondaryInstitutions:
   enabled: True
   namespace: ed-fi
@@ -263,16 +263,16 @@ programs:
   namespace: ed-fi
   page_size: 500
   fetch_deletes: True
-#reportCards:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
-#restraintEvents:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
+reportCards:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
+restraintEvents:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
 schools:
   enabled: True
   namespace: ed-fi
@@ -288,11 +288,11 @@ sections:
   namespace: ed-fi
   page_size: 500
   fetch_deletes: True
-#sectionAttendanceTakenEvents:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
+sectionAttendanceTakenEvents:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
 sessions:
   enabled: True
   namespace: ed-fi
@@ -303,21 +303,21 @@ staffs:
   namespace: ed-fi
   page_size: 500
   fetch_deletes: True
-#staffAbsenceEvents:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
-#staffCohortAssociations:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
-#staffDisciplineIncidentAssociations:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
+staffAbsenceEvents:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
+staffCohortAssociations:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
+staffDisciplineIncidentAssociations:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
 staffEducationOrganizationAssignmentAssociations:
   enabled: True
   namespace: ed-fi
@@ -333,16 +333,16 @@ staffEducationOrganizationEmploymentAssociations:
   namespace: ed-fi
   page_size: 500
   fetch_deletes: True
-#staffLeaves:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
-#staffProgramAssociations:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
+staffLeaves:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
+staffProgramAssociations:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
 staffSchoolAssociations:
   enabled: True
   namespace: ed-fi
@@ -368,11 +368,11 @@ studentAcademicRecords:
   namespace: ed-fi
   page_size: 500
   fetch_deletes: True
-#studentAssessments:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
+studentAssessments:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
 studentCohortAssociations:
   enabled: True
   namespace: ed-fi
@@ -383,16 +383,16 @@ studentCompetencyObjectives:
   namespace: ed-fi
   page_size: 500
   fetch_deletes: True
-#studentCTEProgramAssociations:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
-#studentDisciplineIncidentAssociations:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
+studentCTEProgramAssociations:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
+studentDisciplineIncidentAssociations:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
 studentDisciplineIncidentBehaviorAssociations:
   enabled: True
   namespace: ed-fi
@@ -408,66 +408,66 @@ studentEducationOrganizationAssociations:
   namespace: ed-fi
   page_size: 500
   fetch_deletes: True
-#studentEducationOrganizationResponsibilityAssociations:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
-#studentGradebookEntries:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
+studentEducationOrganizationResponsibilityAssociations:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
+studentGradebookEntries:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
 studentHomelessProgramAssociations:
   enabled: True
   namespace: ed-fi
   page_size: 500
   fetch_deletes: True
-#studentInterventionAssociations:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
-#studentInterventionAttendanceEvents:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
-#studentLanguageInstructionProgramAssociations:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
-#studentLearningObjectives:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
-#studentMigrantEducationProgramAssociations:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
-#studentNeglectedOrDelinquentProgramAssociations:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
-#studentParentAssociations:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
-#studentProgramAssociations:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
-#studentProgramAttendanceEvents:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
+studentInterventionAssociations:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
+studentInterventionAttendanceEvents:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
+studentLanguageInstructionProgramAssociations:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
+studentLearningObjectives:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
+studentMigrantEducationProgramAssociations:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
+studentNeglectedOrDelinquentProgramAssociations:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
+studentParentAssociations:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
+studentProgramAssociations:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
+studentProgramAttendanceEvents:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
 studentSchoolAssociations:
   enabled: True
   namespace: ed-fi
@@ -478,93 +478,93 @@ studentSchoolAttendanceEvents:
   namespace: ed-fi
   page_size: 500
   fetch_deletes: True
-#studentSchoolFoodServiceProgramAssociations:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
+studentSchoolFoodServiceProgramAssociations:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
 studentSectionAssociations:
   enabled: True
   namespace: ed-fi
   page_size: 500
   fetch_deletes: True
-#studentSectionAttendanceEvents:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
+studentSectionAttendanceEvents:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
 studentSpecialEducationProgramAssociations:
   enabled: True
   namespace: ed-fi
   page_size: 500
   fetch_deletes: True
-#studentTitleIPartAProgramAssociations:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
-#surveys:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
-#surveyCourseAssociations:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
-#surveyProgramAssociations:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
-#surveyQuestions:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
-#surveyQuestionResponses:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
-#surveyResponses:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
-#surveyResponseEducationOrganizationTargetAssociations:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
-#surveyResponseStaffTargetAssociations:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
-#surveySections:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
-#surveySectionAssociations:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
-#surveySectionResponses:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
-#surveySectionResponseEducationOrganizationTargetAssociations:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
-#surveySectionResponseStaffTargetAssociations:
-#  enabled: True
-#  namespace: ed-fi
-#  page_size: 500
-#  fetch_deletes: True
+studentTitleIPartAProgramAssociations:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
+surveys:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
+surveyCourseAssociations:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
+surveyProgramAssociations:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
+surveyQuestions:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
+surveyQuestionResponses:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
+surveyResponses:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
+surveyResponseEducationOrganizationTargetAssociations:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
+surveyResponseStaffTargetAssociations:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
+surveySections:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
+surveySectionAssociations:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
+surveySectionResponses:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
+surveySectionResponseEducationOrganizationTargetAssociations:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
+surveySectionResponseStaffTargetAssociations:
+  enabled: True
+  namespace: ed-fi
+  page_size: 500
+  fetch_deletes: True
