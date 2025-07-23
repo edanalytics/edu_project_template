@@ -67,7 +67,9 @@ vars:
   'src:program:homeless:enabled': False
   'src:program:language_instruction:enabled': False
   'src:program:title_i:enabled': False
-
+  'src:program:migrant_education:enabled': False
+  'src:program:cte:enabled': False
+  'src:program:food_service:enabled': False
 
 seeds:
   +schema: seed
