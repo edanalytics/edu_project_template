@@ -39,9 +39,9 @@ aws_param_store_dag:
 edfi_resource_dags__default_args: &edfi_resource_dags__default_args
   default_args: *default_task_args
 
-  schedule_interval: '0 */8 * * *'
-  schedule_interval_resources: ~    # Optional to provide differing schedule logic between resources and descriptors.
-  schedule_interval_descriptors: ~  # If either is unpopulated, `schedule_interval` will be used by default.
+  schedule_interval: '0 8 * * *'
+  schedule_interval_resources: '0 8 * * *'   # Optional to provide differing schedule logic between resources and descriptors.
+  schedule_interval_descriptors: '0 8 * * *'  # If either is unpopulated, `schedule_interval` will be used by default.
 
   # Airflow Connection IDs
   edfi_conn_id: ~
@@ -65,15 +65,20 @@ edfi_resource_dags__default_args: &edfi_resource_dags__default_args
 
 edfi_resource_dags:
   TDOE:
+    2026:
+      pool: default_pool
+      edfi_conn_id: 'edfi_TENANT1_YEAR2026'
+      schedule_interval: '@daily'
+      <<: *edfi_resource_dags__default_args
     2025:
       pool: default_pool
-      edfi_conn_id: 'edfi_TENANT1_YEAR1'
-      schedule_interval: null
+      edfi_conn_id: 'edfi_TENANT1_YEAR2025'
+      schedule_interval: '@daily'
       <<: *edfi_resource_dags__default_args
     2024:
       pool: default_pool
       edfi_conn_id: 'edfi_TENANT1_YEAR2024'
-      schedule_interval: null
+      schedule_interval: '@daily'
       <<: *edfi_resource_dags__default_args
 
 
