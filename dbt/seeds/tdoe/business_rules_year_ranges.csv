@@ -4,14 +4,14 @@ tdoe_error_code,end_point,error_school_year_start,error_school_year_end,tdoe_sev
 1002,calendars,2025,,critical,"CH, MI, OH, SH, SI, TV are incorrectly paired with an ID on the same date."
 1003,calendars,2025,,critical,Calendar Event Date must be within the school year.
 1004,calendars,2025,,error,"AS, AE, CS, CE are required."
-1005,calendars,2030,,critical,In Service Days cannot be less than 5.
-1006,calendars,2030,,critical,Abbreviated Days cannot be greater than 3.
-1007,calendars,2030,,critical,Parent Teacher Days cannot be less than 1.
-1008,calendars,2030,,critical,Discrectionary Days cannot be greater than 4.
+1005,calendars,1900,1900,critical,In Service Days cannot be less than 5.
+1006,calendars,1900,1900,critical,Abbreviated Days cannot be greater than 3.
+1007,calendars,1900,1900,critical,Parent Teacher Days cannot be less than 1.
+1008,calendars,1900,1900,critical,Discrectionary Days cannot be greater than 4.
 2001,sessions,2025,,critical,Session Begin Date must be within the school year.
 2002,sessions,2025,,critical,Session End Date must be within the school year.
 2003,sessions,2025,,critical,Session Begin Date must be less than or equal to End Date.
-2004,sections,2030,,critical,"Sections only get one of Honors, Statewide Dual Credit, Local Dual Credit, Dual Enrollment."
+2004,sections,1900,1900,critical,"Sections only get one of Honors, Statewide Dual Credit, Local Dual Credit, Dual Enrollment."
 2005,sections,2025,,critical,Sections only get one of F or S or T.
 2006,sections,2025,,critical,Sections that are not Pull Out must have a meeting time duration.
 2010,sections,2025,,critical,Sections must have an educational_environment_type.
@@ -37,7 +37,7 @@ tdoe_error_code,end_point,error_school_year_start,error_school_year_end,tdoe_sev
 3109,studentHomelessProgramAssociations,2025,,critical,Homeless students must have homeless primary nighttime residence.
 3200,disciplineActions,2025,,critical,Discipline Date must be within the school year.
 3201,disciplineActions,2025,,critical,Discipline Incident Date cannot be after Discipline Action Date.
-3202,disciplineActions,2025,,warning,Discipline Actions for a Student are not allowed to overlap.
+3202,disciplineActions,1900,1900,warning,Discipline Actions for a Student are not allowed to overlap.
 3300,studentSchoolAttendanceEvents,2025,,critical,Student Standard Day must be within enrollment period.
 3301,studentSchoolAttendanceEvents,2025,,critical,Student attendance/absence must be within enrollment period.
 3302,studentSchoolAttendanceEvents,2025,,critical,Student must have SSD for every calendar day of their enrollments.
