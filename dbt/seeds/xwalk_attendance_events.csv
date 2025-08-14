@@ -1,9 +1,10 @@
 namespace,attendance_event_descriptor,is_absent
-uri://tdoe.edu/,H,0.0
-uri://tdoe.edu/,N,0.0
-uri://tdoe.edu/,X,1.0
-uri://tdoe.edu/,U,1.0
-uri://tdoe.edu/,A,1.0
-uri://tdoe.edu/,T,1.0
-uri://tdoe.edu/,P,0.0
-uri://tdoe.edu/,I,1.0
+uri://tdoe.edu/,"Homebound - Present",0.0
+uri://tdoe.edu/,"Remote Learning – Present",0.0
+uri://tdoe.edu/,"Unexcused Absence, but Present for Transportation",1.0
+uri://tdoe.edu/,"Unexcused Absence",1.0
+uri://tdoe.edu/,"Excused Absence",1.0
+uri://tdoe.edu/,"Excused Absence, but Present for Transportation",1.0
+uri://tdoe.edu/,"Present for Attendance",0.0
+uri://tdoe.edu/,"Homebound - Absent",1.0
+uri://tdoe.edu/,"Medically Exempt - Excused",1.0

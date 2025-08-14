@@ -29,7 +29,7 @@ cp_no_bs as (
     )
 )
 /* Class Periods must be tied to a Bell Schedule. */
-select cp.k_class_period, cp.class_period_name, cp.school_id,
+select cp.k_class_period, cp.school_year, cp.class_period_name, cp.school_id,
     {{ error_code }} as error_code,
     'Class Period must be tied to a Bell Schedule.' as error,
     {{ error_severity_column(error_code, 'cp') }}

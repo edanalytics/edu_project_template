@@ -145,13 +145,15 @@ vars:
   descriptors:
     exitWithdrawTypeDescriptor:
       replace_with: short_description
+    attendanceEventCategoryDescriptor:
+      replace_with: short_description
   
   # Enable optional domains and programs
-  'src:domain:assessment:enabled': False
+  'src:domain:assessment:enabled': True
   'src:domain:discipline:enabled': True
   'src:program:special_ed:enabled': True
   'src:program:homeless:enabled': True
-  'src:program:language_instruction:enabled': False
+  'src:program:language_instruction:enabled': True
   'src:program:title_i:enabled': False
 
   # custom data sources for calendar dates

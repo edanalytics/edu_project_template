@@ -37,7 +37,7 @@ invalidDurations as (
         and period_duration < 0
 )
 /* Class Periods must have a positive meeting time duration. */
-select cp.k_class_period, cp.class_period_name, cp.school_id,
+select cp.k_class_period, cp.school_year, cp.class_period_name, cp.school_id,
     {{ error_code }} as error_code,
     concat('Class Period has a negative meeting duration. Please use military time. Meeting Time: ', cast(cp.v_meeting_times as String)) as error,
     {{ error_severity_column(error_code, 'cp') }}
