@@ -29,5 +29,5 @@ select ssae.k_student, ssae.k_student_xyear, ssae.k_school,
       , to_date(concat(ssae.school_year, '-06-30'), 'yyyy-MM-dd')) as ssd_date_end, 
     ssae.school_attendance_duration as ssd_duration
 from {{ ref('stg_ef3__student_school_attendance_events') }} ssae
-where ssae.attendance_event_category = 'SSD'
+where ssae.attendance_event_category = 'Student Standard Day'
 order by ssae.k_school, ssae.k_student, ssae.attendance_event_date

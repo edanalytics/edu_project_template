@@ -12,7 +12,7 @@ with stg_attendance as (
         cast(school_year as int) as school_year, 
         school_id, student_unique_id, attendance_event_date, attendance_event_category
     from {{ ref('stg_ef3__student_school_attendance_events_orig') }} ssae
-    where attendance_event_category != 'SSD'
+    where attendance_event_category != 'Student Standard Day'
         {{ school_year_exists(error_code, 'ssae') }}
 )
 /* Student Attendance/Absence events must be within enrollment period. */
