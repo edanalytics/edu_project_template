@@ -66,7 +66,6 @@ with q as (
         on ssd.k_school = fssa.k_school
         and ssd.k_student = fssa.k_student
         and dcd.calendar_date between ssd.ssd_date_start and ssd.ssd_date_end
-    where fssa.school_year = 2025
 )
 select k_student, k_lea, k_school, k_school_calendar,
     school_year, is_primary_school, entry_date, exit_withdraw_date,
