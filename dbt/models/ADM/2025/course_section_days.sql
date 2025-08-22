@@ -6,7 +6,7 @@
 }}
 
 /* 
-The purpose of this model is to get all the Course Sections and Days they meet that contribute to ADM, 
+The purpose of this model is to get all the Course Sections and Days that meet that contribute to ADM, 
 along with the duration of the Section (which can be split across multiple class periods).
 */
 

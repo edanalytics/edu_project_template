@@ -12,7 +12,7 @@ with attendance_events as (
     select k_student, k_school, k_session, cast(school_year as int) as school_year,
         school_id, student_unique_id, attendance_event_date, attendance_event_category
     from {{ ref('stg_ef3__student_school_attendance_events_orig') }} ssae
-    where ssae.attendance_event_category = 'SSD'
+    where ssae.attendance_event_category = 'Student Standard Day'
         and coalesce(ssae.school_attendance_duration,0) = 0
         {{ school_year_exists(error_code, 'ssae') }}
 )

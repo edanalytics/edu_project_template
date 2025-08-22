@@ -107,11 +107,6 @@ vars:
   'edu:language_instruction:exclude_programs': Null
   'edu:language_instruction:agg_types': ['annual', 'active']
 
-  'edu:special_ed:start_date_column': program_enroll_begin_date
-  'edu:special_ed:exit_date_column': program_enroll_end_date
-  'edu:special_ed:exclude_programs': Null
-  'edu:special_ed:agg_types': ['annual', 'active']
-
   'edu:title_i:start_date_column': program_enroll_begin_date
   'edu:title_i:exit_date_column': program_enroll_end_date
   'edu:title_i:exclude_programs': Null
@@ -150,13 +145,15 @@ vars:
   descriptors:
     exitWithdrawTypeDescriptor:
       replace_with: short_description
+    attendanceEventCategoryDescriptor:
+      replace_with: short_description
   
   # Enable optional domains and programs
-  'src:domain:assessment:enabled': False
+  'src:domain:assessment:enabled': True
   'src:domain:discipline:enabled': True
   'src:program:special_ed:enabled': True
   'src:program:homeless:enabled': True
-  'src:program:language_instruction:enabled': False
+  'src:program:language_instruction:enabled': True
   'src:program:title_i:enabled': False
 
   # custom data sources for calendar dates
@@ -194,6 +191,12 @@ vars:
         where: grade_levels
       school_number:
         where: school_number
+  
+  # custom data sources for discipline actions
+  'edu:discipline_actions:custom_data_sources':
+    cds_student_discipline_action_additional_columns:
+      discipline_end_date:
+        where: discipline_end_date
 
 seeds:
   +schema: seed

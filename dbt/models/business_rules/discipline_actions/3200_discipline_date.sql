@@ -12,7 +12,7 @@ with stg_discipline_actions as (
     where 1=1
         {{ school_year_exists(error_code, 'da') }}
 )
-/* Disipline Date must fall within the school year. */
+/* Discipline Date must fall within the school year. */
 select da.k_student, da.k_school__responsibility, da.school_year,
     da.discipline_action_id, da.discipline_date, da.responsibility_school_id,
     da.student_unique_id,

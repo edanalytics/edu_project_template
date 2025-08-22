@@ -11,7 +11,7 @@
 with attendance_events as (
     select *
     from {{ ref('stg_ef3__student_school_attendance_events_orig') }} ssae
-    where ssae.attendance_event_category = 'SSD'
+    where ssae.attendance_event_category = 'Student Standard Day'
         {{ school_year_exists(error_code, 'ssae') }}
 ),
 first_ssd_per_student as (
