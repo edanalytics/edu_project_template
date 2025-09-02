@@ -4,7 +4,7 @@ academicWeeks:
   page_size: 250
   fetch_deletes: True
 accounts:
-  enabled: True
+  enabled: False
   namespace: ed-fi
   page_size: 250
   fetch_deletes: True
@@ -14,12 +14,12 @@ accountabilityRatings:
   page_size: 250
   fetch_deletes: True
 accountCodes:
-  enabled: True
+  enabled: False
   namespace: ed-fi
   page_size: 250
   fetch_deletes: True
 actuals:
-  enabled: True
+  enabled: False
   namespace: ed-fi
   page_size: 250
   fetch_deletes: True
@@ -44,7 +44,7 @@ bellSchedules:
   page_size: 250
   fetch_deletes: True
 budgets:
-  enabled: True
+  enabled: False
   namespace: ed-fi
   page_size: 250
   fetch_deletes: True
@@ -89,7 +89,7 @@ competencyObjectives:
   page_size: 250
   fetch_deletes: True
 contractedStaffs:
-  enabled: True
+  enabled: False
   namespace: ed-fi
   page_size: 250
   fetch_deletes: True
@@ -239,7 +239,7 @@ parents:
   page_size: 250
   fetch_deletes: True
 payrolls:
-  enabled: True
+  enabled: False
   namespace: ed-fi
   page_size: 250
   fetch_deletes: True
