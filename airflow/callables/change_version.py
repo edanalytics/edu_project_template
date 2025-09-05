@@ -110,7 +110,7 @@ def get_previous_change_versions(
     elif get_key_changes:
         filter_clause = "is_key_changes"
     else:
-        filter_clause = "TRUE"
+        filter_clause = " NOT COALESCE(is_deletes, false) AND NOT COALESCE(is_key_changes, false)"
     logging.info(f"filter_clause: {filter_clause}")
 
     qry_prior_max = f"""
