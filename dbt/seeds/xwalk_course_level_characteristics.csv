@@ -11,3 +11,6 @@ Distance Learning,is_distance_learning
 English Language Learner,is_ell
 Students with disabilities,is_swd
 FUND,is_cte
+Fall Block,is_fall_block
+Spring Block,is_spring_block
+Year-long,is_year_long

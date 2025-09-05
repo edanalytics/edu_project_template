@@ -12,7 +12,7 @@ tdoe_error_code,end_point,error_school_year_start,error_school_year_end,tdoe_sev
 2002,sessions,2025,,critical,Session End Date must be within the school year.
 2003,sessions,2025,,critical,Session Begin Date must be less than or equal to End Date.
 2004,sections,1900,1900,critical,"Sections only get one of Honors, Statewide Dual Credit, Local Dual Credit, Dual Enrollment."
-2005,sections,2025,,critical,Sections only get one of F or S or T.
+2005,sections,2025,,critical,Sections only get one of Fall Block or Spring Block or Year-long.
 2006,sections,2025,,critical,Sections that are not Pull Out must have a meeting time duration.
 2010,sections,2025,,critical,Sections must have an educational_environment_type.
 2007,classPeriods,2025,,critical,Class Periods cannot have more than one meeting time.
@@ -49,7 +49,7 @@ tdoe_error_code,end_point,error_school_year_start,error_school_year_end,tdoe_sev
 3600,courseTranscripts,2025,,critical,Final Letter Grade must be an acceptable value.
 3601,courseTranscripts,2025,,critical,Final Numeric Grade must be an acceptable value.
 4100,staffEducationOrganizationAssignmentAssociations,2025,,critical,Staff EdOrg Assignment Association Full Time Equivalency must be [null] or between 0 and 1.
-4101,staffEducationOrganizationAssignmentAssociations,2025,,critical,"Staff EdOrg Assignment Association Order of Assignment must be [null], 1, 2, or 3."
+4101,staffEducationOrganizationAssignmentAssociations,1900,1900,critical,"Staff EdOrg Assignment Association Order of Assignment must be [null], 1, 2, or 3."
 4200,staffSectionAssociations,2025,,critical,Staff Section Begin Date must be within the school year.
 4201,staffSectionAssociations,2025,,critical,Staff Section End Date must be null or within the school year.
 4202,staffSectionAssociations,2025,,critical,Staff Section Begin Date greater than Staff Section End Date.

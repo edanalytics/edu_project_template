@@ -19,7 +19,7 @@ missingDates as (
     where size(cast(v_dates as array<string>)) = 0
 )
 /* Bell Schedules must have dates. */
-select bs.k_bell_schedule, bs.school_year, bs.bell_schedule_name, bs.school_id,
+select bs.k_bell_schedule, cast(bs.school_year as int) as school_year, bs.bell_schedule_name, bs.school_id,
     {{ error_code }} as error_code,
     concat('Missing Bell Schedule DATES for Bell Schedule ', bs.bell_schedule_name, '.') as error,
     {{ error_severity_column(error_code, 'bs') }}

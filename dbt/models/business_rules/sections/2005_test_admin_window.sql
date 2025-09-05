@@ -25,16 +25,16 @@ sectionScheduleTypes as (
             count(*) as sectionScheduleTypeCount,
             cast(array_agg(sectionCharacteristic) as String) as sectionSchedules
         from sectionsCharacteristicsExploded
-        where sectionCharacteristic in ('F', 'S', 'T')
+        where upper(sectionCharacteristic) in ('FALL BLOCK', 'SPRING BLOCK', 'YEAR-LONG')
         group by k_course_section
     ) x
     where sectionScheduleTypeCount > 1
 )
-/* Sections only get one of F or S or T. */
+/* Sections only get one of 'FALL BLOCK', 'SPRING BLOCK', 'YEAR-LONG'. */
 select s.k_course_section, s.k_course_offering, s.k_school, s.k_location, s.k_school__location, 
     s.section_id, s.local_course_code, s.school_id, s.school_year, s.session_name,
     {{ error_code }} as error_code,
-    concat('Section can only have one of the following value for Test Admin Window: F or S or T. Values received: ', 
+    concat('Section can only have one of the following value for Test Admin Window: Fall Block or Spring Block or Year-long. Values received: ', 
         sst.sectionSchedules) as error,
     {{ error_severity_column(error_code, 's') }}
 from stg_sections s

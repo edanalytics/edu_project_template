@@ -39,8 +39,8 @@ nonPullOutsMissingClassPeriodDurations as (
 select s.k_course_section, s.k_course_offering, s.k_school, s.k_location, s.k_school__location, 
     s.section_id, s.local_course_code, s.school_id, s.school_year, s.session_name,
     {{ error_code }} as error_code,
-    concat('Sections with an Educational Environment Descriptor of "', ifnull(s.educational_environment_type, 'null'), 
-        '" must submit Class Periods with valid durations. ',
+    concat('Section ', s.section_id, ' has an Educational Environment Descriptor of "', ifnull(s.educational_environment_type, 'null'), 
+        '" and so requires Class Periods with valid durations. ',
         (case
             when x.class_periods is null or trim(x.class_periods) = '[]' then 'No Class Periods have been defined.'
             else concat('Class Periods with invalid durations: ', x.class_periods) 

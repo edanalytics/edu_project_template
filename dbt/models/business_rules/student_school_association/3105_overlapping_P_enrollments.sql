@@ -32,6 +32,18 @@ student_enrolled_days as (
     join {{ ref('stg_ef3__student_school_associations_orig') }} ssa
         on ssa.school_year = x.school_year
         and ssa.student_unique_id = x.student_unique_id
+        and ssa.is_primary_school = true
+        /* Remove no show enrollments. */
+        and not exists (
+            select 1
+            from {{ ref('no_show_enrollments') }} ns
+            where ns.k_student = ssa.k_student
+                and ns.k_school = ssa.k_school
+                and ns.k_school_calendar = ssa.k_school_calendar
+                and ns.tenant_code = ssa.tenant_code
+                and ns.is_primary_school = ssa.is_primary_school
+                and ns.entry_date = ssa.entry_date
+        )
     join {{ ref('stg_ef3__calendar_dates_orig') }} cd
         on cd.k_school_calendar = ssa.k_school_calendar
         and cd.tenant_code = ssa.tenant_code
