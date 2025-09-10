@@ -151,4 +151,7 @@ def generate_templates(base_url, api_version=3, database=None, schema=None):
 if __name__ == '__main__':
 
     import sys
-    generate_templates(*sys.argv[1:])
+    base_url = sys.argv[1]
+    database = sys.argv[2]
+    schema = sys.argv[3]
+    generate_templates(base_url=base_url, database=database, schema=schema)
