@@ -1,3 +1,11 @@
+# /// script
+# requires-python = ">=3.12"
+# dependencies = [
+#     "edfi-api-client",
+#     "pyyaml",
+# ]
+# ///
+
 import os
 import pathlib
 import yaml
@@ -8,7 +16,7 @@ from edfi_api_client import camel_to_snake
 from template_util import load_template, write_template
 
 
-def generate_templates(base_url, api_version=3):
+def generate_templates(base_url, api_version=3, database=None, schema=None):
     """
     Populate blank templates with information found in the Swagger doc.
         Note: Each template-generation uses local variables as kwargs to minimize formatting-boilerplate.
@@ -114,8 +122,8 @@ def generate_templates(base_url, api_version=3):
     formatted = []
     for namespace, name in RESOURCES:
         snake = camel_to_snake(name)
-        database = 'raw'
-        schema = 'edfi3'
+        database = database or 'raw'
+        schema = schema or 'edfi3'
         formatted.append(template.format(**locals()))
 
     write_template(output_path, formatted)
@@ -143,5 +151,4 @@ def generate_templates(base_url, api_version=3):
 if __name__ == '__main__':
 
     import sys
-    base_url = sys.argv[1]
-    generate_templates(base_url)
+    generate_templates(*sys.argv[1:])
