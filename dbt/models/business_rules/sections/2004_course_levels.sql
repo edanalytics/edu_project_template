@@ -35,7 +35,7 @@ courseLevelCounts as (
 select s.k_course_section, s.k_course_offering, s.k_school, s.k_location, s.k_school__location, 
     s.section_id, s.local_course_code, s.school_id, s.school_year, s.session_name,
     {{ error_code }} as error_code,
-    concat('This Section can be designated with only one of the following submitted course levels: "Honors", "Statewide Dual Credit", "Local Dual Credit", "Dual Enrollment". Values received: ', 
+    concat('Section ', s.section_id, ' can be designated with only one of the following submitted course levels: "Honors", "Statewide Dual Credit", "Local Dual Credit", "Dual Enrollment". Values received: ', 
         clc.courseLevels) as error,
     {{ error_severity_column(error_code, 's') }}
 from stg_sections s

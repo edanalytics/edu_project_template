@@ -15,10 +15,15 @@ with stg_student_school_associations as (
 /* Secondary enrollments require an open Primary enrollment. */
 select s.k_student, s.k_school, s.k_school_calendar, s.school_id, s.student_unique_id, s.school_year, 
     s.entry_date, s.entry_grade_level,
+    s2.state_student_id as legacy_state_student_id,
     {{ error_code }} as error_code,
-    concat('No Active Primary Enrollment designated for Student. Student Service School: ', s.school_id) as error,
+    concat('No Active Primary Enrollment designated for Student ', 
+        s.student_unique_id, ' (', coalesce(s2.state_student_id, '[no value]'), ')',
+        '. Student Service School: ', s.school_id) as error,
     {{ error_severity_column(error_code, 's') }}
 from stg_student_school_associations s
+join {{ ref('stg_ef3__students') }} s2
+    on s2.k_student = s.k_student
 where s.is_primary_school = false
     and not exists (
         select 1

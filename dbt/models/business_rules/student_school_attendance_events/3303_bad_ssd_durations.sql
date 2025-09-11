@@ -19,15 +19,18 @@ with attendance_events as (
 select x.k_student, x.k_school, x.k_session, x.school_year,
     cast(x.school_id as int) as school_id, x.student_unique_id, 
     x.attendance_event_date, x.attendance_event_category,
+    s.state_student_id as legacy_state_student_id,
     {{ error_code }} as error_code,
-    concat('SSD Duration missing for Student: ', x.student_unique_id, ', ',
+    concat('SSD Duration missing for Student: ', x.student_unique_id, ' (', coalesce(s.state_student_id, '[no value]') ,'), ',
         'District: ', {{ get_district_from_school_id('x.school_id') }}, ', ',
         'School: ', x.school_id, ', ',
         'Enrollment Entry Date: ', ssa.entry_date, ', ',
         'Enrollment End Date: ', coalesce(ssa.exit_withdraw_date, '[null]'), '.') as error,
     {{ error_severity_column(error_code, 'x') }}
 from attendance_events x
-join teds_dev.dev_smckee_stage.stg_ef3__student_school_associations_orig ssa
+join {{ ref('stg_ef3__student_school_associations_orig') }} ssa
     on ssa.k_school = x.k_school
     and ssa.k_student = x.k_student
     and ssa.school_year = cast(x.school_year as int)
+join {{ ref('stg_ef3__students') }} s
+    on s.k_student = ssa.k_student

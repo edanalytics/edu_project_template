@@ -15,14 +15,19 @@ with stg_student_section_associations as (
 /* Student Section Association Begin Date must be within an enrollment. */
 select ssa.k_student, ssa.k_course_section, ssa.school_id, ssa.student_unique_id, ssa.local_course_code, ssa.school_year, 
     ssa.section_id, ssa.begin_date,
+    s.state_student_id as legacy_state_student_id,
     {{ error_code }} as error_code,
-    concat('Student Section Begin Date does not fall within student enrollment period. Student Section Begin Date: ',
+    concat('Student Section Begin Date for Student ', 
+        ssa.student_unique_id, ' (', coalesce(s.state_student_id, '[no value]'), ') ',
+        'does not fall within student enrollment period. Student Section Begin Date: ',
         ssa.begin_date, 
         ', Enrollment Entry Date: ', ifnull(enrollments.entry_date, '[orphan (probably)]'),
         ', Exit Withdraw Date: ', ifnull(enrollments.exit_withdraw_date, '[null]'),
         '.') as error,
     {{ error_severity_column(error_code, 'ssa') }}
 from stg_student_section_associations ssa
+join {{ ref('stg_ef3__students') }} s
+    on s.k_student = ssa.k_student
 left outer join {{ ref('stg_ef3__student_school_associations_orig') }} enrollments
     on enrollments.school_year = ssa.school_year
     and enrollments.k_student = ssa.k_student

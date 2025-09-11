@@ -50,7 +50,7 @@ enrollments_and_ssd_date as (
             else 1
         end as ssd_good
     from {{ ref('stg_ef3__student_school_associations_orig') }} ssa
-    join first_ssd_per_student fssd
+    left outer join first_ssd_per_student fssd
         on fssd.k_school = ssa.k_school
         and fssd.k_student = ssa.k_student
         and fssd.school_year = ssa.school_year
@@ -68,8 +68,9 @@ enrollments_and_ssd_date as (
 select x.k_student, x.k_school, cast(null as string) as k_session, x.school_year,
     cast(x.school_id as int) as school_id, x.student_unique_id, 
     cast(null as date) as attendance_event_date, 'SSD' as attendance_event_category,
+    s.state_student_id as legacy_state_student_id,
     {{ error_code }} as error_code,
-    concat('Student Standard Day missing for Student: ', x.student_unique_id, ', ', 
+    concat('Student Standard Day missing for Student: ', x.student_unique_id, ' (', coalesce(s.state_student_id, '[no value]') ,'), ',
         'District: ', {{ get_district_from_school_id('x.school_id') }}, ', ',
         'School: ', x.school_id, ', ',
         'Enrollment Entry Date: ', x.entry_date, ', ',
@@ -77,4 +78,6 @@ select x.k_student, x.k_school, cast(null as string) as k_session, x.school_year
         'First SSD Date: ', coalesce(x.attendance_event_date, '[null]'), '.') as error,
     {{ error_severity_column(error_code, 'x') }}
 from enrollments_and_ssd_date x
+join {{ ref('stg_ef3__students') }} s
+    on s.k_student = x.k_student
 where x.ssd_good = 0

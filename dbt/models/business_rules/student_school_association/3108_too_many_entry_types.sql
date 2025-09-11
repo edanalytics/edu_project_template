@@ -21,11 +21,16 @@ count_distinct_entry_types as (
 /* Students cannot have more than one entry type per school per year. */
 select ssa.k_student, ssa.k_school, ssa.k_school_calendar, ssa.school_id, ssa.student_unique_id, ssa.school_year, 
     ssa.entry_date, ssa.entry_grade_level,
+    s.state_student_id as legacy_state_student_id,
     {{ error_code }} as error_code,
-    concat('Student has different Enrollment Entry Types for the same school for the same school year. Enrollment Begin Date: ', ssa.entry_date,
+    concat('Student ', 
+        ssa.student_unique_id, ' (', coalesce(s.state_student_id, '[no value]'), ') ',
+        'has different Enrollment Entry Types for the same school for the same school year. Enrollment Begin Date: ', ssa.entry_date,
         ', Enrollment End Date: ', ifnull(ssa.exit_withdraw_date, '[null]'), ', Enrollment Reason Code: ', ssa.entry_type) as error,
     {{ error_severity_column(error_code, 'ssa') }}
 from stg_student_school_associations ssa
+join {{ ref('stg_ef3__students') }} s
+    on s.k_student = ssa.k_student
 join count_distinct_entry_types x
     on x.k_school = ssa.k_school
     and x.k_student = ssa.k_student

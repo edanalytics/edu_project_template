@@ -27,7 +27,8 @@ with multiple_primary_enrollments as (
     having count(*) > 1
 ), 
 student_enrolled_days as (
-    select ssa.*, cd.calendar_date
+    select ssa.*, s.state_student_id, schools.school_short_name,
+        cd.calendar_date
     from multiple_primary_enrollments x
     join {{ ref('stg_ef3__student_school_associations_orig') }} ssa
         on ssa.school_year = x.school_year
@@ -44,6 +45,10 @@ student_enrolled_days as (
                 and ns.is_primary_school = ssa.is_primary_school
                 and ns.entry_date = ssa.entry_date
         )
+    join {{ ref('stg_ef3__students') }} s
+        on s.k_student = ssa.k_student
+    join {{ ref('stg_ef3__schools') }} schools
+        on schools.k_school = ssa.k_school
     join {{ ref('stg_ef3__calendar_dates_orig') }} cd
         on cd.k_school_calendar = ssa.k_school_calendar
         and cd.tenant_code = ssa.tenant_code
@@ -60,10 +65,11 @@ student_enrolled_days as (
 /* Do this by overlaps within the same School first so we can only get one message for that school. */
 select distinct p1.k_student, p1.k_school, p1.k_school_calendar, p1.school_id, p1.student_unique_id, p1.school_year, 
     p1.entry_date, p1.entry_grade_level,
+    p1.state_student_id as legacy_state_student_id,
     {{ error_code }} as error_code,
     concat('Students cannot have overlapping Primary Enrollments. ',
-        'Student "', p1.student_unique_id, '" has overlapping Primary Enrollments at ',
-        'School ', p1.school_id, ' (', date_format(p1.entry_date, 'MM/dd/yyyy'), 
+        'Student ', p1.student_unique_id, ' (', coalesce(p1.state_student_id, '[no value]'),') has overlapping Primary Enrollments at ',
+        p1.school_short_name, ' (SchoolId:', p1.school_id, ') (', date_format(p1.entry_date, 'MM/dd/yyyy'), 
             ' - ', ifnull(date_format(p1.exit_withdraw_date, 'MM/dd/yyyy'), 'null'), ') '
         'and (', date_format(p2.entry_date, 'MM/dd/yyyy'), 
             ' - ', ifnull(date_format(p2.exit_withdraw_date, 'MM/dd/yyyy'), 'null'), ').'
@@ -87,12 +93,13 @@ union all
 /* Now do it when schools aren't equal. */
 select distinct p1.k_student, p1.k_school, p1.k_school_calendar, p1.school_id, p1.student_unique_id, p1.school_year, 
     p1.entry_date, p1.entry_grade_level,
+    p1.state_student_id as legacy_state_student_id,
     {{ error_code }} as error_code,
     concat('Students cannot have overlapping Primary Enrollments. ',
-        'Student "', p1.student_unique_id, '" has overlapping Primary Enrollments at ',
-        'School ', p1.school_id, ' (', date_format(p1.entry_date, 'MM/dd/yyyy'), 
+        'Student ', p1.student_unique_id, ' (', coalesce(p1.state_student_id, '[no value]'),') has overlapping Primary Enrollments at ',
+        p1.school_short_name, ' (SchoolId:', p1.school_id, ') (', date_format(p1.entry_date, 'MM/dd/yyyy'), 
             ' - ', ifnull(date_format(p1.exit_withdraw_date, 'MM/dd/yyyy'), 'null'), ') '
-        'and School ', p2.school_id, ' (', date_format(p2.entry_date, 'MM/dd/yyyy'), 
+        'and ', p2.school_short_name, ' (SchoolId:', p2.school_id, ') (', date_format(p2.entry_date, 'MM/dd/yyyy'), 
             ' - ', ifnull(date_format(p2.exit_withdraw_date, 'MM/dd/yyyy'), 'null'), ').'
         ) as error,
     {{ error_severity_column(error_code, 'p1') }}

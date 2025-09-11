@@ -18,10 +18,13 @@ characteristics_to_compare as (
     select *
     from (
         select se.k_student, se.k_lea, se.k_school, se.school_year, se.ed_org_id, se.student_unique_id,
+            s.state_student_id,
             sc.student_characteristic, sc.begin_date, sc.end_date, 
             ifnull(sc.end_date, to_date('9999-12-31', 'yyyy-MM-dd')) as safe_end_date,
             count(*) over (partition by se.k_student, se.k_lea, sc.student_characteristic) as characteristic_count
         from stg_student_edorgs se
+        join {{ ref('edu_edfi_source', 'stg_ef3__students') }} s
+            on se.k_student = s.k_student
         join {{ ref('stg_ef3__stu_ed_org__characteristics') }} sc
             on sc.k_lea = se.k_lea
             and sc.k_student = se.k_student
@@ -31,8 +34,11 @@ characteristics_to_compare as (
     where x.characteristic_count > 1
 )
 select a.k_student, a.k_lea, a.k_school, a.school_year, a.ed_org_id, a.student_unique_id,
+    a.state_student_id as legacy_state_student_id,
     {{ error_code }} as error_code,
-    concat('Same Student Characteristics are not allowed to overlap. Values received: ',
+    concat('Student ', 
+        a.student_unique_id, ' (', coalesce(a.state_student_id, '[no value]'), ') ',
+        'has overlapping Student Characteristics. Same Student Characteristics are not allowed to overlap. Values received: ',
         concat(a.student_characteristic, ' [', a.begin_date, ' - ', ifnull(a.end_date, 'null'), ']'),
         ', ',
         concat(b.student_characteristic, ' [', b.begin_date, ' - ', ifnull(b.end_date, 'null'), ']')

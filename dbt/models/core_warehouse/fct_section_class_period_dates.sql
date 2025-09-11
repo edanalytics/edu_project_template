@@ -15,11 +15,6 @@
   )
 }}
 
-/*
-{# Load excluded data from var #}
-{% set excluded_bell_schedules = var("edu:excluded_data:stg_ef3__bell_schedules", none) %}
-*/
-
 select scp.k_course_section, cp.k_class_period, cp.k_school, sec.k_course,
     cp.tenant_code, cp.school_year, 
     sec.educational_environment_type, sec.course_code, sec.is_cte,

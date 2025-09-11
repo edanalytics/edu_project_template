@@ -20,4 +20,4 @@ select ssa.k_staff, ssa.k_course_section, ssa.local_course_code, ssa.school_year
         ssa.end_date, ', Begin Date: ', ssa.end_date, '.') as error,
     {{ error_severity_column(error_code, 'ssa') }}
 from stg_staff_section_associations ssa
-where ssa.end_date <= ssa.begin_date
+where ssa.end_date < ssa.begin_date

@@ -32,12 +32,17 @@ discipline_incident_dates as (
 select da.k_student, da.k_school__responsibility, da.school_year,
     da.discipline_action_id, da.discipline_date, da.responsibility_school_id,
     da.student_unique_id,
+    s.state_student_id as legacy_state_student_id,
     {{ error_code }} as error_code,
-    concat('Discipline Incident Date must be less than or equal to Discipline Action Date. Incident Identifier: ', 
+    concat('Discipline Incident Date for Student ', 
+        da.student_unique_id, ' (', coalesce(s.state_student_id, '[no value]'), ') ',
+        ' must be less than or equal to Discipline Action Date. Incident Identifier: ', 
         did.incidentIdentifier, ', Incident Date: ', did.incident_date, ', Discipline Date: ', 
         da.discipline_date, '.') as error,
     {{ error_severity_column(error_code, 'da') }}
 from stg_discipline_actions da
+join {{ ref('stg_ef3__students') }} s
+    on s.k_student = da.k_student
 inner join discipline_incident_dates did
     on did.k_school__responsibility = da.k_school__responsibility
     and did.school_year = da.school_year

@@ -18,13 +18,18 @@ with stg_attendance as (
 /* Student Attendance/Absence events must be within enrollment period. */
 select ssd.k_student, ssd.k_school, ssd.k_session, ssd.school_year, cast(ssd.school_id as int) as school_id, ssd.student_unique_id,
     ssd.attendance_event_date, ssd.attendance_event_category,
+    s.state_student_id as legacy_state_student_id,
     {{ error_code }} as error_code,
-    concat('Student attendance/absence does not fall within Enrollment Period. Enrollment Start Date: ',
+    concat('Student attendance/absence does not fall within Enrollment Period for Student ', 
+        ssd.student_unique_id, ' (', coalesce(s.state_student_id, '[no value]'), ')',
+        '. Enrollment Start Date: ',
         ifnull(ssa.entry_date, '[null]'), ', Enrollment End Date: ', 
         ifnull(ssa.exit_withdraw_date, '[null]'), ', Attendance Date: ', 
         ssd.attendance_event_date, '.') as error,
     {{ error_severity_column(error_code, 'ssd') }}
 from stg_attendance ssd
+join {{ ref('stg_ef3__students') }} s
+    on s.k_student = ssd.k_student
 left outer join {{ ref('stg_ef3__student_school_associations_orig') }} ssa
     on ssa.k_student = ssd.k_student
     and ssa.k_school = ssd.k_school
