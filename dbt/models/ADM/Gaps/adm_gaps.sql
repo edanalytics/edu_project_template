@@ -23,6 +23,8 @@ with unioned (
     select * from {{ ref('wrk_adm_gaps_sessions_issues') }}
     union all
     select * from {{ ref('wrk_adm_gaps_ssd_issues') }}
+    union all
+    select * from {{ ref('wrk_adm_gaps_student_schedule_issues') }}
 )/*,
 grouped as (
     select school_year, k_student, k_school, is_primary_school,

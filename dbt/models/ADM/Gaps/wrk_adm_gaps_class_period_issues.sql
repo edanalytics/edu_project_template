@@ -30,6 +30,7 @@ from {{ ref('adm_gaps_enrollments') }} e
 join {{ ref('stg_ef3__student_section_associations_orig')}} sections
     on sections.school_year = e.school_year
     and sections.k_student = e.k_student
+    and sections.school_id = e.school_id
 join {{ ref('stg_ef3__sections__class_periods') }} cps
     on cps.k_course_section = sections.k_course_section
 join {{ ref('class_periods') }} x

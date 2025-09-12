@@ -16,7 +16,7 @@ with stg_staff_section_associations as (
 select ssa.k_staff, ssa.k_course_section, ssa.local_course_code, ssa.school_year, ssa.school_id, 
     ssa.section_id, ssa.session_name, ssa.staff_unique_id, ssa.begin_date,
     {{ error_code }} as error_code,
-    concat('Staff Section Assocition End Date must be greater than the Begin Date. End Date received: ',
+    concat('Staff Section Association End Date must be greater than the Begin Date. End Date received: ',
         ssa.end_date, ', Begin Date: ', ssa.end_date, '.') as error,
     {{ error_severity_column(error_code, 'ssa') }}
 from stg_staff_section_associations ssa
