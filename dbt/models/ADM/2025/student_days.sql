@@ -50,7 +50,7 @@ with q as (
                 from {{ ref('fct_student_characteristics') }} x
                 where x.k_student = fssa.k_student
                     and x.k_lea = fssa.k_lea
-                    and x.student_characteristic in ('I', 'J', 'H', 'U', 'FOS01')
+                    and x.student_characteristic in ('I', 'J', 'H', 'U', 'FOS01', 'SN', 'TO')
                     and dcd.calendar_date >= x.begin_date 
                     and (x.end_date is null or dcd.calendar_date <= x.end_date)
             ) then 1
