@@ -26,7 +26,7 @@ calendar_events as (
 /* Calendar Events must be within the school year */
 select c.k_school, c.k_school_calendar, c.school_year, c.school_id, c.calendar_code, 
     {{ error_code }} as error_code,
-    concat('Calendar Event \'', c.calendar_event, '\' on ', c.calendar_date, 
+    concat('Calendar ', c.calendar_code, ' has calendar Event \'', c.calendar_event, '\' on ', c.calendar_date, 
       ' does not fall within the school year. The state school year starts ',
       concat((c.school_year-1), '-07-01'), ' and ends ', concat(c.school_year, '-06-30'), '.') as error,
     {{ error_severity_column(error_code, 'c') }}

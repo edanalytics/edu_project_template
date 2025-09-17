@@ -33,7 +33,7 @@ too_many_dates as (
 /* There cannot be more than 3 abbreviated days. */
 select c.k_school, c.k_school_calendar, c.school_year, c.school_id, c.calendar_code, 
     {{ error_code }} as error_code,
-    concat('Calculated total abbreviated days is more than the maximum of 3. Total days calculated: ',
+    concat('Calendar ', c.calendar_code, ' has calculated total abbreviated days is more than the maximum of 3. Total days calculated: ',
       x.abbreviated_days, '.') as error,
     {{ error_severity_column(error_code, 'c') }}
 from calendars c

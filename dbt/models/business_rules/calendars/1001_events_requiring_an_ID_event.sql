@@ -41,7 +41,7 @@ events_not_paired_as_instructional as (
 /* Some calendar events which are also instructional days must be marked as so. */
 select c.k_school, c.k_school_calendar, c.school_year, c.school_id, c.calendar_code, 
     {{ error_code }} as error_code,
-    concat('Calendar Event \'', x.calendar_event, '\' on ', x.calendar_date, ' must also have an \'ID\' Calendar Event on the same date.') as error,
+    concat('Calendar ', c.calendar_code, ' has calendar Event \'', x.calendar_event, '\' on ', x.calendar_date, ' must also have an \'ID\' Calendar Event on the same date.') as error,
     {{ error_severity_column(error_code, 'c') }}
 from calendars c
 join events_not_paired_as_instructional x

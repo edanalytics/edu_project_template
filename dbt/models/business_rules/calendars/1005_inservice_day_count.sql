@@ -32,7 +32,7 @@ not_enough_dates as (
 /* There must be at least 5 in service days. */
 select c.k_school, c.k_school_calendar, c.school_year, c.school_id, c.calendar_code, 
     {{ error_code }} as error_code,
-    concat('Calculated total In-Service days is less than the minimum of 5. Total days calculated: ',
+    concat('Calendar ', c.calendar_code, ' has calculated total In-Service days is less than the minimum of 5. Total days calculated: ',
       ifnull(x.inservice_days,0), '.') as error,
     {{ error_severity_column(error_code, 'c') }}
 from calendars c
