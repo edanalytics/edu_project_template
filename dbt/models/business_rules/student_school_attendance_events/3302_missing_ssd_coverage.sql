@@ -8,11 +8,23 @@
 {% set error_code = 3302 %}
 
 /* A Student's SSD must cover their entire enrollment period. */
-with attendance_events as (
+with brule as (
+    select tdoe_error_code, 
+        cast(error_school_year_start as int) as error_school_year_start, 
+        cast(ifnull(error_school_year_end, 9999) as int) as error_school_year_end,
+        tdoe_severity
+    from {{ ref('business_rules_year_ranges') }} br
+    where br.tdoe_error_code = {{ error_code }}
+),
+attendance_events as (
     select *
     from {{ ref('stg_ef3__student_school_attendance_events_orig') }} ssae
     where ssae.attendance_event_category = 'Student Standard Day'
-        {{ school_year_exists(error_code, 'ssae') }}
+        and exists (
+        select 1
+        from brule
+        where cast(ssae.school_year as int) between brule.error_school_year_start and brule.error_school_year_end
+    )
 ),
 first_ssd_per_student as (
     select k_student, k_school, cast(school_year as int) as school_year, 
@@ -69,15 +81,17 @@ select x.k_student, x.k_school, cast(null as string) as k_session, x.school_year
     cast(x.school_id as int) as school_id, x.student_unique_id, 
     cast(null as date) as attendance_event_date, 'SSD' as attendance_event_category,
     s.state_student_id as legacy_state_student_id,
-    {{ error_code }} as error_code,
+    brule.tdoe_error_code as error_code,
     concat('Student Standard Day missing for Student: ', x.student_unique_id, ' (', coalesce(s.state_student_id, '[no value]') ,'), ',
         'District: ', {{ get_district_from_school_id('x.school_id') }}, ', ',
         'School: ', x.school_id, ', ',
         'Enrollment Entry Date: ', x.entry_date, ', ',
         'Enrollment End Date: ', coalesce(x.exit_withdraw_date, '[null]'), ', ',
         'First SSD Date: ', coalesce(x.attendance_event_date, '[null]'), '.') as error,
-    {{ error_severity_column(error_code, 'x') }}
+    brule.tdoe_severity as severity
 from enrollments_and_ssd_date x
 join {{ ref('stg_ef3__students') }} s
     on s.k_student = x.k_student
+join brule
+    on x.school_year between brule.error_school_year_start and brule.error_school_year_end
 where x.ssd_good = 0

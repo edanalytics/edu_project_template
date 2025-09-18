@@ -7,7 +7,15 @@
 
 {% set error_code = 3105 %}
 
-with multiple_primary_enrollments as (
+with brule as (
+    select tdoe_error_code, 
+        cast(error_school_year_start as int) as error_school_year_start, 
+        cast(ifnull(error_school_year_end, 9999) as int) as error_school_year_end,
+        tdoe_severity
+    from {{ ref('business_rules_year_ranges') }} br
+    where br.tdoe_error_code = {{ error_code }}
+),
+multiple_primary_enrollments as (
     select ssa.school_year, ssa.student_unique_id
     from {{ ref('stg_ef3__student_school_associations_orig') }} ssa
     where ssa.is_primary_school = true
@@ -22,7 +30,11 @@ with multiple_primary_enrollments as (
                 and ns.is_primary_school = ssa.is_primary_school
                 and ns.entry_date = ssa.entry_date
         )
-        {{ school_year_exists(error_code, 'ssa') }}
+        and exists (
+        select 1
+        from brule
+        where cast(ssa.school_year as int) between brule.error_school_year_start and brule.error_school_year_end
+    )
     group by ssa.school_year, ssa.student_unique_id
     having count(*) > 1
 ), 
@@ -66,7 +78,7 @@ student_enrolled_days as (
 select distinct p1.k_student, p1.k_school, p1.k_school_calendar, p1.school_id, p1.student_unique_id, p1.school_year, 
     p1.entry_date, p1.entry_grade_level,
     p1.state_student_id as legacy_state_student_id,
-    {{ error_code }} as error_code,
+    brule.tdoe_error_code as error_code,
     concat('Students cannot have overlapping Primary Enrollments. ',
         'Student ', p1.student_unique_id, ' (', coalesce(p1.state_student_id, '[no value]'),') has overlapping Primary Enrollments at ',
         p1.school_short_name, ' (SchoolId:', p1.school_id, ') (', date_format(p1.entry_date, 'MM/dd/yyyy'), 
@@ -74,7 +86,7 @@ select distinct p1.k_student, p1.k_school, p1.k_school_calendar, p1.school_id, p
         'and (', date_format(p2.entry_date, 'MM/dd/yyyy'), 
             ' - ', ifnull(date_format(p2.exit_withdraw_date, 'MM/dd/yyyy'), 'null'), ').'
         ) as error,
-    {{ error_severity_column(error_code, 'p1') }}
+    brule.tdoe_severity as severity
 from student_enrolled_days p1
 join student_enrolled_days p2
     on p2.school_year = p1.school_year
@@ -89,12 +101,14 @@ join student_enrolled_days p2
         and p1.k_school_calendar = p2.k_school_calendar
         and p1.entry_date = p2.entry_date
     )
+join brule
+    on p1.school_year between brule.error_school_year_start and brule.error_school_year_end
 union all
 /* Now do it when schools aren't equal. */
 select distinct p1.k_student, p1.k_school, p1.k_school_calendar, p1.school_id, p1.student_unique_id, p1.school_year, 
     p1.entry_date, p1.entry_grade_level,
     p1.state_student_id as legacy_state_student_id,
-    {{ error_code }} as error_code,
+    brule.tdoe_error_code as error_code,
     concat('Students cannot have overlapping Primary Enrollments. ',
         'Student ', p1.student_unique_id, ' (', coalesce(p1.state_student_id, '[no value]'),') has overlapping Primary Enrollments at ',
         p1.school_short_name, ' (SchoolId:', p1.school_id, ') (', date_format(p1.entry_date, 'MM/dd/yyyy'), 
@@ -102,11 +116,13 @@ select distinct p1.k_student, p1.k_school, p1.k_school_calendar, p1.school_id, p
         'and ', p2.school_short_name, ' (SchoolId:', p2.school_id, ') (', date_format(p2.entry_date, 'MM/dd/yyyy'), 
             ' - ', ifnull(date_format(p2.exit_withdraw_date, 'MM/dd/yyyy'), 'null'), ').'
         ) as error,
-    {{ error_severity_column(error_code, 'p1') }}
+    brule.tdoe_severity as severity
 from student_enrolled_days p1
 join student_enrolled_days p2
     on p2.school_year = p1.school_year
     and p2.student_unique_id = p1.student_unique_id
     and p2.calendar_date = p1.calendar_date
     and p2.school_id != p1.school_id
+join brule
+    on p1.school_year between brule.error_school_year_start and brule.error_school_year_end
 order by p1.school_year, p1.student_unique_id, p1.entry_date
