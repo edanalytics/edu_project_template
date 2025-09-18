@@ -61,7 +61,7 @@ missing_events as (
 /* Some Calendar Events are required on every calendar. */
 select c.k_school, c.k_school_calendar, c.school_year, c.school_id, c.calendar_code, 
     brule.tdoe_error_code as error_code,
-    concat('This School Calendar is missing the following required events: ', x.missing_calendar_events, '.') as error,
+    concat('Calendar ', c.calendar_code, ' that is missing the following required events: ', x.missing_calendar_events, '.') as error,
     brule.tdoe_severity as severity
 from calendars c
 join missing_events x

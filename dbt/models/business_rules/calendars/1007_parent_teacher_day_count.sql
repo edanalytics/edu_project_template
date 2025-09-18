@@ -43,7 +43,7 @@ not_enough_dates as (
 /* There must be at least 1 in PT days. */
 select c.k_school, c.k_school_calendar, c.school_year, c.school_id, c.calendar_code, 
     brule.tdoe_error_code as error_code,
-    concat('Calculated total Parent-Teacher days is less than the minimum of 1. Total days calculated: ',
+    concat('Calendar ', c.calendar_code, ' has calculated total Parent-Teacher days is less than the minimum of 1. Total days calculated: ',
       ifnull(x.pt_days,0), '.') as error,
     brule.tdoe_severity as severity
 from calendars c

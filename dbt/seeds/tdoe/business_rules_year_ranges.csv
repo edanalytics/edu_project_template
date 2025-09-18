@@ -31,9 +31,9 @@ tdoe_error_code,end_point,error_school_year_start,error_school_year_end,tdoe_sev
 3103,studentSchoolAssociations,2025,,critical,Withdrawal Date must be greater than or equal to Entry Date.
 3104,studentSchoolAssociations,2025,,critical,No primary enrollment exists but secondary enrollment does exist.
 3105,studentSchoolAssociations,2025,,critical,Student cannot have overlapping Primary enrollments.
-3106,studentSchoolAssociations,2025,,critical,Student cannot have more than one School Association with Enrollment Reason Code of E or E1 in a single school year.
-3107,studentSchoolAssociations,2025,,critical,Student cannot have TR Enrollment Reason Code if there is not existing E or E1 at a different school in a single school year.
-3108,studentSchoolAssociations,2025,,critical,Student cannot have more than one enrollment reason code in a single school year.
+3106,studentSchoolAssociations,2025,,warning,Student cannot have more than one School Association with Enrollment Reason Code of E or E1 in a single school year.
+3107,studentSchoolAssociations,2025,,warning,Student cannot have TR Enrollment Reason Code if there is not existing E or E1 at a different school in a single school year.
+3108,studentSchoolAssociations,2025,,warning,Student cannot have more than one enrollment reason code in a single school year.
 3109,studentHomelessProgramAssociations,2025,,critical,Homeless students must have homeless primary nighttime residence.
 3200,disciplineActions,2025,,critical,Discipline Date must be within the school year.
 3201,disciplineActions,2025,,critical,Discipline Incident Date cannot be after Discipline Action Date.

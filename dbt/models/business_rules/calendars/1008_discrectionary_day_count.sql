@@ -44,7 +44,7 @@ too_many_dates as (
 /* There cannot be more than 4 discrectionary days. */
 select c.k_school, c.k_school_calendar, c.school_year, c.school_id, c.calendar_code, 
     brule.tdoe_error_code as error_code,
-    concat('Calculated total discrectionary days is more than the maximum of 4. Total days calculated: ',
+    concat('Calendar ', c.calendar_code, ' has calculated total discrectionary days is more than the maximum of 4. Total days calculated: ',
       x.discrectionary_days, '.') as error,
     brule.tdoe_severity as severity
 from calendars c

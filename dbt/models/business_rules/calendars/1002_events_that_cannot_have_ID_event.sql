@@ -52,7 +52,7 @@ events_incorrectly_paired_with_instructional as (
 /* Some calendar events which are also instructional days must be marked as so. */
 select c.k_school, c.k_school_calendar, c.school_year, c.school_id, c.calendar_code, 
     brule.tdoe_error_code as error_code,
-    concat('Calendar Event \'', x.calendar_event, '\' on ', x.calendar_date, ' currently has an \'ID\' Calendar Event on the same date but should not.') as error,
+    concat('Calendar ', c.calendar_code, ' has calendar Event \'', x.calendar_event, '\' on ', x.calendar_date, ' currently has an \'ID\' Calendar Event on the same date but should not.') as error,
     brule.tdoe_severity as severity
 from calendars c
 join events_incorrectly_paired_with_instructional x
