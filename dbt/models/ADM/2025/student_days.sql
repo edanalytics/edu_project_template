@@ -50,7 +50,7 @@ with q as (
                 from {{ ref('fct_student_characteristics') }} x
                 where x.k_student = fssa.k_student
                     and x.k_lea = fssa.k_lea
-                    and x.student_characteristic in ('I', 'J', 'H', 'U', 'FOS01')
+                    and x.student_characteristic in ('I', 'J', 'H', 'U', 'FOS01', 'SN', 'TO')
                     and dcd.calendar_date >= x.begin_date 
                     and (x.end_date is null or dcd.calendar_date <= x.end_date)
             ) then 1
@@ -87,7 +87,7 @@ select k_student, k_lea, k_school, k_school_calendar,
             and is_early_graduate = 1 then 1
         when calendar_date >= entry_date
             and (exit_withdraw_date is null
-                or calendar_date <= exit_withdraw_date) then 1
+                or calendar_date < exit_withdraw_date) then 1
         else 0
     end as isa_member
 from q

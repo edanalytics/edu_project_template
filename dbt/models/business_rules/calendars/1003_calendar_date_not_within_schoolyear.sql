@@ -7,11 +7,22 @@
 
 {% set error_code = 1003 %}
 
-with calendars as (
+with brule as (
+    select tdoe_error_code, 
+        cast(error_school_year_start as int) as error_school_year_start, 
+        cast(ifnull(error_school_year_end, 9999) as int) as error_school_year_end,
+        tdoe_severity
+    from {{ ref('business_rules_year_ranges') }} br
+    where br.tdoe_error_code = {{ error_code }}
+),
+calendars as (
     select *
     from {{ ref('stg_ef3__calendars_orig') }} c
-    where 1=1
-        {{ school_year_exists(error_code, 'c') }}
+    where exists (
+        select 1
+        from brule
+        where cast(c.school_year as int) between brule.error_school_year_start and brule.error_school_year_end
+    )
 ),
 calendar_events as (
     select c.k_school, c.k_school_calendar, cd.k_calendar_date, c.tenant_code, c.api_year, c.school_year,
@@ -25,12 +36,14 @@ calendar_events as (
 )
 /* Calendar Events must be within the school year */
 select c.k_school, c.k_school_calendar, c.school_year, c.school_id, c.calendar_code, 
-    {{ error_code }} as error_code,
-    concat('Calendar Event \'', c.calendar_event, '\' on ', c.calendar_date, 
+    brule.tdoe_error_code as error_code,
+    concat('Calendar ', c.calendar_code, ' has calendar Event \'', c.calendar_event, '\' on ', c.calendar_date, 
       ' does not fall within the school year. The state school year starts ',
       concat((c.school_year-1), '-07-01'), ' and ends ', concat(c.school_year, '-06-30'), '.') as error,
-    {{ error_severity_column(error_code, 'c') }}
+    brule.tdoe_severity as severity
 from calendar_events c
+join brule
+    on c.school_year between brule.error_school_year_start and brule.error_school_year_end
 where not(c.calendar_date between to_date(concat((c.school_year-1), '-07-01'), 'yyyy-MM-dd') 
     and to_date(concat(c.school_year, '-06-30'), 'yyyy-MM-dd'))
 order by 3, 4, 5

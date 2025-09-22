@@ -4,6 +4,8 @@ name: 'stadium_tennessee'
 version: '1.0.0'
 config-version: 2
 
+require-dbt-version: [">=1.0.0", "<2.0.0"]
+
 # This setting configures which "profile" dbt uses for this project.
 profile: 'stadium_tennessee'
 
@@ -20,6 +22,9 @@ clean-targets:         # directories to be removed by `dbt clean`
   - "dbt_packages"
 
 on-run-end: "{% if target.name == 'prod' %}{{ dbt_artifacts.upload_results(results) }}{% endif %}"
+
+flags:
+  use_materialization_v2: false
 
 models:
   # We have to disable some edu_edfi_source models because we are replacing them.
@@ -83,6 +88,10 @@ models:
 
 vars:
 
+  'oneroster:active_school_year': 2026
+
+  'edu:class_period:attempt_military_whatever': false
+
   # labels for generated race/ethnicity groups
   'edu:stu_demos:multiple_races_code': Multiple
   'edu:stu_demos:hispanic_latino_code': Latinx
@@ -129,11 +138,24 @@ vars:
 
   # custom intersections of other demographic groupings
   'edu:stu_demos:intersection_groups': Null
+
   # custom data sources for student characteristics. must contain and be unique by `k_student`
   'edu:stu_demos:custom_data_sources': 
     cds_student_additional_columns:
       state_student_id:
         where: stateStudentId
+
+  #tdoe business rule vars
+  'edu:excluded_data:stg_ef3__bell_schedules':
+    exclude_data_table: bell_schedules_excludes
+    join_columns:
+      k_bell_schedule: k_bell_schedule
+
+  'edu:excluded_data:stg_ef3__calendars':
+    exclude_data_table: calendars_excludes
+    join_columns:
+      k_school: k_school
+      k_school_calendar: k_school_calendar
 
   # source config
   extensions:

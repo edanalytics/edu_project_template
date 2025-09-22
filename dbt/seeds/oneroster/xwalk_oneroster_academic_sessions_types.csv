@@ -1,0 +1,13 @@
+academic_term,type
+Third Quarter,gradingPeriod
+Fall Semester,semester
+Summer Semester,semester
+MiniTerm,term
+Second Trimester,term
+First Trimester,term
+Third Trimester,term
+Second Quarter,gradingPeriod
+Fourth Quarter,gradingPeriod
+First Quarter,gradingPeriod
+Spring Semester,semester
+Year Round,schoolYear

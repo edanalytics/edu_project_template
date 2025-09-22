@@ -7,11 +7,22 @@
 
 {% set error_code = 1007 %}
 
-with calendars as (
+with brule as (
+    select tdoe_error_code, 
+        cast(error_school_year_start as int) as error_school_year_start, 
+        cast(ifnull(error_school_year_end, 9999) as int) as error_school_year_end,
+        tdoe_severity
+    from {{ ref('business_rules_year_ranges') }} br
+    where br.tdoe_error_code = {{ error_code }}
+),
+calendars as (
     select *
     from {{ ref('stg_ef3__calendars_orig') }} c
-    where 1=1
-        {{ school_year_exists(error_code, 'c') }}
+    where exists (
+        select 1
+        from brule
+        where cast(c.school_year as int) between brule.error_school_year_start and brule.error_school_year_end
+    )
 ),
 calendar_events as (
     select c.k_school, c.k_school_calendar, cd.k_calendar_date, c.tenant_code, c.api_year, c.school_year,
@@ -31,13 +42,15 @@ not_enough_dates as (
 )
 /* There must be at least 1 in PT days. */
 select c.k_school, c.k_school_calendar, c.school_year, c.school_id, c.calendar_code, 
-    {{ error_code }} as error_code,
-    concat('Calculated total Parent-Teacher days is less than the minimum of 1. Total days calculated: ',
+    brule.tdoe_error_code as error_code,
+    concat('Calendar ', c.calendar_code, ' has calculated total Parent-Teacher days is less than the minimum of 1. Total days calculated: ',
       ifnull(x.pt_days,0), '.') as error,
-    {{ error_severity_column(error_code, 'c') }}
+    brule.tdoe_severity as severity
 from calendars c
 left outer join not_enough_dates x
     on x.k_school = c.k_school
     and x.k_school_calendar = c.k_school_calendar
+join brule
+    on c.school_year between brule.error_school_year_start and brule.error_school_year_end
 where ifnull(x.pt_days, 0) < 1
 order by 3, 4, 5
