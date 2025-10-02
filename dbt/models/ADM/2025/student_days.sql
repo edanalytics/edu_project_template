@@ -55,7 +55,15 @@ with q as (
                     and (x.end_date is null or dcd.calendar_date <= x.end_date)
             ) then 1
             else 0
-        end as is_EconDis
+        end as is_EconDis,
+        case
+            when ilp.participation_status is not null then 1
+            else 0
+        end as is_EL,
+        case
+            when ilpd.service_begin_date is not null then 1
+            else 0
+        end as is_Dyslexic
     from {{ ref('fct_student_school_association') }} fssa
     join {{ ref('xwalk_grade_levels') }} gl
         on upper(gl.grade_level) = upper(fssa.entry_grade_level)
@@ -66,6 +74,19 @@ with q as (
         on ssd.k_school = fssa.k_school
         and ssd.k_student = fssa.k_student
         and dcd.calendar_date between ssd.ssd_date_start and ssd.ssd_date_end
+    left outer join {{ ref('bld_ilp_safe_ranges') }} ilp
+        on ilp.k_school = fssa.k_school
+        and ilp.k_student = fssa.k_student
+        and dcd.calendar_date between 
+            (case
+                when datediff(ilp.status_begin_date, fssa.entry_date) > 0 and datediff(ilp.status_begin_date, fssa.entry_date) <= 60 then fssa.entry_date
+                else ilp.status_begin_date
+            end)
+            and ilp.safe_status_end_date
+    left outer join {{ ref('bld_ilpd_safe_ranges') }} ilpd
+        on ilpd.k_school = fssa.k_school
+        and ilpd.k_student = fssa.k_student
+        and dcd.calendar_date between ilpd.service_begin_date and ilpd.safe_service_end_date
 )
 select k_student, k_lea, k_school, k_school_calendar,
     school_year, is_primary_school, entry_date, exit_withdraw_date,
@@ -75,6 +96,8 @@ select k_student, k_lea, k_school, k_school_calendar,
     coalesce(is_funding_ineligible,0) as is_funding_ineligible,
     coalesce(is_expelled,0) as is_expelled, 
     coalesce(is_EconDis,0) as is_EconDis,
+    coalesce(is_EL,0) as is_EL,
+    coalesce(is_Dyslexic,0) as is_Dyslexic,
     case
         when exit_withdraw_date is not null and calendar_date >= exit_withdraw_date 
             and is_early_graduate = 1 then 1
