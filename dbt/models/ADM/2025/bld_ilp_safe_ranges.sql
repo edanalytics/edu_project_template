@@ -55,6 +55,6 @@ select k_student, k_school, school_year, tenant_code, api_year, student_unique_i
     status_end_date,
     case
         when next_status_begin_date is not null then date_sub(next_status_begin_date, 1)
-        else coalesce(status_end_date, to_date(concat(school_year, '06-30', 'yyyy-MM-dd')))
+        else coalesce(status_end_date, to_date(concat(school_year, '-06-30', 'yyyy-MM-dd')))
     end as safe_status_end_date
 from ordered_ilp_statuses
