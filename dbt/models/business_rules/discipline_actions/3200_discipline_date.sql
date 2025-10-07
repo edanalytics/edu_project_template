@@ -37,7 +37,7 @@ select da.k_student, da.k_school__responsibility, da.school_year,
         'does not fall within the school year. Value Received: ', da.discipline_date, '. The state school year starts ',
       concat(cast((da.school_year-1) as int), '-07-01'), ' and ends ', concat(cast(da.school_year as int), '-06-30'), '.') as error,
     brule.tdoe_severity as severity
-    ,discipline_action
+
 from stg_discipline_actions da
 join {{ ref('stg_ef3__students') }} s
     on s.k_student = da.k_student
