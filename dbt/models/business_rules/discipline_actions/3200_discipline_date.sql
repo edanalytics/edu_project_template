@@ -16,10 +16,10 @@ with brule as (
     where br.tdoe_error_code = {{ error_code }}
 ),
 stg_discipline_actions as (
-    select *
-           ,{{ edu_edfi_source.extract_descriptor('value:disciplineDescriptor::string') }} as discipline_action
-    from {{ ref('stg_ef3__discipline_actions_orig') }} da
-         , lateral variant_explode(v_disciplines)
+    select *,
+           {{ edu_edfi_source.extract_descriptor('value:disciplineDescriptor::string') }} as discipline_action
+    from {{ ref('stg_ef3__discipline_actions_orig') }} da,
+         lateral variant_explode(v_disciplines)
     where exists (
         select 1
         from brule
