@@ -33,7 +33,7 @@ with raw_adm as (
         sum(sm.is_funding_ineligible) as days_funding_ineligible,
         sum(sm.is_expelled) as days_expelled,
         sum(sm.is_EL) as days_Dyslexic,
-        sum(sm.dyslexic_membership) as sum_dyslexic_membership,
+        sum(sm.dyslexic_membership) as sum_dys_membership,
         sum(sm.ssd_duration) as sum_student_standard_day,
         sum(sm.class_duration) as sum_class_duration,
         cast(
@@ -44,7 +44,7 @@ with raw_adm as (
                     else sum(sm.dyslexic_membership) / cast(sm.days_in_report_period as decimal(12,8))
                 end) * 100000) / 100000)
             as decimal(8,5)
-        ) as actual_el_adm,
+        ) as actual_dys_adm,
         cast(
             (floor(
                 (case
@@ -55,7 +55,7 @@ with raw_adm as (
                                 cast(least(sm.days_in_report_period,20) as decimal(12,8)), 1.0)
                 end) * 100000) / 100000)
             as decimal(8,5)
-        ) as normalized_el_adm
+        ) as normalized_dys_adm
     from {{ ref('student_membership') }} sm
     join {{ ref('dim_student') }} s
         on s.k_student = sm.k_student
