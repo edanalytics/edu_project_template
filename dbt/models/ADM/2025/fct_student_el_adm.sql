@@ -55,8 +55,39 @@ with raw_el_adm as (
                                 cast(least(sm.days_in_report_period,20) as decimal(12,8)), 1.0)
                 end) * 100000) / 100000)
             as decimal(8,5)
-        ) as normalized_el_adm
+        ) as normalized_el_adm,
+        ilp.participation_status,
+        ilp.status_begin_date as calc_status_begin_date,
+        ilp.safe_status_end_date as calc_status_end_date,
+        ilp.total_years_esl,
+        case
+            when ilp.seq = 1
+                    and sm.calendar_date between 
+                        (case
+                            when datediff(ilp.status_begin_date, sm.entry_date) > 0 and datediff(ilp.status_begin_date, sm.entry_date) <= 60 then sm.entry_date
+                            else ilp.status_begin_date
+                        end)
+                        and ilp.safe_status_end_date then true
+            else false
+        end as is_generous
     from {{ ref('student_membership') }} sm
+    left outer join {{ ref('bld_ilp_safe_ranges') }} ilp
+        on ilp.k_school = sm.k_school
+        and ilp.k_student = sm.k_student
+        and ilp.school_year = sm.school_year
+        and (
+                (ilp.seq = 1
+                    and sm.calendar_date between 
+                        (case
+                            when datediff(ilp.status_begin_date, sm.entry_date) > 0 and datediff(ilp.status_begin_date, sm.entry_date) <= 60 then sm.entry_date
+                            else ilp.status_begin_date
+                        end)
+                        and ilp.safe_status_end_date
+                ) or (
+                    ilp.seq != 1
+                    and sm.calendar_date between ilp.status_begin_date and ilp.safe_status_end_date
+                )
+            )
     join {{ ref('dim_student') }} s
         on s.k_student = sm.k_student
     join {{ ref('dim_lea') }} l
@@ -68,7 +99,21 @@ with raw_el_adm as (
         s.student_unique_id,
         sm.is_primary_school, sm.entry_date,
         sm.exit_withdraw_date, sm.grade_level, sm.grade_level_adm, sm.is_early_graduate, 
-        sm.report_period, sm.report_period_begin_date, sm.report_period_end_date, sm.days_in_report_period
+        sm.report_period, sm.report_period_begin_date, sm.report_period_end_date, sm.days_in_report_period,
+        ilp.participation_status,
+        ilp.status_begin_date,
+        ilp.safe_status_end_date,
+        ilp.total_years_esl,
+        case
+            when ilp.seq = 1
+                    and sm.calendar_date between 
+                        (case
+                            when datediff(ilp.status_begin_date, sm.entry_date) > 0 and datediff(ilp.status_begin_date, sm.entry_date) <= 60 then sm.entry_date
+                            else ilp.status_begin_date
+                        end)
+                        and ilp.safe_status_end_date then true
+            else false
+        end
 )
 select x.*
 from raw_el_adm x

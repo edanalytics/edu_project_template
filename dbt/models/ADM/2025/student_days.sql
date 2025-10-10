@@ -77,12 +77,20 @@ with q as (
     left outer join {{ ref('bld_ilp_safe_ranges') }} ilp
         on ilp.k_school = fssa.k_school
         and ilp.k_student = fssa.k_student
-        and dcd.calendar_date between 
-            (case
-                when datediff(ilp.status_begin_date, fssa.entry_date) > 0 and datediff(ilp.status_begin_date, fssa.entry_date) <= 60 then fssa.entry_date
-                else ilp.status_begin_date
-            end)
-            and ilp.safe_status_end_date
+        and ilp.school_year = fssa.school_year
+        and (
+                (ilp.seq = 1
+                    and dcd.calendar_date between 
+                        (case
+                            when datediff(ilp.status_begin_date, fssa.entry_date) > 0 and datediff(ilp.status_begin_date, fssa.entry_date) <= 60 then fssa.entry_date
+                            else ilp.status_begin_date
+                        end)
+                        and ilp.safe_status_end_date
+                ) or (
+                    ilp.seq != 1
+                    and dcd.calendar_date between ilp.status_begin_date and ilp.safe_status_end_date
+                )
+            )
     left outer join {{ ref('bld_ilpd_safe_ranges') }} ilpd
         on ilpd.k_school = fssa.k_school
         and ilpd.k_student = fssa.k_student

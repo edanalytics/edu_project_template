@@ -15,7 +15,8 @@ with ilp_statuses as (
         ilp.student_unique_id, ilp.ed_org_id,
         {{ edu_edfi_source.extract_descriptor('exploded_status.value:participationStatusDescriptor::string') }} as participation_status,
         exploded_status.value:statusBeginDate::date as status_begin_date,
-        exploded_status.value:statusEndDate::date as status_end_date
+        exploded_status.value:statusEndDate::date as status_end_date,
+        ilp.v_ext:tdoe:totalYearsESL::int as total_years_esl
     from {{ ref('stg_ef3__student_language_instruction_program_associations') }} ilp,
     lateral variant_explode(ilp.v_program_participation_statuses) as exploded_status
     where ilp.program_name = 'ILP'
@@ -26,6 +27,7 @@ rank_ilp_statuses as (
         participation_status,
         status_begin_date,
         status_end_date,
+        total_years_esl,
         row_number() over (
             partition by k_student, k_school, school_year, tenant_code, status_begin_date
             order by 
@@ -43,6 +45,7 @@ ordered_ilp_statuses as (
         participation_status,
         status_begin_date,
         status_end_date,
+        total_years_esl,
         lead(status_begin_date) over (
             partition by k_student, k_school, school_year, tenant_code
             order by status_begin_date) as next_status_begin_date
@@ -53,8 +56,13 @@ select k_student, k_school, school_year, tenant_code, api_year, student_unique_i
     participation_status,
     status_begin_date,
     status_end_date,
+    total_years_esl,
     case
         when next_status_begin_date is not null then date_sub(next_status_begin_date, 1)
         else coalesce(status_end_date, to_date(concat(school_year, '-06-30', 'yyyy-MM-dd')))
-    end as safe_status_end_date
+    end as safe_status_end_date,
+    row_number() over (
+        partition by k_student, k_school, school_year, tenant_code
+        order by status_begin_date
+    ) as seq
 from ordered_ilp_statuses
