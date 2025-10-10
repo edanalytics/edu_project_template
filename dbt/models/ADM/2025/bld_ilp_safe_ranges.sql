@@ -58,7 +58,7 @@ select k_student, k_school, school_year, tenant_code, api_year, student_unique_i
     status_end_date,
     total_years_esl,
     case
-        when next_status_begin_date is not null then date_sub(next_status_begin_date, 1)
+        when next_status_begin_date is not null and next_status_begin_date < status_begin_date then date_sub(next_status_begin_date, 1)
         else coalesce(status_end_date, to_date(concat(school_year, '-06-30', 'yyyy-MM-dd')))
     end as safe_status_end_date,
     row_number() over (

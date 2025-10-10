@@ -17,10 +17,9 @@
   )
 }}
 
-/* This model calculates the Dyslexic ADM. 
-I don't know why this is a thing. */
+/* This model calculates the SPED ADM. */
 
-with raw_adm as (
+with raw_el_adm as (
     select sm.k_student, sm.k_lea, sm.k_school, sm.k_school_calendar, sm.school_year, 
         l.lea_id as district_id, l.lea_name as district_name, 
         cast(right(cast(school.school_id as string), 4) as int) as school_id, school.school_name,
@@ -32,31 +31,42 @@ with raw_adm as (
         sum(sm.is_sped) as days_sped,
         sum(sm.is_funding_ineligible) as days_funding_ineligible,
         sum(sm.is_expelled) as days_expelled,
-        sum(sm.is_EL) as days_Dyslexic,
-        sum(sm.dyslexic_membership) as sum_dyslexic_membership,
+        sum(sm.sped_membership) as sum_sped_membership,
         sum(sm.ssd_duration) as sum_student_standard_day,
         sum(sm.class_duration) as sum_class_duration,
         cast(
             (floor(
                 (case
                     when sm.days_in_report_period is null or sm.days_in_report_period = 0 then 0
-                    when sum(sm.dyslexic_membership) is null or sum(sm.dyslexic_membership) = 0 then 0
-                    else sum(sm.dyslexic_membership) / cast(sm.days_in_report_period as decimal(12,8))
+                    when sum(sm.sped_membership) is null or sum(sm.sped_membership) = 0 then 0
+                    else sum(sm.sped_membership) / cast(sm.days_in_report_period as decimal(12,8))
                 end) * 100000) / 100000)
             as decimal(8,5)
-        ) as actual_el_adm,
+        ) as actual_sped_adm,
         cast(
             (floor(
                 (case
                     when sm.days_in_report_period is null or sm.days_in_report_period = 0 then 0
-                    when sum(sm.dyslexic_membership) is null or sum(sm.dyslexic_membership) = 0 then 0
+                    when sum(sm.sped_membership) is null or sum(sm.sped_membership) = 0 then 0
                     else least(
-                            sum(least(sm.dyslexic_membership, 1.0)) / 
+                            sum(least(sm.sped_membership, 1.0)) / 
                                 cast(least(sm.days_in_report_period,20) as decimal(12,8)), 1.0)
                 end) * 100000) / 100000)
             as decimal(8,5)
-        ) as normalized_el_adm
+        ) as normalized_sped_adm,
+        sped.primary_indicator,
+        sped.participation_status,
+        sped.option,
+        sped.service_begin_date,
+        sped.safe_service_end_date as service_end_date,
+        sped.service_eligibility_date
     from {{ ref('student_membership') }} sm
+    left outer join {{ ref('bld_sped_safe_ranges') }} sped
+        on sped.k_lea = sm.k_lea
+        and sped.k_student = sm.k_student
+        and sped.school_year = sm.school_year
+        and sm.is_sped = 1
+        and sm.calendar_date between sped.service_begin_date and sped.safe_service_end_date
     join {{ ref('dim_student') }} s
         on s.k_student = sm.k_student
     join {{ ref('dim_lea') }} l
@@ -68,8 +78,14 @@ with raw_adm as (
         s.student_unique_id,
         sm.is_primary_school, sm.entry_date,
         sm.exit_withdraw_date, sm.grade_level, sm.grade_level_adm, sm.is_early_graduate, 
-        sm.report_period, sm.report_period_begin_date, sm.report_period_end_date, sm.days_in_report_period
+        sm.report_period, sm.report_period_begin_date, sm.report_period_end_date, sm.days_in_report_period,
+        sped.primary_indicator,
+        sped.participation_status,
+        sped.option,
+        sped.service_begin_date,
+        sped.safe_service_end_date,
+        sped.service_eligibility_date
 )
 select x.*
-from raw_adm x
+from raw_el_adm x
 order by x.k_lea, x.k_school, x.k_student, x.report_period

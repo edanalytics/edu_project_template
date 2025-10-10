@@ -33,7 +33,7 @@ select ilpd.k_student, ilpd.k_school, ilpd.school_year, ilpd.tenant_code, ilpd.a
     ilpd.service_begin_date,
     ilpd.service_end_date,
     case
-        when ilpd.next_service_begin_date is not null then date_sub(ilpd.next_service_begin_date, 1)
+        when ilpd.next_service_begin_date is not null and next_service_begin_date < service_begin_date then date_sub(ilpd.next_service_begin_date, 1)
         else coalesce(ilpd.service_end_date, to_date(concat(ilpd.school_year, '-06-30', 'yyyy-MM-dd')))
     end as safe_service_end_date
 from clean_ilpd_statuses ilpd

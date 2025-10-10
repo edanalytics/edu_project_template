@@ -23,6 +23,10 @@ with q as (
         dcd.report_period, dcd.report_period_begin_date, dcd.report_period_end_date,
         dcd.days_in_report_period,
         case
+            when sped.participation_status is not null then 1
+            else 0
+        end as is_SPED,
+        case
             when exists(
                 select 1
                 from {{ ref('fct_student_characteristics') }} x 
@@ -74,6 +78,13 @@ with q as (
         on ssd.k_school = fssa.k_school
         and ssd.k_student = fssa.k_student
         and dcd.calendar_date between ssd.ssd_date_start and ssd.ssd_date_end
+    left outer join {{ ref('bld_sped_safe_ranges') }} sped
+        on sped.k_lea = fssa.k_lea
+        and sped.k_student = fssa.k_student
+        and sped.tenant_code = fssa.tenant_code
+        and sped.school_year = fssa.school_year
+        and sped.primary_indicator = true
+        and dcd.calendar_date between sped.service_begin_date and sped.safe_service_end_date
     left outer join {{ ref('bld_ilp_safe_ranges') }} ilp
         on ilp.k_school = fssa.k_school
         and ilp.k_student = fssa.k_student
@@ -101,6 +112,7 @@ select k_student, k_lea, k_school, k_school_calendar,
     grade_level, grade_level_adm, coalesce(is_early_graduate,0) as is_early_graduate, ssd_duration,
     calendar_date, day_of_school_year, report_period, report_period_begin_date,
     report_period_end_date, days_in_report_period, 
+    coalesce(is_sped,0) as is_sped,
     coalesce(is_funding_ineligible,0) as is_funding_ineligible,
     coalesce(is_expelled,0) as is_expelled, 
     coalesce(is_EconDis,0) as is_EconDis,
@@ -112,7 +124,7 @@ select k_student, k_lea, k_school, k_school_calendar,
         else 0
     end as is_early_grad_date,
     case
-        when is_expelled = 1 /*todo: need is_sped here */ then 0 
+        when is_expelled = 1 and coalesce(is_sped,0) = 0 then 0 
         when is_funding_ineligible = 1 then 0
         when calendar_date >= exit_withdraw_date 
             and is_early_graduate = 1 then 1

@@ -11,7 +11,7 @@
 
 select k_student, k_lea, k_school, k_school_calendar, school_year, is_primary_school, entry_date,
     exit_withdraw_date, grade_level, grade_level_adm, is_early_graduate, 
-    calendar_date, isa_member, is_funding_ineligible, is_expelled, is_EconDis,
+    calendar_date, isa_member, is_sped, is_funding_ineligible, is_expelled, is_EconDis,
     is_early_grad_date,
     ssd_duration, report_period, report_period_begin_date, report_period_end_date,
     days_in_report_period,
