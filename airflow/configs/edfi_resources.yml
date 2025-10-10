@@ -486,7 +486,7 @@ studentSchoolFoodServiceProgramAssociations:
 studentSectionAssociations:
   enabled: True
   namespace: ed-fi
-  page_size: 750
+  page_size: 500
   fetch_deletes: True
 studentSectionAttendanceEvents:
   enabled: True
