@@ -10,8 +10,8 @@
   )
 }}
 
-{{ edu_wh.cds_depends_on('tdoe:fct_student_district:custom_data_sources') }}
-{% set custom_data_sources = var('tdoe:fct_student_district:custom_data_sources', []) %}
+/*{{ edu_wh.cds_depends_on('tdoe:fct_student_district:custom_data_sources') }}
+{% set custom_data_sources = var('tdoe:fct_student_district:custom_data_sources', []) %}*/
 
 with stg_student as (
     select * from {{ ref('edu_edfi_source', 'stg_ef3__students') }}
@@ -83,8 +83,8 @@ formatted as (
         on stu_immutable_demos.k_student = stu_indicators.k_student
         and stu_immutable_demos.ed_org_id = stu_indicators.ed_org_id
 
-    -- custom data sources
-    {{ edu_wh.add_cds_joins_v2(custom_data_sources=custom_data_sources) }}
+    /*-- custom data sources
+    {{ edu_wh.add_cds_joins_v2(custom_data_sources=custom_data_sources) }}*/
 )
 
 select * from formatted
