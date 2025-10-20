@@ -10,9 +10,6 @@
   )
 }}
 
-/*{{ edu_wh.cds_depends_on('tdoe:fct_student_district:custom_data_sources') }}
-{% set custom_data_sources = var('tdoe:fct_student_district:custom_data_sources', []) %}*/
-
 with stg_student as (
     select * from {{ ref('edu_edfi_source', 'stg_ef3__students') }}
 ),
@@ -67,9 +64,6 @@ formatted as (
         stu_immutable_demos.race_array,
         stu_immutable_demos.safe_display_name
 
-        -- custom indicators
-        {{ edu_wh.add_cds_columns(custom_data_sources=custom_data_sources) }}
-
     from stg_student
     join stu_immutable_demos
         on stu_immutable_demos.k_student = stg_student.k_student
@@ -82,9 +76,6 @@ formatted as (
     left join stu_indicators
         on stu_immutable_demos.k_student = stu_indicators.k_student
         and stu_immutable_demos.ed_org_id = stu_indicators.ed_org_id
-
-    /*-- custom data sources
-    {{ edu_wh.add_cds_joins_v2(custom_data_sources=custom_data_sources) }}*/
 )
 
 select * from formatted
