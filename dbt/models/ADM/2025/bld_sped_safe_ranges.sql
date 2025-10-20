@@ -18,7 +18,7 @@ with sped_options as (
         exploded_services.value:serviceBeginDate::date as service_begin_date,
         exploded_services.value:serviceEndDate::date as service_end_date,
         sped.v_ext:tdoe:serviceEligibilityDate::date as service_eligibility_date
-    from teds_prod.edfi_stage.stg_ef3__student_special_education_program_associations sped,
+    from {{ ref('stg_ef3__student_special_education_program_associations') }} sped,
     lateral variant_explode(sped.v_special_education_program_services) as exploded_services
     where sped.k_school is null
         and sped.program_name = 'Special Education'
