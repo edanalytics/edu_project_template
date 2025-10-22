@@ -6,6 +6,8 @@
 }}
 
 select s.k_student, 
-    s.state_student_id as stateStudentId
+    s.state_student_id as stateStudentId,
+    s.date_entered_us as date_entered_us
 from {{ ref('stg_ef3__students') }} s
 where s.state_student_id is not null
+    or s.date_entered_us is not null

@@ -25,6 +25,22 @@ stu_chars as (
 stu_indicators as (
     select * from {{ ref('edu_wh', 'bld_ef3__student_indicators') }}
 ),
+stu_languages as (
+    select tenant_code, api_year, k_student, ed_org_id, code_value as calc_home_language
+    from {{ ref('stg_ef3__stu_ed_org__languages') }} x
+    where k_lea is not null
+        and k_school is null
+        and upper(language_use) in ('NATIVE LANGUAGE', 'DOMINANT LANGUAGE', 'HOME LANGUAGE')
+    qualify 1 = row_number() over (
+        partition by tenant_code, api_year, k_student, ed_org_id
+        order by 
+            case upper(language_use)
+                when 'NATIVE LANGUAGE' then 1
+                when 'HOME LANGUAGE' then 2
+                when 'DOMINANT LANGUAGE' then 3
+            end
+    )
+),
 formatted as (
     select
         stg_student.k_student,
@@ -62,7 +78,8 @@ formatted as (
         ) }}
 
         stu_immutable_demos.race_array,
-        stu_immutable_demos.safe_display_name
+        stu_immutable_demos.safe_display_name,
+        stu_languages.calc_home_language
 
     from stg_student
     join stu_immutable_demos
@@ -76,6 +93,9 @@ formatted as (
     left join stu_indicators
         on stu_immutable_demos.k_student = stu_indicators.k_student
         and stu_immutable_demos.ed_org_id = stu_indicators.ed_org_id
+    left join stu_languages
+        on stu_immutable_demos.k_student = stu_languages.k_student
+        and stu_immutable_demos.ed_org_id = stu_languages.ed_org_id
 )
 
 select * from formatted
