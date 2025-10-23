@@ -128,14 +128,14 @@ class ADLSToDatabricksOperator(BaseOperator):
         """
 
         qry_create_table = f"""
-            CREATE TABLE IF NOT EXISTS {database}.{schema}.{table}_stage
+            CREATE TABLE IF NOT EXISTS {database}.{schema}.{table}_stage_{self.api_year}
         """
 
         qry_drop_table = f"""
-            DROP TABLE {database}.{schema}.{table}_stage
+            DROP TABLE {database}.{schema}.{table}_stage_{self.api_year}
         """
         qry_copy_into = f"""
-            COPY INTO {database}.{schema}.{table}_stage
+            COPY INTO {database}.{schema}.{table}_stage_{self.api_year}
             FROM 'abfss://{self.adls_container}@{self.adls_storage_account}.dfs.core.windows.net/{adls_key}'
             FILEFORMAT = TEXT
             COPY_OPTIONS ('force' = 'true', 'mergeSchema' = 'true')"""
@@ -153,7 +153,7 @@ class ADLSToDatabricksOperator(BaseOperator):
                 '{name}' as name, 
                 '{self.ods_version}' as `ods_version`, 
                 '{self.data_model_version}' as `data_model_version`
-            FROM {database}.{schema}.{table}_stage    
+            FROM {database}.{schema}.{table}_stage_{self.api_year}    
         """
 
         # Incremental runs are only available in EdFi 3+.
