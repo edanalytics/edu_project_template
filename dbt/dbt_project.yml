@@ -145,7 +145,7 @@ vars:
       state_student_id:
         where: stateStudentId
       date_entered_us:
-        where: date_entered_us
+        where: dateenteredus
 
   #tdoe business rule vars
   'edu:excluded_data:stg_ef3__bell_schedules':
