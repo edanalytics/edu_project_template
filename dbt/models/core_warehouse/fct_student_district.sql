@@ -41,6 +41,9 @@ stu_languages as (
             end
     )
 ),
+stu_cohort_year as (
+    select * from {{ ref('bld_ef3__student_cohort_years_by_district')}}
+),
 formatted as (
     select
         stg_student.k_student,
@@ -78,6 +81,7 @@ formatted as (
         ) }}
 
         stu_immutable_demos.race_array,
+        stu_cohort_year.ninth_grade_cohort_year,
         stu_immutable_demos.safe_display_name,
         stu_languages.calc_home_language
 
@@ -95,6 +99,9 @@ formatted as (
         and stu_immutable_demos.ed_org_id = stu_indicators.ed_org_id
     left join stu_languages
         on stu_immutable_demos.k_student = stu_languages.k_student
+        and stu_immutable_demos.ed_org_id = stu_languages.ed_org_id
+    left join stu_cohort_year
+        on stu_immutable_demos.k_student = stu_cohort_year.k_student
         and stu_immutable_demos.ed_org_id = stu_languages.ed_org_id
 )
 
