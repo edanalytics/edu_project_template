@@ -7,7 +7,6 @@
 
 with base_calendar_dates as (
     select * from {{ ref('edu_edfi_source', 'base_ef3__calendar_dates') }}
-    where not is_deleted
 ),
 keyed as (
     select 
@@ -28,8 +27,9 @@ deduped as (
         dbt_utils.deduplicate(
             relation='keyed',
             partition_by='k_calendar_date',
-            order_by='pull_timestamp desc'
+            order_by='last_modified_timestamp desc, pull_timestamp desc'
         )
     }}
 )
 select * from deduped
+where not is_deleted

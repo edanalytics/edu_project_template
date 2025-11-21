@@ -1,6 +1,6 @@
 packages:
   - git: https://github.com/tnedu/edu_wh.git
-    revision: tdoe_databricks
+    revision: tdoe_on_latest_ea_w_extras
   - package: brooklyn-data/dbt_artifacts
     version: [">=2.2.2", "<3.0.0"]
   - git: https://github.com/tnedu/edu_ext_oneroster.git

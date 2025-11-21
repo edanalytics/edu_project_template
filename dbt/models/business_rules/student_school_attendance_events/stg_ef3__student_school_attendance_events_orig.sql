@@ -1,13 +1,16 @@
-{{
-  config(
-    materialized="table",
-    schema="stage"
-  )
-}}
-
+{{ config(
+    materialized=var('edu:edfi_source:large_stg_materialization', 'table'),
+    schema="stage",
+    unique_key=['k_student', 'k_school', 'k_session', 'attendance_event_category', 'attendance_event_date'],
+    post_hook=["{{edu_edfi_source.stg_post_hook_delete()}}"]
+) }}
 with base_student_school_attend as (
     select * from {{ ref('edu_edfi_source', 'base_ef3__student_school_attendance_events') }}
-    where not is_deleted
+
+    {% if is_incremental() %}
+    -- Only get newly added or deleted records since the last run
+    where last_modified_timestamp > (select max(last_modified_timestamp) from {{ this }})
+    {% endif %}
 ),
 keyed as (
     select 
@@ -24,8 +27,12 @@ deduped as (
         dbt_utils.deduplicate(
             relation='keyed',
             partition_by='k_student, k_school, k_session, attendance_event_category, attendance_event_date',
-            order_by='pull_timestamp desc'
+            order_by='last_modified_timestamp desc, pull_timestamp desc'
         )
     }}
 )
 select * from deduped
+{% if not is_incremental() %}
+where not is_deleted
+{% endif %}
+

@@ -7,7 +7,6 @@
 
 with base_stu_programs as (
     select * from {{ ref('edu_edfi_source', 'base_ef3__student_homeless_program_associations') }}
-    where not is_deleted
 ),
 
 keyed as (
@@ -27,8 +26,9 @@ deduped as (
     {{ dbt_utils.deduplicate(
         relation='keyed',
         partition_by='k_student, k_program, program_enroll_begin_date, school_year',
-        order_by='pull_timestamp desc'
+        order_by='last_modified_timestamp desc, pull_timestamp desc'
     ) }}
 )
 
 select * from deduped
+where not is_deleted
