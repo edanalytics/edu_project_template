@@ -25,6 +25,9 @@ stg_student_edorgs as (
         from brule
         where cast(seoa.school_year as int) between brule.error_school_year_start and brule.error_school_year_end
     )
+),
+valid_enrollments as (
+    select * from {{ ref('valid_enrollments') }} 
 )
 select se.k_student, se.k_lea, se.k_school, se.school_year, se.ed_org_id, se.student_unique_id,
     s.state_student_id as legacy_state_student_id,
@@ -40,8 +43,15 @@ join brule
     on se.school_year between brule.error_school_year_start and brule.error_school_year_end
 where 
     not exists (
-            select 1
-            from {{ ref('stg_ef3__stu_ed_org__races') }} sr
-            where sr.k_lea = se.k_lea
-                and sr.k_student = se.k_student
-        )
+        select 1
+        from {{ ref('stg_ef3__stu_ed_org__races') }} sr
+        where sr.k_lea = se.k_lea
+            and sr.k_student = se.k_student
+    )
+    and exists (
+        select 1
+        from valid_enrollments ve
+        where ve.k_student = se.k_student
+            and ve.school_year = se.school_year
+            and ve.k_lea = se.k_lea
+    )
