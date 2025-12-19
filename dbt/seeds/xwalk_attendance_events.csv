@@ -1,7 +1,7 @@
-namespace,attendance_event_descriptor,is_absent
-uri://ed-fi.org/,In Attendance,0.0
-uri://ed-fi.org/,Excused Absence,1.0
-uri://ed-fi.org/,Unexcused Absence,1.0
-uri://ed-fi.org/,Tardy,0.0
-uri://ed-fi.org/,Early departure,0.0
-uri://ed-fi.org/,Partial,0.0
+namespace,attendance_event_descriptor,is_absent,attendance_excusal_status
+uri://ed-fi.org/,In Attendance,0.0,
+uri://ed-fi.org/,Excused Absence,1.0,Excused
+uri://ed-fi.org/,Unexcused Absence,1.0,Unexcused
+uri://ed-fi.org/,Tardy,0.0,
+uri://ed-fi.org/,Early departure,0.0,
+uri://ed-fi.org/,Partial,0.0,
