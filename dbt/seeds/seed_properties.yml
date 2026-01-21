@@ -1,0 +1,110 @@
+seeds:
+    - name: xwalk_assessment_scores
+    - name: xwalk_objective_assessment_scores
+    - name: xwalk_student_assessment_subject
+    - name: absentee_categories
+    config:
+        column_types:
+            metric_name: varchar
+            threshold_lower: number
+            threshold_upper: number
+            level_numeric: number
+            level_label: varchar
+            level_color: varchar
+    - name: xwalk_parent_email_types
+    config: 
+        column_types:
+            original_email_type: varchar
+            normalized_email_type: varchar
+    - name: xwalk_parent_phone_number_types
+    config:
+        column_types:
+            original_phone_number_type: varchar
+            normalized_phone_number_type: varchar
+    - name: direct_user_access
+    - name: staff_classification_access
+    config:
+        column_types:
+            staff_classification: varchar
+            access_level: varchar
+    - name: xwalk_student_characteristics
+    config:
+        column_types:
+            characteristic_descriptor: varchar
+            indicator_name: varchar
+    - name: xwalk_student_indicators
+    - name: xwalk_student_programs
+    - name: xwalk_subgroup_category_display_names
+    config:
+        column_types:
+            subgroup_category: varchar
+            subgroup_category_display_name: varchar
+    - name: xwalk_subgroup_value_display_names
+    config:
+        column_types:
+            subgroup_category: varchar
+            subgroup_value: varchar
+            subgroup_value_display_name: varchar
+
+
+    - name: xwalk_attendance_events
+    config:
+        column_types:
+            namespace: varchar
+            attendance_event_descriptor: varchar
+            is_absent: number
+    - name: xwalk_calendar_events
+    config: 
+        column_types:
+            namespace: varchar
+            calendar_event_descriptor: varchar
+            is_school_day: varchar
+    - name: xwalk_course_level_characteristics
+    config:
+        column_types:
+            characteristic_descriptor: varchar
+            indicator_name: varchar
+    - name: xwalk_discipline_actions
+    config:
+        column_types:
+            discipline_action: varchar
+            severity_order: number
+            is_oss: boolean
+            is_iss: boolean
+            is_exp: boolean
+            is_minor: boolean
+    - name: xwalk_discipline_behaviors
+    - name: xwalk_grade_levels
+    config:
+        column_types:
+            grade_level: varchar
+            grade_level_numbereger: number
+    - name: xwalk_id_types_course 
+    config:
+        column_types:
+            id_system: varchar
+            id_name: varchar           
+    - name: xwalk_id_types_ed_org
+    config:
+        column_types:
+            id_system: varchar
+            id_name: varchar   
+    - name: xwalk_id_types_staff
+    config:
+        column_types:
+            id_system: varchar
+            id_name: varchar   
+    - name: xwalk_id_types_student
+    config:
+        column_types:
+            id_system: varchar
+            id_name: varchar   
+    - name: xwalk_letter_grades
+    config:
+        column_types:
+            letter_grade: varchar
+            unweighted_gpa_ponumbers: number
+            exclude_from_gpa: boolean
+            is_dorf: boolean
+            grade_sort_index: number
+    - name: xwalk_network_association_types
