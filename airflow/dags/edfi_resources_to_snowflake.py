@@ -2,16 +2,13 @@ import importlib
 
 from util import io_helpers
 
+from airflow.utils.dag_parsing_context import get_parsing_context
 from airflow.utils.task_group import TaskGroup
 
 from edu_edfi_airflow import EdFiResourceDAG
 
-### Optimizing DAG parsing delays during execution (only Airflow 2.4+)
-if importlib.metadata.version('apache-airflow') >= '2.4':
-    from airflow.utils.dag_parsing_context import get_parsing_context
-    __current_dag_id__ = get_parsing_context().dag_id
-else:
-    __current_dag_id__ = None
+### Optimizing DAG parsing delays during execution
+__current_dag_id__ = get_parsing_context().dag_id
 
 
 # Turning on descriptor DAGs doubles the total number processed by Airflow.
