@@ -1,12 +1,12 @@
 # Set versions to install into Airflow virtual environment
 AIRFLOW_VERSION=2.9.3
 
-EA_AIRFLOW_UTIL_VERSION=0.3.6
-EDFI_API_CLIENT_VERSION=0.2.3
-EDU_EDFI_AIRFLOW_VERSION=0.4.5
+EA_AIRFLOW_UTIL_VERSION=0.3.8
+EDFI_API_CLIENT_VERSION=0.3.1
+EDU_EDFI_AIRFLOW_VERSION=0.5.0
 
-EARTHMOVER_VERSION=0.4.4
-LIGHTBEAM_VERSION=0.1.6
+EARTHMOVER_VERSION=0.4.9
+LIGHTBEAM_VERSION=0.1.11
 
 
 ### set up airflow environment ###
@@ -22,6 +22,7 @@ pip install wheel setuptools==70.*  --quiet #pinning setuptools due to package v
 PYTHON_VERSION="$(python --version | cut -d " " -f 2 | cut -d "." -f 1-2)"  # Force dynamic introspection of Python environment.
 CONSTRAINT_URL="https://raw.githubusercontent.com/apache/airflow/constraints-${AIRFLOW_VERSION}/constraints-${PYTHON_VERSION}.txt"
 pip install "apache-airflow[amazon, snowflake, slack, postgres, ssh, sftp]==${AIRFLOW_VERSION}" --constraint "${CONSTRAINT_URL}"  --quiet
+pip install "apache-airflow-providers-amazon[s3fs]" --quiet  # Added for S3 file operations
 pip install airflow-dbt
 pip install pysftp
 
