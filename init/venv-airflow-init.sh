@@ -1,12 +1,9 @@
 # Set versions to install into Airflow virtual environment
 AIRFLOW_VERSION=2.9.3
 
-EA_AIRFLOW_UTIL_VERSION=0.3.6
-EDFI_API_CLIENT_VERSION=0.2.3
-EDU_EDFI_AIRFLOW_VERSION=0.4.5
-
-EARTHMOVER_VERSION=0.4.4
-LIGHTBEAM_VERSION=0.1.6
+EA_AIRFLOW_UTIL_VERSION=0.3.8
+EDU_EDFI_AIRFLOW_VERSION=0.5.1
+EA_PRODUCT_AIRFLOW_VERSION=0.1.7
 
 
 ### set up airflow environment ###
@@ -25,22 +22,23 @@ pip install "apache-airflow[amazon, snowflake, slack, postgres, ssh, sftp]==${AI
 pip install airflow-dbt
 pip install pysftp
 
-pip install edfi_api_client=="${EDFI_API_CLIENT_VERSION}"
-pip install earthmover=="${EARTHMOVER_VERSION}"
-pip install lightbeam=="${LIGHTBEAM_VERSION}"
-
 ### Install EDU packages as executable repos in the `code` directory.
 cd ~/code
 
 git clone https://github.com/edanalytics/ea_airflow_util.git
 git clone https://github.com/edanalytics/edu_edfi_airflow.git
+git clone https://github.com/edanalytics/ea_product_airflow.git
+git clone https://github.com/edanalytics/runway_python_client.git
 
 pip install -e ea_airflow_util
 pip install -e edu_edfi_airflow
+pip install -e ea_product_airflow
+pip install -e runway_python_client
 
 # Checkout the most recent tagged releases.
 git -C ea_airflow_util  checkout "tags/v${EA_AIRFLOW_UTIL_VERSION}"
 git -C edu_edfi_airflow checkout "tags/v${EDU_EDFI_AIRFLOW_VERSION}"
+git -C ea_product_airflow checkout "tags/v${EDU_PRODUCT_AIRFLOW_VERSION}"
 
 # Return to the original path.
 cd -
