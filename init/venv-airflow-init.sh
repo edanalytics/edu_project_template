@@ -30,15 +30,15 @@ git clone https://github.com/edanalytics/edu_edfi_airflow.git
 git clone https://github.com/edanalytics/ea_product_airflow.git
 git clone https://github.com/edanalytics/runway_python_client.git
 
-pip install -e ea_airflow_util
-pip install -e edu_edfi_airflow
-pip install -e ea_product_airflow
-pip install -e runway_python_client
-
 # Checkout the most recent tagged releases.
 git -C ea_airflow_util  checkout "tags/v${EA_AIRFLOW_UTIL_VERSION}"
 git -C edu_edfi_airflow checkout "tags/v${EDU_EDFI_AIRFLOW_VERSION}"
 git -C ea_product_airflow checkout "tags/v${EDU_PRODUCT_AIRFLOW_VERSION}"
+
+pip install -e ea_airflow_util
+pip install -e edu_edfi_airflow
+pip install -e ea_product_airflow
+pip install -e runway_python_client
 
 # Return to the original path.
 cd -
