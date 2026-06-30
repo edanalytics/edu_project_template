@@ -50,9 +50,10 @@ for tenant_code, api_year_vars in dag_params.items():
 
         ### EdFi Resources DAG: One table per resource
         resources_dag_id = f"edfi_el_{tenant_code}_{api_year}_resources"
+        descriptors_dag_id = f"edfi_el_{tenant_code}_{api_year}_descriptors"
 
         # Optimizing DAG parsing delays during execution
-        if __current_dag_id__ and __current_dag_id__ != resources_dag_id:
+        if __current_dag_id__ and __current_dag_id__ not in (resources_dag_id, descriptors_dag_id):
             continue  # skip generation of non-selected DAG
 
         # Reassign `schedule_interval` if a resource-specific value has been provided.
@@ -87,11 +88,6 @@ for tenant_code, api_year_vars in dag_params.items():
         if INGEST_DESCRIPTORS:
             ### EdFi Descriptors DAG: One `descriptors` table
             # Note: Descriptors do not have deletes.
-            descriptors_dag_id = f"edfi_el_{tenant_code}_{api_year}_descriptors"
-
-            # Optimizing DAG parsing delays during execution
-            if __current_dag_id__ and __current_dag_id__ != descriptors_dag_id:
-                continue  # skip generation of non-selected DAG
 
             # Reassign `schedule_interval` if a descriptors-specific value has been provided.
             dag_vars['schedule_interval'] = dag_vars.get('schedule_interval_descriptors') or dag_vars.get('schedule_interval')
