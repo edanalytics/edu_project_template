@@ -1,6 +1,14 @@
 # Unreleased
 - Ensure that all resources that are required by `edu_edfi_source` are included in `src_edfi_3.yml` and `sql_source_create_table.sql`
 
+# edu_project_template v0.2.1
+## Changes
+- Pinned `dbt-core` to `>=1.10.8,<2.0.0` in the venv setup script so new environments install a version compatible with `edu_wh`, rather than just pulling the latest.
+- Cleaned up dbt deprecation warnings in the source and codegen templates by moving shared column definitions under `anchors` and `enabled` under `config`. These changes don't affect the generated tables.
+
+## Under the hood
+- Removed the deprecated `target-path` setting from `dbt_project.yml` since `target` is already the default.
+
 # edu_project_template v0.2.0
 ## New features
 - Add optional `dbt_incrementer_var` to `edu_edfi_airflow.EdFiResourceDAG` and `ea_airflow_util.RunDbtDag` in Airflow config YAMLs
