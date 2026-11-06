@@ -1,5 +1,6 @@
 - name: {snake}
   description: >
     {description}
-  enabled: true
+  config:
+    enabled: true
   columns: *column_defaults
