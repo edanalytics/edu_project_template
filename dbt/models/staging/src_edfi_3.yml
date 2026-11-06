@@ -4,27 +4,29 @@
 version: 2
 
 # define default table layout for json sources
-column_defaults: &column_defaults
-  - name: filename
-    description: Path to the original S3 file
-  - name: file_row_number
-    description: Row number within original file
-  - name: tenant_code
-    description: Data owner (parsed from S3 path)
-  - name: api_year
-    description: School year in a year-separated ODS, formatted as YYYY of the spring year (parsed from S3 path)
-  - name: pull_date
-    description: Date the data was pulled from the API
-  - name: pull_timestamp
-    description: Timestamp the data was pulled from the API
-  - name: name
-    description: Name of the API resource
-  - name: ods_version
-    description: Ed-Fi ODS version of the pulled resource
-  - name: data_model_version
-    description: Ed-Fi data model version of the pulled resource
-  - name: v
-    description: Variant column containing actual JSON data
+# (YAML anchors live under the top-level `anchors:` key, supported from dbt 1.10+)
+anchors:
+  - &column_defaults
+    - name: filename
+      description: Path to the original S3 file
+    - name: file_row_number
+      description: Row number within original file
+    - name: tenant_code
+      description: Data owner (parsed from S3 path)
+    - name: api_year
+      description: School year in a year-separated ODS, formatted as YYYY of the spring year (parsed from S3 path)
+    - name: pull_date
+      description: Date the data was pulled from the API
+    - name: pull_timestamp
+      description: Timestamp the data was pulled from the API
+    - name: name
+      description: Name of the API resource
+    - name: ods_version
+      description: Ed-Fi ODS version of the pulled resource
+    - name: data_model_version
+      description: Ed-Fi data model version of the pulled resource
+    - name: v
+      description: Variant column containing actual JSON data
 
 
 # define source
