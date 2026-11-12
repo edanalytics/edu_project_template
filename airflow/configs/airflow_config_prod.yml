@@ -45,8 +45,10 @@ edfi_resource_dags__default_args: &edfi_resource_dags__default_args
 
   # Airflow Connection IDs
   edfi_conn_id: ~
-  s3_conn_id: 'data_lake'
-  snowflake_conn_id: 'snowflake'
+  object_storage_conn_id: 'data_lake'
+  object_storage_type: 's3'
+  database_conn_id: 'snowflake'
+  database_type: 'snowflake'
   slack_conn_id: 'slack'
 
   # Airflow Variables
