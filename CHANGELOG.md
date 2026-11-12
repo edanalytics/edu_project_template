@@ -1,5 +1,6 @@
 # Unreleased
 - Ensure that all resources that are required by `edu_edfi_source` are included in `src_edfi_3.yml` and `sql_source_create_table.sql`
+- Add cloud-generic version of core connection definitions
 
 # edu_project_template v0.2.0
 ## New features
