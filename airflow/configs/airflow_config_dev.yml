@@ -60,6 +60,9 @@ edfi_resource_dags__default_args: &edfi_resource_dags__default_args
   # Variables for interacting with Snowflake
   change_version_table: '_meta_change_versions'
 
+  # Force all Ed-Fi DAGs to use dynamic task mapping and only make tasks for deltas.
+  run_type: dynamic
+
 
 edfi_resource_dags:
   TENANT1:
